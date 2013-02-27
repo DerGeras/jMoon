@@ -143,6 +143,30 @@ public class Map {
 	}
 	
 	/**
+	 * returns the plant at the specific position, if existend
+	 * @param posX - x coordinate
+	 * @param posY - y coordinate
+	 * @return the plant at position (posX,posY) or null
+	 */
+	public Plant getPlant(int posX, int posY){
+		for(Plant plant : plants){
+			if(plant.getPosX() == posX && plant.getPosY() == posY){
+				return plant;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * remove the given plant from the plants
+	 * @param plant - the plant to remove
+	 */
+	public void removePlant(Plant plant){
+		plants.remove(plant);
+		setField("Plants", plant.getPosX(), plant.getPosY(), -1);
+	}
+	
+	/**
 	 * Render the map
 	 * @param x - the x coordinate
 	 * @param y - the y coordinate
@@ -237,12 +261,7 @@ public class Map {
 					decoLayer.setField(i, j, WorldElements.ROCK_VALUE);
 				}
 				else{
-					if(rand.nextInt(3) == 1 && i > 10 && j > 10){
-						decoLayer.setField(i, j, WorldElements.FENCE_VALUE);
-					}
-					else{
-						decoLayer.setField(i, j, -1);						
-					}
+					decoLayer.setField(i, j, -1);
 				}
 				
 				//Plant Layer

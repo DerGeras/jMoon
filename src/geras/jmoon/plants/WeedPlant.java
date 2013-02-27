@@ -1,5 +1,6 @@
 package geras.jmoon.plants;
 
+import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
 
@@ -36,6 +37,19 @@ public class WeedPlant extends Plant {
 			map.setField("Plants", posX, posY, ++tileValue);
 		}
 		return res;
+	}
+
+	@Override
+	public void harvest(PlayerEntity player, Map map) {
+		int growth = tileValue - WorldElements.WEED_MIN_VALUE;
+		if(growth >= 3){
+			player.getInventory().addItem("Seeds", 1, 1);
+		}
+		if(growth == 5){
+			player.getInventory().addItem("Seeds", 1, 1);
+			player.getInventory().addItem("Wheat", 2, 1);
+		}
+		map.removePlant(this);
 	}
 
 }

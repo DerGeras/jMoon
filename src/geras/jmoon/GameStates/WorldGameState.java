@@ -146,39 +146,52 @@ public class WorldGameState extends BasicTWLGameState {
 		
 		//Switch Tools
 		if(input.isKeyPressed(Input.KEY_1)){
+			inventoryListBox.setSelected(-1);
 			player.setTool(0);
 		}
 		if(input.isKeyPressed(Input.KEY_2)){
+			inventoryListBox.setSelected(-1);
 			player.setTool(1);
 		}
 		if(input.isKeyPressed(Input.KEY_3)){
+			inventoryListBox.setSelected(-1);
 			player.setTool(2);
 		}
 		if(input.isKeyPressed(Input.KEY_4)){
+			inventoryListBox.setSelected(-1);
 			player.setTool(3);
 		}
 		if(input.isKeyPressed(Input.KEY_5)){
+			inventoryListBox.setSelected(-1);
 			player.setTool(4);
 		}
 		
 		//Interaction
 		if(input.isKeyPressed(Input.KEY_E)){
-			player.useTool(worldMap);
+			int selected = inventoryListBox.getSelected();
+			if(inventoryListBox.isVisible() && selected >= 0){
+				Item item = player.getInventory().getItem(selected);
+				if(item.isUsable()){
+					player.setCurrentTool((UsableItem) item);
+				}
+			}
+			player.useItem(worldMap);
 		}
 		
 		//Inventory
 		if(input.isKeyPressed(Input.KEY_Q)){
 			inventoryListBox.setVisible(!inventoryListBox.isVisible());
+			inventoryListBox.setSelected(-1);
 		}
-		if(input.isKeyPressed(Input.KEY_F)){
-			int selected = inventoryListBox.getSelected();
-			if(inventoryListBox.isVisible() && selected >= 0){
-				Item item = player.getInventory().getItem(selected);
-				if(item.isUsable()){
-					player.setCurrentTool((UsableItem)item);
-				}
-			}
-		}
+//		if(input.isKeyPressed(Input.KEY_F)){
+//			int selected = inventoryListBox.getSelected();
+//			if(inventoryListBox.isVisible() && selected >= 0){
+//				Item item = player.getInventory().getItem(selected);
+//				if(item.isUsable()){
+//					player.setCurrentTool((UsableItem)item);
+//				}
+//			}
+//		}
 		
 		//Menu
 		if(input.isKeyPressed(Input.KEY_ESCAPE)){
@@ -193,8 +206,6 @@ public class WorldGameState extends BasicTWLGameState {
         rp.setTheme("WorldTheme");
         
         inventoryListBox = new ListBox<String>(inventoryModel);
-        
-        inventoryListBox.setVisible(false);
         
         rp.add(inventoryListBox);
         

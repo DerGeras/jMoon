@@ -1,5 +1,6 @@
 package geras.jmoon.plants;
 
+import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.world.Map;
 
 /**
@@ -39,7 +40,12 @@ public abstract class Plant {
 	 */
 	public abstract boolean grow();
 	
-	
+	/**
+	 * harvest the plant
+	 * @param player - the player that harvests it. Mainly used to add items to the inventory
+	 * @param map - the current map (used to destroy the plant if necessary
+	 */
+	public abstract void harvest(PlayerEntity player, Map map);
 	
 	
 	///////////////////////////////////////////////////////

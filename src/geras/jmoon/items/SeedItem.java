@@ -1,5 +1,6 @@
 package geras.jmoon.items;
 
+import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.plants.WeedPlant;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
@@ -16,7 +17,7 @@ public class SeedItem extends UsableItem {
 	}
 	
 	@Override
-	public void useWorld(int x, int y, Map map) {
+	public void useWorld(int x, int y, Map map, PlayerEntity player) {
 		//plant seeds on dirt
 		if(stackSize > 0){
 			int fieldX = x / Settings.tileWidth;

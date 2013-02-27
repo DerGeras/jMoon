@@ -1,5 +1,7 @@
 package geras.jmoon.items;
 
+import geras.jmoon.settings.Settings;
+
 import java.util.ArrayList;
 
 import de.matthiasmann.twl.model.SimpleChangableListModel;
@@ -27,6 +29,7 @@ public class Inventory {
 	 * 	item in the inventory
 	 */
 	public void addItem(Item item){
+		boolean removed = false;
 		for(int i = 0; i < content.size(); i++){
 			Item invItem = content.get(i);
 			if(invItem.name == item.name){
@@ -34,14 +37,42 @@ public class Inventory {
 				if(inventoryModel != null){
 					inventoryModel.insertElement(i, invItem.toString());
 				}
+				removed = true;
 			}
 		}
-		if(item.getStackSize() > 0){
-			content.add(item); //add an additional stack
+		if(item.getStackSize() > 0 && !removed){
+			content.add(item); //add an additional stack, if it hasn't been touched yet (no duplicates)
 			if(inventoryModel != null){
 				inventoryModel.addElement(item.toString());
 			}
 		}
+	}
+	
+	/**
+	 * Add the item to the inventory, trying to fill any items already existing,
+	 * or simply adds the item to the inventory
+	 * 
+	 * @return either the input item (if there is no such item) or the corresponding
+	 * 	item in the inventory
+	 */
+	public void addItem(String itemName, int amount, int durability){
+		boolean removed = false;
+		int tmpAmount = amount;
+		for(int i = 0; i < content.size(); i++){
+			Item invItem = content.get(i);
+			if(invItem.name == itemName){
+				tmpAmount = invItem.addItems(tmpAmount); //fill existing Stacks
+				removed = true;
+			}
+		}
+		if(tmpAmount > 0 && !removed){
+			Item item = ItemFactory.getItem(itemName, Settings.maxStackSize, amount, durability);
+			content.add(item); //add an additional stack, if it hasn't been touched yet (no duplicates)
+			if(inventoryModel != null){
+				inventoryModel.addElement(item.toString());
+			}
+		}
+		updateModel();
 	}
 
 	/**

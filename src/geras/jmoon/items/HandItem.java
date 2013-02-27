@@ -1,5 +1,6 @@
 package geras.jmoon.items;
 
+import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
@@ -11,7 +12,7 @@ public class HandItem extends UsableItem {
 	}
 	
 	@Override
-	public void useWorld(int x, int y, Map map) {
+	public void useWorld(int x, int y, Map map, PlayerEntity player) {
 		//Currently: switch from Gras to Gravel
 		int fieldX = x / Settings.tileWidth;
 		int fieldY = y / Settings.tileHeight;
