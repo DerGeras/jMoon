@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="name" value="WorldMap"/>
+ </properties>
+ <tileset firstgid="1" name="MainSprites" tilewidth="32" tileheight="32">
+  <image source="../Sprites/MainSprites.png" width="640" height="400"/>
+ </tileset>
+ <layer name="Map" width="100" height="100">
+  <properties>
+   <property name="name" value="Map"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2EEOhCAQAEH0/4/eJ2xIjDRYh7qiTgdiuMYYF8Cm7klPrTO7/lfMzOBfjzff5VR6tOjRokeLHi16tOjRokeLHi16tLgv6Xt6Nmaux0n0aNFj7dxp/F+s/tYdrN4zsy13f8Yp9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a3LG26NHivGrRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GgxKwAAAAAAAAAAAAAAAAAAAAAAoOgH73Aozw==
+  </data>
+ </layer>
+</map>
