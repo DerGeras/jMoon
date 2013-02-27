@@ -67,25 +67,46 @@ public class WorldElements {
 		tiles.put("Hole", worldPNG.getSubImage(6*tileWidth, 0*tileHeight, tileWidth, tileHeight));
 		
 		//Decoration
+		//FENCE BLOCK
 		tiles.put("Fence", worldPNG.getSubImage(0*tileWidth, 1*tileHeight, tileWidth, tileHeight));
-		tiles.put("Rock", worldPNG.getSubImage(3 * tileWidth, 1*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceLeft", worldPNG.getSubImage(1*tileWidth, 1*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceLeftRightCenter", worldPNG.getSubImage(2*tileWidth, 1*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceRight", worldPNG.getSubImage(3*tileWidth, 1*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceTop", worldPNG.getSubImage(0*tileWidth, 2*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceTopBottomCenter", worldPNG.getSubImage(0*tileWidth, 3*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceBottom", worldPNG.getSubImage(0*tileWidth, 4*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceTopLeft", worldPNG.getSubImage(1*tileWidth, 2*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceTopCenter", worldPNG.getSubImage(2*tileWidth, 2*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceTopRight", worldPNG.getSubImage(3*tileWidth, 2*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceCenterLeft", worldPNG.getSubImage(1*tileWidth, 3*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceCenter", worldPNG.getSubImage(2*tileWidth, 3*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceCenterRight", worldPNG.getSubImage(3*tileWidth, 3*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceBottomLeft", worldPNG.getSubImage(1*tileWidth, 4*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceBottomCenter", worldPNG.getSubImage(2*tileWidth, 4*tileHeight, tileWidth, tileHeight));
+		tiles.put("FenceBottomRight", worldPNG.getSubImage(3*tileWidth, 4*tileHeight, tileWidth, tileHeight));
+		
+		//Other Decoration
+		tiles.put("Rock", worldPNG.getSubImage(4 * tileWidth, 1*tileHeight, tileWidth, tileHeight));
 		
 		//Crops'n'Weed
-		tiles.put("Weed1", worldPNG.getSubImage(0*tileWidth, 2*tileHeight, tileWidth,tileHeight));
-		tiles.put("Weed2", worldPNG.getSubImage(1*tileWidth, 2*tileHeight, tileWidth,tileHeight));
-		tiles.put("Weed3", worldPNG.getSubImage(2*tileWidth, 2*tileHeight, tileWidth,tileHeight));
-		tiles.put("Weed4", worldPNG.getSubImage(3*tileWidth, 2*tileHeight, tileWidth,tileHeight));
-		tiles.put("Weed5", worldPNG.getSubImage(4*tileWidth, 2*tileHeight, tileWidth,tileHeight));
-		tiles.put("Weed6", worldPNG.getSubImage(5*tileWidth, 2*tileHeight, tileWidth,tileHeight));
+		tiles.put("Weed1", worldPNG.getSubImage(0*tileWidth, 5*tileHeight, tileWidth,tileHeight));
+		tiles.put("Weed2", worldPNG.getSubImage(1*tileWidth, 5*tileHeight, tileWidth,tileHeight));
+		tiles.put("Weed3", worldPNG.getSubImage(2*tileWidth, 5*tileHeight, tileWidth,tileHeight));
+		tiles.put("Weed4", worldPNG.getSubImage(3*tileWidth, 5*tileHeight, tileWidth,tileHeight));
+		tiles.put("Weed5", worldPNG.getSubImage(4*tileWidth, 5*tileHeight, tileWidth,tileHeight));
+		tiles.put("Weed6", worldPNG.getSubImage(5*tileWidth, 5*tileHeight, tileWidth,tileHeight));
 	}
 	
 	/**
 	 * draw the given tile at coordinate x,y
-	 * @param f - the x coordinate
-	 * @param g - the y coordinate
+	 * @param x - the x coordinate
+	 * @param y - the y coordinate
+	 * @param fieldX - x coordinate on the map
+	 * @param fieldY - y coordinate on the map
 	 * @param tileValue - value of the tile that should be drawn
+	 * @param map - the current map
 	 */
-	public void draw(int x, int y, int tileValue, Map map){
+	public void draw(int x, int y, int fieldX, int fieldY, int tileValue, Map map){
 		switch(tileValue){
 		//Map
 		case GRASS_VALUE: drawGrass(x,y,map); break;
@@ -97,7 +118,7 @@ public class WorldElements {
 		case HOLE_VALUE: drawHole(x,y,map);break;
 		
 		//Decoration
-		case FENCE_VALUE: drawFence(x,y,map);break;
+		case FENCE_VALUE: drawFence(x,y,map, fieldX, fieldY);break;
 		case ROCK_VALUE: drawRock(x,y,map);break;
 		}
 		
@@ -149,14 +170,102 @@ public class WorldElements {
 	
 	//Decoration
 	
-	private void drawFence(int x, int y, Map map){
+	/**
+	 * Yes, this one is kinda ugly
+	 * @param x
+	 * @param y
+	 * @param map
+	 * @param fieldX
+	 * @param fieldY
+	 */
+	private void drawFence(int x, int y, Map map, int fieldX, int fieldY){
+		//Check right
+		if(map.getField("Decoration", fieldX + 1, fieldY) == FENCE_VALUE){
+			if(map.getField("Decoration", fieldX, fieldY + 1) == FENCE_VALUE){
+				if(map.getField("Decoration", fieldX - 1, fieldY) == FENCE_VALUE){
+					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
+						tiles.get("FenceCenter").draw(x,y);
+					}
+					else{
+						tiles.get("FenceTopCenter").draw(x,y);
+					}
+				}
+				else{
+					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
+						tiles.get("FenceCenterLeft").draw(x,y);
+					}
+					else{
+						tiles.get("FenceTopLeft").draw(x,y);
+					}
+				}
+			}
+			else{
+				if(map.getField("Decoration", fieldX - 1, fieldY) == FENCE_VALUE){
+					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
+						tiles.get("FenceBottomCenter").draw(x,y);
+					}
+					else{
+						tiles.get("FenceLeftRightCenter").draw(x,y);
+					}
+				}
+				else{
+					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
+						tiles.get("FenceBottomLeft").draw(x,y);
+					}
+					else{
+						tiles.get("FenceLeft").draw(x,y);
+					}
+				}
+			}
+			return;
+		}
+		
+		//Check left
+		if(map.getField("Decoration", fieldX-1, fieldY) == FENCE_VALUE){
+			if(map.getField("Decoration", fieldX, fieldY + 1) == FENCE_VALUE){
+				if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
+					tiles.get("FenceCenterRight").draw(x,y);
+				}
+				else{
+					tiles.get("FenceTopRight").draw(x,y);
+				}
+			}
+			else{
+				if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
+					tiles.get("FenceBottomRight").draw(x,y);
+				}
+				else{
+					tiles.get("FenceRight").draw(x,y);
+				}
+			}
+			return;
+		}
+		
+		//check bottom
+		if(map.getField("Decoration", fieldX, fieldY + 1) == FENCE_VALUE){
+			if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
+				tiles.get("FenceTopBottomCenter").draw(x,y);
+			}
+			else{
+				tiles.get("FenceTop").draw(x,y);
+			}
+			return;
+		}
+		
+		//Check top
+		if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
+			tiles.get("FenceBottom").draw(x,y);
+			return;
+		}
+		//Standalone
 		tiles.get("Fence").draw(x,y);
-		//TODO improve
 	}
+	
 	
 	private void drawRock(int x, int y, Map map){
 		tiles.get("Rock").draw(x,y);
 	}
+	
 	
 	//Crops'n'Weed
 	private void drawWeed(int x, int y, Map map, int growth){

@@ -7,6 +7,7 @@ import geras.jmoon.settings.Settings;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Random;
 
 
 public class Map {
@@ -170,7 +171,7 @@ public class Map {
 				else{
 					tileValue = layers.get(layer).getField(sx + i, sy + j);
 				}
-				worldElements.draw(x + i * Settings.tileWidth,y + j * Settings.tileHeight, tileValue, this);
+				worldElements.draw(x + i * Settings.tileWidth,y + j * Settings.tileHeight, sx + i, sy + j, tileValue, this);
 			}
 		}
 	}
@@ -213,6 +214,7 @@ public class Map {
 	 * Create a new map
 	 */
 	public void initialize(){
+		Random rand = new Random();
 		addLayer("Ground");
 		addLayer("Decoration");
 		addLayer("Plants");
@@ -235,7 +237,12 @@ public class Map {
 					decoLayer.setField(i, j, WorldElements.ROCK_VALUE);
 				}
 				else{
-					decoLayer.setField(i, j, -1);
+					if(rand.nextInt(3) == 1 && i > 10 && j > 10){
+						decoLayer.setField(i, j, WorldElements.FENCE_VALUE);
+					}
+					else{
+						decoLayer.setField(i, j, -1);						
+					}
 				}
 				
 				//Plant Layer

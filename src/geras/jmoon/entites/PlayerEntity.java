@@ -82,10 +82,10 @@ public class PlayerEntity extends Entity {
 		posY += timesincelastframe * move_speed * nextY;
 		nextX = nextY = 0;
 		//Collision
-		int firstX = (posX - width / 2) / Settings.tileWidth;
-		int firstY = (posY - height / 2) / Settings.tileHeight;
-		int secondX = (posX + width / 2) / Settings.tileWidth;
-		int secondY = (posY + height / 2) / Settings.tileHeight;
+		int firstX = (posX - width / 3) / Settings.tileWidth;
+		int firstY = (posY - height / 3) / Settings.tileHeight;
+		int secondX = (posX + width / 3) / Settings.tileWidth;
+		int secondY = (posY + height / 3) / Settings.tileHeight;
 		if(map.getField("Decoration", firstX, firstY) != -1
 				|| map.getField("Decoration", secondX, firstY) != -1
 				|| map.getField("Decoration", firstX, secondY) != -1
@@ -135,8 +135,8 @@ public class PlayerEntity extends Entity {
 	 */
 	public int getCursorX(){
 		switch(direction){
-		case west: return posX - width / 2 - 2;
-		case east: return posX + width / 2 + 2;
+		case west: return posX - (width / 2) - 5;
+		case east: return posX + (width / 2) + 5;
 		default: return posX;
 		}
 	}
@@ -147,8 +147,8 @@ public class PlayerEntity extends Entity {
 	 */
 	public int getCursorY(){
 		switch(direction){
-		case north: return posY - width / 2 - 2;
-		case south: return posY + width / 2 + 2;
+		case north: return posY - (width / 2) - 5;
+		case south: return posY + (width / 2) + 5;
 		default: return posY;
 		}
 	}
