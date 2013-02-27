@@ -68,7 +68,7 @@ public class JMoonGame extends TWLStateBasedGame  {
 
 	@Override
 	protected URL getThemeURL() {
-		return JMoonGame.class.getResource("./JMoonTheme.xml");
+		return JMoonGame.class.getResource("/ui/JMoonTheme.xml");
 	}
 
 }

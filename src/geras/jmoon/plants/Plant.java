@@ -13,7 +13,7 @@ public abstract class Plant {
 	protected int posX;
 	protected int posY;
 	
-	protected int growthInterval = 1000 * 3; //grow automatically after x ticks
+	protected int growthInterval = 1000 * 60; //grow automatically after x ticks
 	protected int timeSinceLastGrowth = 0; //time since the last growth (+accumulated delays)
 	
 	protected int tileValue; //tile Value on the map

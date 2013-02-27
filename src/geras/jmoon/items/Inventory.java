@@ -34,9 +34,6 @@ public class Inventory {
 			Item invItem = content.get(i);
 			if(invItem.name == item.name){
 				item.setStackSize(invItem.addItems(item.getStackSize())); //fill existing Stacks
-				if(inventoryModel != null){
-					inventoryModel.insertElement(i, invItem.toString());
-				}
 				removed = true;
 			}
 		}
@@ -46,6 +43,7 @@ public class Inventory {
 				inventoryModel.addElement(item.toString());
 			}
 		}
+		updateModel();
 	}
 	
 	/**

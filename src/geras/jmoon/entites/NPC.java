@@ -3,7 +3,6 @@ package geras.jmoon.entites;
 import geras.jmoon.world.Map;
 
 import org.newdawn.slick.Game;
-import org.newdawn.slick.Graphics;
 
 import de.matthiasmann.twl.model.SimpleChangableListModel;
 
@@ -40,8 +39,16 @@ public class NPC extends Entity{
 	 * @param game - current game (Teleporting NPCs?)
 	 * @param g - graphics - might be needed for interface stuff
 	 */
-	public void interact(PlayerEntity player, Map map, Game game, Graphics g){
+	public void interact(PlayerEntity player, Map map, Game game){
 		//TODO
+	}
+	
+	/**
+	 * obviously true :)
+	 */
+	@Override
+	public boolean isNPC(){
+		return true;
 	}
 	
 	///////////////////////////////////////////////////////

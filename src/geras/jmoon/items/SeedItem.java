@@ -23,7 +23,7 @@ public class SeedItem extends UsableItem {
 			int fieldX = x / Settings.tileWidth;
 			int fieldY = y / Settings.tileHeight;
 			int fieldValue = map.getField("Ground", fieldX, fieldY);
-			if(map.getField("Plants", fieldX, fieldY) == -1 && (fieldValue == WorldElements.DIRT_VALUE || fieldValue == WorldElements.WETDIRT_VALUE)){
+			if(map.getField("Decoration", fieldX, fieldY) == -1 && map.getField("Plants", fieldX, fieldY) == -1 && (fieldValue == WorldElements.DIRT_VALUE || fieldValue == WorldElements.WETDIRT_VALUE)){
 				map.addPlant(new WeedPlant(fieldX, fieldY, WorldElements.WEED_MIN_VALUE, map));
 				stackSize--;
 			}

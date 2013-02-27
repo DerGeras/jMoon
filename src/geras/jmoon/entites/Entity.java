@@ -90,6 +90,13 @@ public abstract class Entity {
 		posY = y;
 	}
 	
+	/**
+	 * Quite obvious, but better than some instanceof checks
+	 * @return false, since this isn't a particular NPC
+	 */
+	public boolean isNPC(){
+		return false;
+	}
 	
 	///////////////////////////////////////////////////////
 	//

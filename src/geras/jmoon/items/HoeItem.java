@@ -8,7 +8,7 @@ import geras.jmoon.world.WorldElements;
 public class HoeItem extends UsableItem {
 
 	public HoeItem(){
-		super("Hoe", 1, 1, 100);
+		super("Hoe", Settings.maxStackSize, 1, 100);
 	}
 	
 	@Override
@@ -17,7 +17,7 @@ public class HoeItem extends UsableItem {
 		if(durability > 0 && stackSize > 0){
 			int fieldX = x / Settings.tileWidth;
 			int fieldY = y / Settings.tileHeight;
-			if(map.getField("Ground", fieldX, fieldY) == WorldElements.GRASS_VALUE){
+			if(map.getField("Decoration", fieldX, fieldY) == -1 && map.getField("Ground", fieldX, fieldY) == WorldElements.GRASS_VALUE){
 				map.setField("Ground", fieldX, fieldY, WorldElements.DIRT_VALUE);
 				if(--durability <= 0){
 					--stackSize;

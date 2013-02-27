@@ -1,6 +1,8 @@
 package geras.jmoon.GameStates;
 
+import geras.jmoon.entites.Cheater;
 import geras.jmoon.entites.Entity;
+import geras.jmoon.entites.NPC;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.items.Item;
 import geras.jmoon.items.UsableItem;
@@ -106,6 +108,7 @@ public class WorldGameState extends BasicTWLGameState {
 		player = JMoonGame.player;
 		worldMap.entityList.add(player);
 		player.setPosition(100, 100);
+		worldMap.entityList.add(new Cheater(null, "Nox", "Cheater", 200, 200));
 		
 		worldMap.initialize();
 		
@@ -183,15 +186,13 @@ public class WorldGameState extends BasicTWLGameState {
 			inventoryListBox.setVisible(!inventoryListBox.isVisible());
 			inventoryListBox.setSelected(-1);
 		}
-//		if(input.isKeyPressed(Input.KEY_F)){
-//			int selected = inventoryListBox.getSelected();
-//			if(inventoryListBox.isVisible() && selected >= 0){
-//				Item item = player.getInventory().getItem(selected);
-//				if(item.isUsable()){
-//					player.setCurrentTool((UsableItem)item);
-//				}
-//			}
-//		}
+		if(input.isKeyPressed(Input.KEY_F)){
+			for(Entity entity : worldMap.entityList){
+				if(entity.isNPC() && Math.abs(entity.getPosX() - player.getPosX()) < 32 && Math.abs(entity.getPosY() - player.getPosY()) < 32){
+					((NPC)entity).interact(player, worldMap, game);
+				}
+			}
+		}
 		
 		//Menu
 		if(input.isKeyPressed(Input.KEY_ESCAPE)){

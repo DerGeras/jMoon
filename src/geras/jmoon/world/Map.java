@@ -7,7 +7,6 @@ import geras.jmoon.settings.Settings;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Random;
 
 
 public class Map {
@@ -238,7 +237,6 @@ public class Map {
 	 * Create a new map
 	 */
 	public void initialize(){
-		Random rand = new Random();
 		addLayer("Ground");
 		addLayer("Decoration");
 		addLayer("Plants");

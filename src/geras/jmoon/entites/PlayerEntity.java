@@ -11,6 +11,7 @@ import geras.jmoon.items.WaterBucketItem;
 import geras.jmoon.items.WateringCanItem;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
+import geras.jmoon.world.WorldElements;
 
 import java.util.ArrayList;
 
@@ -90,10 +91,11 @@ public class PlayerEntity extends Entity {
 		int firstY = (posY - height / 3) / Settings.tileHeight;
 		int secondX = (posX + width / 3) / Settings.tileWidth;
 		int secondY = (posY + height / 3) / Settings.tileHeight;
-		if(map.getField("Decoration", firstX, firstY) != -1
-				|| map.getField("Decoration", secondX, firstY) != -1
-				|| map.getField("Decoration", firstX, secondY) != -1
-				|| map.getField("Decoration", secondX, secondY) != -1){
+		
+		if(map.getField("Decoration", firstX, firstY) == WorldElements.ROCK_VALUE
+				|| map.getField("Decoration", secondX, firstY) == WorldElements.ROCK_VALUE
+				|| map.getField("Decoration", firstX, secondY) == WorldElements.ROCK_VALUE
+				|| map.getField("Decoration", secondX, secondY) == WorldElements.ROCK_VALUE){
 			posX = oldX;
 			posY = oldY;
 		}
