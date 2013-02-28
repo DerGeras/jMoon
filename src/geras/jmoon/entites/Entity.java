@@ -70,7 +70,7 @@ public abstract class Entity {
 	 * @param mapTopX - x coordinate of the top left point of the map
 	 * @param mapTopY - y coordinate of the top left point of the map
 	 */
-	public void draw(Graphics g, int mapTopX, int mapTopY){
+	public void draw(Graphics g, int mapTopX, int mapTopY, Map map){
 		if(entityImg != null){
 			int relativeX = mapTopX + posX - width / 2;
 			int relativeY = mapTopY + posY - height / 2;

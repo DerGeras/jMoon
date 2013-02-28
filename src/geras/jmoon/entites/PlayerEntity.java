@@ -69,11 +69,20 @@ public class PlayerEntity extends Entity {
 	}
 	
 	@Override
-	public void draw(Graphics g, int mapTopX, int mapTopY) {
-		super.draw(g, mapTopX,mapTopY);
+	public void draw(Graphics g, int mapTopX, int mapTopY, Map map) {
+		super.draw(g, mapTopX,mapTopY,map);
 		
+		int cursorX = getCursorX();
+		int cursorY = getCursorY();
+		
+		//draw an ovelay over the selected field
+		int cursorFX = cursorX / Settings.tileWidth;
+		int cursorFY = cursorY / Settings.tileHeight;
+		map.getWorldElement().draw(mapTopX + cursorFX * Settings.tileWidth, mapTopY + cursorFY * Settings.tileHeight, cursorFX, cursorFY, WorldElements.OVERLAY_VALUE, map);
+	
 		//TODO this is just testing crap
-		cursorImg.draw(mapTopX + getCursorX() - 3, mapTopY + getCursorY() - 3);
+		//cursorImg.draw(mapTopX + cursorX - cursorImg.getWidth() / 2 , mapTopY + cursorY - cursorImg.getHeight() / 2);
+	
 	}
 	
 	/**
@@ -141,8 +150,8 @@ public class PlayerEntity extends Entity {
 	 */
 	public int getCursorX(){
 		switch(direction){
-		case west: return posX - (width / 2) - 5;
-		case east: return posX + (width / 2) + 5;
+		case west: return posX - (width / 2) - 10;
+		case east: return posX + (width / 2) + 10;
 		default: return posX;
 		}
 	}
@@ -153,8 +162,8 @@ public class PlayerEntity extends Entity {
 	 */
 	public int getCursorY(){
 		switch(direction){
-		case north: return posY - (width / 2) - 5;
-		case south: return posY + (width / 2) + 5;
+		case north: return posY - (width / 2) - 10;
+		case south: return posY + (width / 2) + 10;
 		default: return posY;
 		}
 	}

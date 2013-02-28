@@ -23,6 +23,7 @@ public class WorldElements {
 	public static final int WETDIRT_VALUE = 4;
 	public static final int WATER_VALUE = 5;
 	public static final int HOLE_VALUE = 6;
+	public static final int OVERLAY_VALUE = 7;
 	
 	//Deco
 	public static final int ROCK_VALUE = 100;
@@ -65,6 +66,7 @@ public class WorldElements {
 		tiles.put("WetDirt", worldPNG.getSubImage(4*tileWidth, 0*tileHeight, tileWidth, tileHeight));
 		tiles.put("Water", worldPNG.getSubImage(5*tileWidth, 0*tileHeight, tileWidth, tileHeight));
 		tiles.put("Hole", worldPNG.getSubImage(6*tileWidth, 0*tileHeight, tileWidth, tileHeight));
+		tiles.put("Overlay", worldPNG.getSubImage(7*tileWidth, 0*tileHeight, tileWidth, tileHeight));
 		
 		//Decoration
 		//FENCE BLOCK
@@ -116,6 +118,7 @@ public class WorldElements {
 		case WETDIRT_VALUE: drawWetDirt(x,y,map);break;
 		case WATER_VALUE: drawWater(x,y,map);break;
 		case HOLE_VALUE: drawHole(x,y,map);break;
+		case OVERLAY_VALUE: drawOverlay(x,y,map);break;
 		
 		//Decoration
 		case FENCE_VALUE: drawFence(x,y,map, fieldX, fieldY);break;
@@ -166,6 +169,10 @@ public class WorldElements {
 	
 	private void drawHole(int x, int y, Map map){
 		tiles.get("Hole").draw(x,y);
+	}
+	
+	private void drawOverlay(int x, int y, Map map){
+		tiles.get("Overlay").draw(x,y);
 	}
 	
 	//Decoration

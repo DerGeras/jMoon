@@ -69,7 +69,7 @@ public class WorldGameState extends BasicTWLGameState {
 		
 		// draw entites
 		for(Entity entity : worldMap.entityList){
-			entity.draw(g, mapTopX, mapTopY);
+			entity.draw(g, mapTopX, mapTopY, worldMap);
 		}
 		
 		

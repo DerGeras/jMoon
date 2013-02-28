@@ -166,6 +166,14 @@ public class Map {
 	}
 	
 	/**
+	 * 
+	 * @return the worldElements instance for this world
+	 */
+	public WorldElements getWorldElement(){
+		return worldElements;
+	}
+	
+	/**
 	 * Render the map
 	 * @param x - the x coordinate
 	 * @param y - the y coordinate
