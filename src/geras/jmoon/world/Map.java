@@ -195,8 +195,8 @@ public class Map {
 				if(sx + i < 0 || sy + j < 0 || sx + i >= currLayer.getWidth() || sy + j >= currLayer.getHeight()){
 					//set a default value for tiles not on the map
 					switch(layer){
-					case "Decoration" : tileValue = WorldElements.ROCK_VALUE;
-					default: tileValue = WorldElements.STONE_VALUE; break;
+					case "Ground" : tileValue = WorldElements.STONE_VALUE; break;
+					default: tileValue = -1; break;
 					}
 				}
 				else{

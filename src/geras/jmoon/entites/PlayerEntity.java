@@ -16,8 +16,6 @@ import geras.jmoon.world.WorldElements;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 import de.matthiasmann.twl.model.SimpleChangableListModel;
 
@@ -28,8 +26,6 @@ public class PlayerEntity extends Entity {
 	
 	private ArrayList<UsableItem> tools = new ArrayList<UsableItem>();
 	private UsableItem currentTool;
-	
-	private Image cursorImg;
 
 	/**
 	 * Basic constructor, set hunger to 0 and set the image for the rendering
@@ -54,14 +50,6 @@ public class PlayerEntity extends Entity {
 		inventory.addItem(new WaterBucketItem(64));
 		inventory.addItem(new FenceItem(Settings.maxStackSize));
 		currentTool = tools.get(0);
-		
-		//TODO this is just testing crap
-		try{
-			cursorImg = new Image("Sprites/Cursor.png");
-		}
-		catch(SlickException e){
-			e.printStackTrace();
-		}
 	}
 	
 	public void update(int timesincelastframe, Map map){
@@ -79,9 +67,6 @@ public class PlayerEntity extends Entity {
 		int cursorFX = cursorX / Settings.tileWidth;
 		int cursorFY = cursorY / Settings.tileHeight;
 		map.getWorldElement().draw(mapTopX + cursorFX * Settings.tileWidth, mapTopY + cursorFY * Settings.tileHeight, cursorFX, cursorFY, WorldElements.OVERLAY_VALUE, map);
-	
-		//TODO this is just testing crap
-		//cursorImg.draw(mapTopX + cursorX - cursorImg.getWidth() / 2 , mapTopY + cursorY - cursorImg.getHeight() / 2);
 	
 	}
 	

@@ -44,44 +44,39 @@ public class WorldGameState extends BasicTWLGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		
+		//middle of the map
 		int midX = container.getWidth() / 2;
 		int midY = container.getHeight() / 2;
 		
+		//top left pixel of the map, if it were drawn completely
 		int mapTopX = midX - player.getPosX();
 		int mapTopY = midY - player.getPosY();
 		
-		worldMap.render(-(Settings.tileWidth / 2)-(player.getPosX() % Settings.tileWidth),
-						-(Settings.tileHeight / 2)-(player.getPosY() % Settings.tileHeight),
-						(int)Math.floor((player.getPosX() / Settings.tileWidth - Settings.resolutionX / (float)Settings.tileWidth / 2.0f)),
-						(int)Math.floor((player.getPosY() / Settings.tileHeight - Settings.resolutionY / (float)Settings.tileHeight / 2.0f)),
-						Settings.resolutionX / Settings.tileWidth + 3,
-						Settings.resolutionY / Settings.tileHeight + 3,
-						"Ground");
+		//width and height to be drawn
+		int width = Settings.resolutionX / Settings.tileWidth + 4;
+		int height = Settings.resolutionY / Settings.tileHeight + 4;
 		
-		//TODO Refactor this shit
-		worldMap.render(-(Settings.tileWidth / 2)-(player.getPosX() % Settings.tileWidth),
-				-(Settings.tileHeight / 2)-(player.getPosY() % Settings.tileHeight),
-				(int)Math.floor((player.getPosX() / Settings.tileWidth - Settings.resolutionX / (float)Settings.tileWidth / 2.0f)),
-				(int)Math.floor((player.getPosY() / Settings.tileHeight - Settings.resolutionY / (float)Settings.tileHeight / 2.0f)),
-				Settings.resolutionX / Settings.tileWidth + 3,
-				Settings.resolutionY / Settings.tileHeight + 3,
-				"Plants");
+		//first Field to be drawn
+		int topLeftFieldX = player.getPosX() / Settings.tileWidth - (width / 2);
+		int topLeftFieldY = player.getPosY() / Settings.tileHeight - (height / 2);
 		
+		//Position where the first field should be drawn
+		int topLeftDrawX = mapTopX + topLeftFieldX * Settings.tileHeight;
+		int topLeftDrawY = mapTopY + topLeftFieldY * Settings.tileHeight;
+		
+		//Render ground
+		worldMap.render(topLeftDrawX, topLeftDrawY, topLeftFieldX, topLeftFieldY, width, height, "Ground");
+		
+		//Render Plants
+		worldMap.render(topLeftDrawX, topLeftDrawY, topLeftFieldX, topLeftFieldY, width, height, "Plants");
+				
+		//Render Decoration
+		worldMap.render(topLeftDrawX, topLeftDrawY, topLeftFieldX, topLeftFieldY, width, height, "Decoration");
+	    
 		// draw entites
 		for(Entity entity : worldMap.entityList){
 			entity.draw(g, mapTopX, mapTopY, worldMap);
 		}
-		
-		
-		//TODO Refactor this shit
-		worldMap.render(-(Settings.tileWidth / 2)-(player.getPosX() % Settings.tileWidth),
-				-(Settings.tileHeight / 2)-(player.getPosY() % Settings.tileHeight),
-				(int)Math.floor((player.getPosX() / Settings.tileWidth - Settings.resolutionX / (float)Settings.tileWidth / 2.0f)),
-				(int)Math.floor((player.getPosY() / Settings.tileHeight - Settings.resolutionY / (float)Settings.tileHeight / 2.0f)),
-				Settings.resolutionX / Settings.tileWidth + 3,
-				Settings.resolutionY / Settings.tileHeight + 3,
-				"Decoration");
-	    
 		
 		
 		//display the current Tool
