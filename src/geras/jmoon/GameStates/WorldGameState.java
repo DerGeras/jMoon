@@ -2,7 +2,7 @@ package geras.jmoon.GameStates;
 
 import geras.jmoon.entites.Cheater;
 import geras.jmoon.entites.Entity;
-import geras.jmoon.entites.NPC;
+import geras.jmoon.entites.NPCEntity;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.items.Item;
 import geras.jmoon.items.UsableItem;
@@ -184,7 +184,7 @@ public class WorldGameState extends BasicTWLGameState {
 		if(input.isKeyPressed(Input.KEY_F)){
 			for(Entity entity : worldMap.entityList){
 				if(entity.isNPC() && Math.abs(entity.getPosX() - player.getPosX()) < 32 && Math.abs(entity.getPosY() - player.getPosY()) < 32){
-					((NPC)entity).interact(player, worldMap, game);
+					((NPCEntity)entity).interact(player, worldMap, game);
 				}
 			}
 		}

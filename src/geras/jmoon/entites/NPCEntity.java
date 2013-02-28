@@ -1,6 +1,5 @@
 package geras.jmoon.entites;
 
-import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 
 import org.newdawn.slick.Game;
@@ -13,13 +12,13 @@ import de.matthiasmann.twl.model.SimpleChangableListModel;
  * @author Geras
  *
  */
-public class NPC extends Entity{
+public class NPCEntity extends Entity{
 	
 	
 	protected String name;
 	protected String title;
 
-	protected NPC(SimpleChangableListModel<String> inventoryModel, String name, String title, int posX, int posY) {
+	protected NPCEntity(SimpleChangableListModel<String> inventoryModel, String name, String title, int posX, int posY) {
 		super(inventoryModel);
 		this.name = name;
 		this.title = title;

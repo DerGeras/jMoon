@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 
 import de.matthiasmann.twl.model.SimpleChangableListModel;
 
-public class Cheater extends NPC {
+public class Cheater extends NPCEntity {
 
 	public Cheater(SimpleChangableListModel<String> inventoryModel,
 			String name, String title, int posX, int posY) {
