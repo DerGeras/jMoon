@@ -11,6 +11,10 @@ public class WateringCanItem extends UsableItem {
 		super("Watering Can", Settings.maxStackSize, 1, 100);
 	}
 
+	public WateringCanItem(int stackSize) {
+		super("Watering Can", Settings.maxStackSize, stackSize, 100);
+	}
+
 	@Override
 	public void useWorld(int x, int y, Map map, PlayerEntity player) {
 		if(durability > 0 && stackSize > 0){

@@ -11,6 +11,10 @@ public class HoeItem extends UsableItem {
 		super("Hoe", Settings.maxStackSize, 1, 100);
 	}
 	
+	public HoeItem(int stackSize) {
+		super("Hoe", Settings.maxStackSize, stackSize, 100);
+	}
+
 	@Override
 	public void useWorld(int x, int y, Map map, PlayerEntity player) {
 		//Make dirt out of Gras

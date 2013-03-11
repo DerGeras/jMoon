@@ -1,6 +1,6 @@
 package geras.jmoon.GameStates;
 
-import geras.jmoon.entites.Cheater;
+import geras.jmoon.entites.CheaterNPC;
 import geras.jmoon.entites.Entity;
 import geras.jmoon.entites.NPCEntity;
 import geras.jmoon.entites.PlayerEntity;
@@ -103,7 +103,7 @@ public class WorldGameState extends BasicTWLGameState {
 		player = JMoonGame.player;
 		worldMap.entityList.add(player);
 		player.setPosition(100, 100);
-		worldMap.entityList.add(new Cheater(null, "Nox", "Cheater", 200, 200));
+		worldMap.entityList.add(new CheaterNPC(null, "Nox", "Cheater", 200, 200));
 		
 		worldMap.initialize();
 		

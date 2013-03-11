@@ -10,6 +10,10 @@ public class SickelItem extends UsableItem {
 		super("Sickel", Settings.maxStackSize, 1, 100);
 	}
 	
+	public SickelItem(int stackSize) {
+		super("Sickel", Settings.maxStackSize, stackSize, 100);
+	}
+
 	@Override
 	public void useWorld(int x, int y, Map map, PlayerEntity player) {
 		if(durability > 0 && stackSize > 0){

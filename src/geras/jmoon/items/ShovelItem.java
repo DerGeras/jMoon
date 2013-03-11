@@ -11,6 +11,10 @@ public class ShovelItem extends UsableItem {
 		super("Shovel" , Settings.maxStackSize, 1, 100);
 	}
 
+	public ShovelItem(int stackSize) {
+		super("Shovel" , Settings.maxStackSize, stackSize, 100);
+	}
+
 	@Override
 	public void useWorld(int x, int y, Map map, PlayerEntity player) {
 		if(durability > 0 && stackSize > 0){

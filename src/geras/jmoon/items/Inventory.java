@@ -1,7 +1,5 @@
 package geras.jmoon.items;
 
-import geras.jmoon.settings.Settings;
-
 import java.util.ArrayList;
 
 import de.matthiasmann.twl.model.SimpleChangableListModel;
@@ -47,13 +45,12 @@ public class Inventory {
 	}
 	
 	/**
-	 * Add the item to the inventory, trying to fill any items already existing,
-	 * or simply adds the item to the inventory
-	 * 
-	 * @return either the input item (if there is no such item) or the corresponding
-	 * 	item in the inventory
+	 * add an item with the specified name to the inventory, first trying to fill any existing stacks,
+	 * or add a new item from the itemfactory
+	 * @param itemName - name of the item (needs to be registered in the itemfactory)
+	 * @param amount - amount to add
 	 */
-	public void addItem(String itemName, int amount, int durability){
+	public void addItem(String itemName, int amount){
 		boolean removed = false;
 		int tmpAmount = amount;
 		for(int i = 0; i < content.size(); i++){
@@ -64,7 +61,7 @@ public class Inventory {
 			}
 		}
 		if(tmpAmount > 0 && !removed){
-			Item item = ItemFactory.getItem(itemName, Settings.maxStackSize, amount, durability);
+			Item item = ItemFactory.getItem(itemName, amount);
 			content.add(item); //add an additional stack, if it hasn't been touched yet (no duplicates)
 			if(inventoryModel != null){
 				inventoryModel.addElement(item.toString());

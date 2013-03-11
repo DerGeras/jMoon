@@ -33,7 +33,7 @@ public class PlayerEntity extends Entity {
 	public PlayerEntity(SimpleChangableListModel<String> inventoryModel){
 		super(inventoryModel);
 		this.hunger = 0;
-		setEntityImg("Sprites/Hero.png");
+		setEntityImg("Sprites/Entities/Hero.png");
 		width = Settings.tileWidth;
 		height = Settings.tileHeight;
 		tools.add(new HandItem());
@@ -48,7 +48,7 @@ public class PlayerEntity extends Entity {
 		}
 		inventory.addItem(new SeedItem(64));
 		inventory.addItem(new WaterBucketItem(64));
-		inventory.addItem(new FenceItem(Settings.maxStackSize));
+		inventory.addItem(new FenceItem(64));
 		currentTool = tools.get(0);
 	}
 	

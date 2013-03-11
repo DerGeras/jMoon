@@ -43,11 +43,11 @@ public class WeedPlant extends Plant {
 	public void harvest(PlayerEntity player, Map map) {
 		int growth = tileValue - WorldElements.WEED_MIN_VALUE;
 		if(growth >= 3){
-			player.getInventory().addItem("Seeds", 1, 1);
+			player.getInventory().addItem("Seeds", 1);
 		}
 		if(growth == 5){
-			player.getInventory().addItem("Seeds", 1, 1);
-			player.getInventory().addItem("Wheat", 2, 1);
+			player.getInventory().addItem("Seeds", 1);
+			player.getInventory().addItem("Wheat", 2);
 		}
 		map.removePlant(this);
 	}
