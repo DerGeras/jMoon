@@ -1,6 +1,7 @@
 package geras.jmoon.GameStates;
 
 import geras.jmoon.entites.CheaterNPC;
+import geras.jmoon.entites.CowNPC;
 import geras.jmoon.entites.Entity;
 import geras.jmoon.entites.NPCEntity;
 import geras.jmoon.entites.PlayerEntity;
@@ -97,13 +98,19 @@ public class WorldGameState extends BasicTWLGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		
+		System.out.println("Hi");
+		
 		worldMap = new Map("Sprites/MainSprites.png", Settings.mapWidth, Settings.mapHeight); //load the main map
 		
+		//init player
 		JMoonGame.player = new PlayerEntity(inventoryModel);
 		player = JMoonGame.player;
 		worldMap.entityList.add(player);
 		player.setPosition(100, 100);
+		
+		//init entities
 		worldMap.entityList.add(new CheaterNPC(null, "Nox", "Cheater", 200, 200));
+		worldMap.entityList.add(new CowNPC(null, "GeMoo", "The Furious", 400, 300));
 		
 		worldMap.initialize();
 		
@@ -114,7 +121,18 @@ public class WorldGameState extends BasicTWLGameState {
 	 */
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int timeSinceLastFrame) throws SlickException {
+		
+		//temporary stuff
 		inventoryListBox.giveupKeyboardFocus();
+		int selected = inventoryListBox.getSelected();
+		if(inventoryListBox.isVisible() && selected >= 0){
+			Item item = player.getInventory().getItem(selected);
+			if(item.isUsable()){
+				player.setCurrentTool((UsableItem) item);
+			}
+		}
+		//end of temporary stuff
+		
 		handleInput(container.getInput(), game);
 		worldMap.updatePlants(timeSinceLastFrame);
 		//Update all entities
@@ -166,13 +184,6 @@ public class WorldGameState extends BasicTWLGameState {
 		
 		//Interaction
 		if(input.isKeyPressed(Input.KEY_E)){
-			int selected = inventoryListBox.getSelected();
-			if(inventoryListBox.isVisible() && selected >= 0){
-				Item item = player.getInventory().getItem(selected);
-				if(item.isUsable()){
-					player.setCurrentTool((UsableItem) item);
-				}
-			}
 			player.useItem(worldMap);
 		}
 		

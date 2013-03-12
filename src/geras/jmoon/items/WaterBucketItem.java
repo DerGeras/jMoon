@@ -24,6 +24,7 @@ public class WaterBucketItem extends UsableItem {
 	
 			if(map.getField("Ground", fieldX, fieldY) == WorldElements.HOLE_VALUE){
 				map.setField("Ground", fieldX, fieldY, WorldElements.WATER_VALUE);
+				player.getInventory().addItem("Bucket",1);
 				--stackSize;
 			}
 		}

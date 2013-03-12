@@ -17,8 +17,10 @@ public class ItemFactory {
 	 */
 	public static Item getItem(String name, int stackSize){
 		switch(name){
+		case "Bucket": return getBucketItem(stackSize);
 		case "Fence": return getFenceItem(stackSize);
 		case "Hoe" : return getHoeItem(stackSize);
+		case "Milk Bucket": return getMilkBucketItem(stackSize);
 		case "Seeds": return getSeedItem(stackSize);
 		case "Shovel": return getShovelItem(stackSize);
 		case "Sickel": return getSickelItem(stackSize);
@@ -27,6 +29,15 @@ public class ItemFactory {
 		case "Wheat": return getWheatItem(stackSize);
 		default: return null;
 		}
+	}
+	
+	/**
+	 * return a BucketItem
+	 * @param stackSize - size of the stack
+	 * @return the new bucket item
+	 */
+	public static BucketItem getBucketItem(int stackSize){
+		return new BucketItem(stackSize);
 	}
 	
 	/**
@@ -45,6 +56,15 @@ public class ItemFactory {
 	 */
 	public static HoeItem getHoeItem(int stackSize){
 		return new HoeItem(stackSize);
+	}
+	
+	/**
+	 * return a MilkBucketItem
+	 * @param stackSize - size of the stack
+	 * @return the new milk bucket item
+	 */
+	public static MilkBucketItem getMilkBucketItem(int stackSize){
+		return new MilkBucketItem(stackSize);
 	}
 	
 	/**

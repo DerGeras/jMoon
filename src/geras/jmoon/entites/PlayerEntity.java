@@ -49,6 +49,7 @@ public class PlayerEntity extends Entity {
 		inventory.addItem(new SeedItem(64));
 		inventory.addItem(new WaterBucketItem(64));
 		inventory.addItem(new FenceItem(64));
+		inventory.addItem("Bucket", 64);
 		currentTool = tools.get(0);
 	}
 	

@@ -12,7 +12,7 @@ import de.matthiasmann.twl.model.SimpleChangableListModel;
  * @author Geras
  *
  */
-public class NPCEntity extends Entity{
+public abstract class NPCEntity extends Entity{
 	
 	
 	protected String name;
@@ -40,9 +40,7 @@ public class NPCEntity extends Entity{
 	 * @param game - current game (Teleporting NPCs?)
 	 * @param g - graphics - might be needed for interface stuff
 	 */
-	public void interact(PlayerEntity player, Map map, Game game){
-		//Standart: Do nothing
-	}
+	public abstract void interact(PlayerEntity player, Map map, Game game);
 	
 	//inherited
 	public void draw(Graphics g, int mapTopX, int mapTopY, Map map){

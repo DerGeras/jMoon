@@ -50,6 +50,7 @@ public class JMoonGame extends TWLStateBasedGame  {
 	
 	/**
 	 * start here
+	 * Set up the game container and start the game
 	 * @param argv - unused
 	 */
 	public static void main(String[] argv) {
