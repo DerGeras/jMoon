@@ -13,7 +13,7 @@ public class HandItem extends UsableItem {
 	
 	@Override
 	public void useWorld(int x, int y, Map map, PlayerEntity player) {
-		//Currently: switch from Gras to Gravel
+		//Currently: switch from Gras to Gravel and back
 		int fieldX = x / Settings.tileWidth;
 		int fieldY = y / Settings.tileHeight;
 		int value = map.getField("Ground", fieldX, fieldY);
@@ -22,7 +22,7 @@ public class HandItem extends UsableItem {
 		}
 		else{
 			map.setField("Ground", fieldX, fieldY, WorldElements.GRASS_VALUE);
-			map.setField("Plants", fieldX, fieldY, -1);
+			map.setField("Decoration", fieldX, fieldY, -1);
 		}
 	}
 

@@ -25,6 +25,7 @@ public class ShovelItem extends UsableItem {
 					&& map.getField("Decoration", fieldX, fieldY) == -1 && map.getField("Plants", fieldX, fieldY) == -1){
 				//I am a dwarf and I'm digging a hole
 				map.setField("Ground", fieldX, fieldY, WorldElements.HOLE_VALUE);
+				player.getInventory().addItem("Dirt", 1);
 				if(--durability <= 0){
 					--stackSize;
 					durability = maxDurability; //reset durability for the next item

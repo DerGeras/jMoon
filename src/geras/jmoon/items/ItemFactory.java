@@ -18,6 +18,7 @@ public class ItemFactory {
 	public static Item getItem(String name, int stackSize){
 		switch(name){
 		case "Bucket": return getBucketItem(stackSize);
+		case "Dirt": return getDirtItem(stackSize);
 		case "Fence": return getFenceItem(stackSize);
 		case "Hoe" : return getHoeItem(stackSize);
 		case "Milk Bucket": return getMilkBucketItem(stackSize);
@@ -38,6 +39,10 @@ public class ItemFactory {
 	 */
 	public static BucketItem getBucketItem(int stackSize){
 		return new BucketItem(stackSize);
+	}
+	
+	public static DirtItem getDirtItem(int stackSize){
+		return new DirtItem(stackSize);
 	}
 	
 	/**

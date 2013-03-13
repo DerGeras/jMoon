@@ -17,6 +17,11 @@ public class WeedPlant extends Plant {
 
 	@Override
 	public void update(int timeSinceLastFrame) {
+		//check if the ground is still alright
+		if(map.getField("Ground", posX, posY) != WorldElements.DIRT_VALUE && map.getField("Ground", posX, posY) != WorldElements.WETDIRT_VALUE){
+			map.removePlant(this);
+			return;
+		}
 		//only do something the plant isn't fully grown
 		if(tileValue < WorldElements.WEED_MAX_VALUE){
 			timeSinceLastGrowth += timeSinceLastFrame;
