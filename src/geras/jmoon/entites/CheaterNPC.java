@@ -31,4 +31,10 @@ public class CheaterNPC extends NPCEntity {
 		player.getInventory().addItem("Fence", 64);
 	}
 
+	@Override
+	public void update(int timesincelastframe, Map map) {
+		move(timesincelastframe, map);
+		
+	}
+
 }

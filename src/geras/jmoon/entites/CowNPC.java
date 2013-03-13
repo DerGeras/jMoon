@@ -1,5 +1,6 @@
 package geras.jmoon.entites;
 
+import geras.jmoon.AI.CowAI;
 import geras.jmoon.items.UsableItem;
 import geras.jmoon.world.Map;
 
@@ -10,12 +11,15 @@ import org.newdawn.slick.SlickException;
 import de.matthiasmann.twl.model.SimpleChangableListModel;
 
 public class CowNPC extends NPCEntity {
+	
+	private CowAI brain = new CowAI(); //the brain of the cow
 
 	public CowNPC(SimpleChangableListModel<String> inventoryModel,
 			String name, String title, int posX, int posY) {
 		super(inventoryModel, name, title, posX, posY);
 		width = 32;
 		height = 32;
+		move_speed = 0.05f;
 		try{
 			this.entityImg = new Image("Sprites/Entities/Cow.png");
 		}
@@ -35,6 +39,12 @@ public class CowNPC extends NPCEntity {
 				player.getInventory().updateModel();
 			}
 		}
+	}
+
+	@Override
+	public void update(int timesincelastframe, Map map) {
+		brain.update(this, timesincelastframe);
+		move(timesincelastframe, map);		
 	}
 
 }

@@ -20,9 +20,7 @@ import org.newdawn.slick.Graphics;
 import de.matthiasmann.twl.model.SimpleChangableListModel;
 
 
-public class PlayerEntity extends Entity {
-	
-	private float hunger; //Hunger Value
+public class PlayerEntity extends LivingEntity {
 	
 	private ArrayList<UsableItem> tools = new ArrayList<UsableItem>();
 	private UsableItem currentTool;
@@ -72,31 +70,6 @@ public class PlayerEntity extends Entity {
 	}
 	
 	/**
-	 * move the entity on the next frame
-	 * depending on timesincelastframe, the move_speed and nextX/nextY
-	 */
-	private void move(int timesincelastframe, Map map){
-		int oldX = posX;
-		int oldY = posY;
-		posX += timesincelastframe * move_speed * nextX;
-		posY += timesincelastframe * move_speed * nextY;
-		nextX = nextY = 0;
-		//Collision
-		int firstX = (posX - width / 3) / Settings.tileWidth;
-		int firstY = (posY - height / 3) / Settings.tileHeight;
-		int secondX = (posX + width / 3) / Settings.tileWidth;
-		int secondY = (posY + height / 3) / Settings.tileHeight;
-		
-		if(map.getField("Decoration", firstX, firstY) == WorldElements.ROCK_VALUE
-				|| map.getField("Decoration", secondX, firstY) == WorldElements.ROCK_VALUE
-				|| map.getField("Decoration", firstX, secondY) == WorldElements.ROCK_VALUE
-				|| map.getField("Decoration", secondX, secondY) == WorldElements.ROCK_VALUE){
-			posX = oldX;
-			posY = oldY;
-		}
-	}
-	
-	/**
 	 * Use the currently selected tool
 	 * @param map - current Map
 	 */
@@ -136,9 +109,9 @@ public class PlayerEntity extends Entity {
 	 */
 	public int getCursorX(){
 		switch(direction){
-		case west: return posX - (width / 2) - 10;
-		case east: return posX + (width / 2) + 10;
-		default: return posX;
+		case west: return (int) (posX - (width / 2) - 10);
+		case east: return (int) (posX + (width / 2) + 10);
+		default: return (int) posX;
 		}
 	}
 	
@@ -148,9 +121,9 @@ public class PlayerEntity extends Entity {
 	 */
 	public int getCursorY(){
 		switch(direction){
-		case north: return posY - (width / 2) - 10;
-		case south: return posY + (width / 2) + 10;
-		default: return posY;
+		case north: return (int) (posY - (width / 2) - 10);
+		case south: return (int) (posY + (width / 2) + 10);
+		default: return (int) posY;
 		}
 	}
 	
@@ -166,20 +139,6 @@ public class PlayerEntity extends Entity {
 	 */
 	public UsableItem getCurrentTool(){
 		return currentTool;
-	}
-	
-	public float getHunger() {
-		return hunger;
-	}
-
-	/**
-	 * Set hunger value
-	 * @param hunger should be between 0 and 16
-	 */
-	public void setHunger(float hunger) {
-		if(hunger < 0.0f) this.hunger = 0.0f;
-		if(hunger > 16.0f) this.hunger = 16.0f;
-		this.hunger = hunger;
 	}
 
 	

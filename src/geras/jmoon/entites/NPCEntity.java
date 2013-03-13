@@ -12,7 +12,7 @@ import de.matthiasmann.twl.model.SimpleChangableListModel;
  * @author Geras
  *
  */
-public abstract class NPCEntity extends Entity{
+public abstract class NPCEntity extends LivingEntity{
 	
 	
 	protected String name;
@@ -24,12 +24,6 @@ public abstract class NPCEntity extends Entity{
 		this.title = title;
 		this.posX = posX;
 		this.posY = posY;
-	}
-
-	@Override
-	public void update(int timesincelastframe, Map map) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	/**
@@ -46,8 +40,8 @@ public abstract class NPCEntity extends Entity{
 	public void draw(Graphics g, int mapTopX, int mapTopY, Map map){
 		super.draw(g, mapTopX, mapTopY, map);
 		//draw title and name
-		int relativeX = mapTopX + posX;
-		int relativeY = mapTopY + posY;
+		int relativeX = (int) (mapTopX + posX);
+		int relativeY = (int) (mapTopY + posY);
 		
 		//TODO specify font
 		g.drawString(name, relativeX - name.length() / 2, relativeY - height/2 - 40);
