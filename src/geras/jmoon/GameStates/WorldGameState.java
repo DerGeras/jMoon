@@ -85,11 +85,6 @@ public class WorldGameState extends BasicTWLGameState {
 		g.drawString("Number: " + player.getCurrentTool().getStackSize(), 50, 515);
 		g.drawString("Durability: " + player.getCurrentTool().getDurability(), 50, 530);
 		
-		//"Minimap"
-//	    g.scale(0.1f,0.1f);
-//	    worldMap.render(5800, 150);
-//	    g.resetTransform();
-		
 	}
 	
 	/**
