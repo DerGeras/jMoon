@@ -109,8 +109,8 @@ public class PlayerEntity extends LivingEntity {
 	 */
 	public int getCursorX(){
 		switch(direction){
-		case west: return (int) (posX - (width / 2) - 10);
-		case east: return (int) (posX + (width / 2) + 10);
+		case west: return (int) (posX - (width / 2) - 16);
+		case east: return (int) (posX + (width / 2) + 16);
 		default: return (int) posX;
 		}
 	}
@@ -121,8 +121,8 @@ public class PlayerEntity extends LivingEntity {
 	 */
 	public int getCursorY(){
 		switch(direction){
-		case north: return (int) (posY - (width / 2) - 10);
-		case south: return (int) (posY + (width / 2) + 10);
+		case north: return (int) (posY - (width / 2) - 19);
+		case south: return (int) (posY + (width / 2) + 19);
 		default: return (int) posY;
 		}
 	}

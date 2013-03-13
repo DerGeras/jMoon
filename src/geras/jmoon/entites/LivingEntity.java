@@ -1,10 +1,9 @@
 package geras.jmoon.entites;
 
-import de.matthiasmann.twl.model.SimpleChangableListModel;
 import geras.jmoon.items.Inventory;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
-import geras.jmoon.world.WorldElements;
+import de.matthiasmann.twl.model.SimpleChangableListModel;
 
 public abstract class LivingEntity extends Entity {
 	
@@ -47,10 +46,10 @@ public abstract class LivingEntity extends Entity {
 		int secondX = (int) ((posX + width / 3) / Settings.tileWidth);
 		int secondY = (int) ((posY + height / 3) / Settings.tileHeight);
 		
-		if(map.getField("Decoration", firstX, firstY) == WorldElements.ROCK_VALUE
-				|| map.getField("Decoration", secondX, firstY) == WorldElements.ROCK_VALUE
-				|| map.getField("Decoration", firstX, secondY) == WorldElements.ROCK_VALUE
-				|| map.getField("Decoration", secondX, secondY) == WorldElements.ROCK_VALUE){
+		if(map.getField("Decoration", firstX, firstY) != -1
+				|| map.getField("Decoration", secondX, firstY) != -1
+				|| map.getField("Decoration", firstX, secondY) != -1
+				|| map.getField("Decoration", secondX, secondY) != -1){
 			posX = oldX;
 			posY = oldY;
 		}
