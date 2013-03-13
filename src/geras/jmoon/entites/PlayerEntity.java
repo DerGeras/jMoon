@@ -11,7 +11,6 @@ import geras.jmoon.items.WaterBucketItem;
 import geras.jmoon.items.WateringCanItem;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
-import geras.jmoon.world.WorldElements;
 
 import java.util.ArrayList;
 
@@ -58,23 +57,14 @@ public class PlayerEntity extends LivingEntity {
 	@Override
 	public void draw(Graphics g, int mapTopX, int mapTopY, Map map) {
 		super.draw(g, mapTopX,mapTopY,map);
-		
-		int cursorX = getCursorX();
-		int cursorY = getCursorY();
-		
-		//draw an ovelay over the selected field
-		int cursorFX = cursorX / Settings.tileWidth;
-		int cursorFY = cursorY / Settings.tileHeight;
-		map.getWorldElement().draw(mapTopX + cursorFX * Settings.tileWidth, mapTopY + cursorFY * Settings.tileHeight, cursorFX, cursorFY, WorldElements.OVERLAY_VALUE, map);
-	
 	}
 	
 	/**
 	 * Use the currently selected tool
 	 * @param map - current Map
 	 */
-	public void useItem(Map map){
-		currentTool.useWorld(getCursorX(), getCursorY(), map, this);
+	public void useItem(Map map, int x, int y){
+		currentTool.useWorld(x, y, map, this);
 		inventory.updateModel();
 	}
 	
@@ -101,30 +91,6 @@ public class PlayerEntity extends LivingEntity {
 	
 	public void setCurrentTool(UsableItem item){
 		currentTool = item;
-	}
-	
-	/**
-	 * 
-	 * @return the x coordinate of the cursor
-	 */
-	public int getCursorX(){
-		switch(direction){
-		case west: return (int) (posX - (width / 2) - 16);
-		case east: return (int) (posX + (width / 2) + 16);
-		default: return (int) posX;
-		}
-	}
-	
-	/**
-	 * 
-	 * @return the y coordinate of the cursor
-	 */
-	public int getCursorY(){
-		switch(direction){
-		case north: return (int) (posY - (width / 2) - 19);
-		case south: return (int) (posY + (width / 2) + 19);
-		default: return (int) posY;
-		}
 	}
 	
 	///////////////////////////////////////////////////////

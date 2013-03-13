@@ -10,6 +10,7 @@ import geras.jmoon.items.UsableItem;
 import geras.jmoon.main.JMoonGame;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
+import geras.jmoon.world.WorldElements;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -34,6 +35,8 @@ public class WorldGameState extends BasicTWLGameState {
 	
 	private SimpleChangableListModel<String> inventoryModel = new SimpleChangableListModel<String>();
 
+	int cursorX;
+	int cursorY;
 	
 	public WorldGameState(){
 		super();
@@ -74,6 +77,17 @@ public class WorldGameState extends BasicTWLGameState {
 		//Render Decoration
 		worldMap.render(topLeftDrawX, topLeftDrawY, topLeftFieldX, topLeftFieldY, width, height, "Decoration");
 	    
+		//draw Cursor
+		cursorX = container.getInput().getMouseX() - mapTopX;
+		cursorY = container.getInput().getMouseY() - mapTopY;
+		
+		if(Math.abs(cursorX - player.getPosX()) < 2f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2f * Settings.tileHeight){
+			int cursorFX = cursorX / Settings.tileWidth;
+			int cursorFY = cursorY / Settings.tileHeight;
+			worldMap.getWorldElement().draw(mapTopX + cursorFX * Settings.tileWidth, mapTopY + cursorFY * Settings.tileHeight, cursorFX, cursorFY, WorldElements.OVERLAY_VALUE, worldMap);
+		}
+		
+		
 		// draw entites
 		for(Entity entity : worldMap.entityList){
 			entity.draw(g, mapTopX, mapTopY, worldMap);
@@ -178,21 +192,26 @@ public class WorldGameState extends BasicTWLGameState {
 		}
 		
 		//Interaction
-		if(input.isKeyPressed(Input.KEY_E)){
-			player.useItem(worldMap);
+		if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+			if(Math.abs(cursorX - player.getPosX()) < 2f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2f * Settings.tileHeight){
+				player.useItem(worldMap, cursorX, cursorY);
+			}
+		}
+		
+		if(input.isMousePressed(Input.MOUSE_RIGHT_BUTTON)){
+			for(Entity entity : worldMap.entityList){
+				if(entity.isNPC() && Math.abs(cursorX - entity.getPosX()) < 32 && Math.abs(cursorY - entity.getPosY()) < 32){
+					if(Math.abs(cursorX - player.getPosX()) < 2f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2f * Settings.tileHeight){
+						((NPCEntity)entity).interact(player, worldMap, game);
+					}
+				}
+			}
 		}
 		
 		//Inventory
 		if(input.isKeyPressed(Input.KEY_Q)){
 			inventoryListBox.setVisible(!inventoryListBox.isVisible());
 			inventoryListBox.setSelected(-1);
-		}
-		if(input.isKeyPressed(Input.KEY_F)){
-			for(Entity entity : worldMap.entityList){
-				if(entity.isNPC() && Math.abs(entity.getPosX() - player.getPosX()) < 32 && Math.abs(entity.getPosY() - player.getPosY()) < 32){
-					((NPCEntity)entity).interact(player, worldMap, game);
-				}
-			}
 		}
 		
 		//Menu
