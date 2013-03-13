@@ -16,12 +16,20 @@ public class CowAI extends BaseAI {
 	public void update(LivingEntity entity, int timeSinceLastFrame) {
 		timeSinceLastMove += timeSinceLastFrame;
 		if(timeSinceLastMove > moveTime){
-			lastNextX = rand.nextInt(3) - 1;
-			lastNextY = rand.nextInt(3) - 1;
+			lastNextX = getNextMovementModifier();
+			lastNextY = getNextMovementModifier();
 			timeSinceLastMove -= moveTime;
 		}
 		entity.setNextX(lastNextX);
 		entity.setNextY(lastNextY);
+	}
+	
+	private int getNextMovementModifier(){
+		switch(rand.nextInt(10)){
+		case 0: return -1;
+		case 1: return 1;
+		default: return 0;
+		}
 	}
 
 }
