@@ -14,7 +14,7 @@ public abstract class Entity {
 	
 	private static int nextFreeEntityId = 0; //the next free entity ID (unique)
 	
-	protected float move_speed = 0.15f;
+	protected float move_speed = 1.15f;
 	
 	protected int EntityId; //the unique id for this entity
 	

@@ -50,16 +50,16 @@ public class WorldGameState extends BasicTWLGameState {
 		int midY = container.getHeight() / 2;
 		
 		//top left pixel of the map, if it were drawn completely
-		int mapTopX = midX - player.getPosX();
-		int mapTopY = midY - player.getPosY();
+		int mapTopX = Math.max(Settings.resolutionX - Settings.mapWidth * Settings.tileWidth, Math.min(0,midX - player.getPosX()));
+		int mapTopY = Math.max(Settings.resolutionY - Settings.mapHeight * Settings.tileHeight, Math.min(0, midY - player.getPosY()));
 		
 		//width and height to be drawn
 		int width = Settings.resolutionX / Settings.tileWidth + 4;
 		int height = Settings.resolutionY / Settings.tileHeight + 4;
 		
 		//first Field to be drawn
-		int topLeftFieldX = player.getPosX() / Settings.tileWidth - (width / 2);
-		int topLeftFieldY = player.getPosY() / Settings.tileHeight - (height / 2);
+		int topLeftFieldX = Math.min(Settings.mapWidth - width, Math.max(0, player.getPosX() / Settings.tileWidth - (width / 2)));
+		int topLeftFieldY = Math.min(Settings.mapHeight - height, Math.max(0, player.getPosY() / Settings.tileHeight - (height / 2)));
 		
 		//Position where the first field should be drawn
 		int topLeftDrawX = mapTopX + topLeftFieldX * Settings.tileHeight;
