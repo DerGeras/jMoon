@@ -21,8 +21,10 @@ public class HandItem extends UsableItem {
 			map.setField("Ground", fieldX, fieldY, WorldElements.GRAVEL_VALUE);
 		}
 		else{
-			map.setField("Ground", fieldX, fieldY, WorldElements.GRASS_VALUE);
-			map.setField("Decoration", fieldX, fieldY, -1);
+			if(map.getField("Decoration", fieldX, fieldY) != WorldElements.ROCK_VALUE){
+				map.setField("Ground", fieldX, fieldY, WorldElements.GRASS_VALUE);
+				map.setField("Decoration", fieldX, fieldY, -1);
+			}
 		}
 	}
 
