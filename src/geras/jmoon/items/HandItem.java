@@ -17,7 +17,7 @@ public class HandItem extends UsableItem {
 		int fieldX = x / Settings.tileWidth;
 		int fieldY = y / Settings.tileHeight;
 		int value = map.getField("Ground", fieldX, fieldY);
-		if(value == WorldElements.GRASS_VALUE){
+		if(value == WorldElements.GRASS_VALUE && map.getField("Decoration", fieldX, fieldY) == -1 && map.getField("Plants", fieldX, fieldY) == -1){
 			map.setField("Ground", fieldX, fieldY, WorldElements.GRAVEL_VALUE);
 		}
 		else{
