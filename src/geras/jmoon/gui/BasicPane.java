@@ -10,6 +10,8 @@ public class BasicPane extends BasicGUIElement{
 	protected int posY;
 	protected int width;
 	protected int height;
+	
+	protected boolean visible;
 
 	protected Image backGroundImg;
 	
@@ -31,19 +33,24 @@ public class BasicPane extends BasicGUIElement{
 	
 	@Override
 	public void draw(){
-		if(backGroundImg != null){
-			backGroundImg.draw(posX, posY, width, height);
+		if(visible){
+			if(backGroundImg != null){
+				backGroundImg.draw(posX, posY, width, height);
+			}
+			drawChildren();
 		}
-		drawChildren();
 	}
 	
 	@Override
 	public void handleInput(Input input){
-		if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON) && isHit(input.getAbsoluteMouseX(), input.getAbsoluteMouseY())){
-			if(parent != null){
-				parent.prioritise(this);
+		if(visible){
+			childrenInput(input);
+			if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON) && isHit(input.getAbsoluteMouseX(), input.getAbsoluteMouseY())){
+				if(parent != null){
+					parent.prioritise(this);
+				}
+				input.clearMousePressedRecord();
 			}
-			input.clearMousePressedRecord();
 		}
 	}
 	
@@ -56,6 +63,20 @@ public class BasicPane extends BasicGUIElement{
 		boolean hitX = x >= posX && x <= posX + width;
 		boolean hitY = y >= posY && y <= posY + height;
 		return hitX && hitY;
+	}
+	
+	///////////////////////////////////////////////////////
+	//
+	//			Big block of getter/setters
+	//
+	///////////////////////////////////////////////////////
+	
+	public boolean isVisible(){
+		return visible;
+	}
+	
+	public void setVisibility(boolean value){
+		visible = value;
 	}
 	
 }
