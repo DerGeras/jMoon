@@ -1,5 +1,7 @@
 package geras.jmoon.gui;
 
+import geras.jmoon.entites.PlayerEntity;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
@@ -42,9 +44,9 @@ public class BasicPane extends BasicGUIElement{
 	}
 	
 	@Override
-	public void handleInput(Input input){
+	public void handleInput(Input input, PlayerEntity player){
 		if(visible){
-			childrenInput(input);
+			childrenInput(input, player);
 			if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON) && isHit(input.getAbsoluteMouseX(), input.getAbsoluteMouseY())){
 				if(parent != null){
 					parent.prioritise(this);

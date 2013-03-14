@@ -1,5 +1,7 @@
 package geras.jmoon.gui;
 
+import geras.jmoon.entites.PlayerEntity;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -34,20 +36,20 @@ public class BasicGUIElement {
 	 * Handle the input, consumes anything used (or should at least)
 	 * @param input - the input
 	 */
-	public void handleInput(Input input){
-		childrenInput(input);		
+	public void handleInput(Input input, PlayerEntity player){
+		childrenInput(input, player);		
 	}
 	
 	/**
 	 * Handle input for Children
 	 * @param input
 	 */
-	protected void childrenInput(Input input){
+	protected void childrenInput(Input input, PlayerEntity player){
 		Iterator<BasicGUIElement> iter = children.descendingIterator();
 		BasicGUIElement currChild;
 		while(iter.hasNext()){
 			currChild = iter.next();
-			currChild.handleInput(input);
+			currChild.handleInput(input, player);
 		}
 	}
 	
