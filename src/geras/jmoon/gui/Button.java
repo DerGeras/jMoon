@@ -27,7 +27,7 @@ public class Button extends BasicPane{
 					for(ButtonListener listener : listeners){
 						listener.buttonClicked();
 					}
-					input.clearMousePressedRecord();
+					//input.clearMousePressedRecord();
 				}
 			}
 		}

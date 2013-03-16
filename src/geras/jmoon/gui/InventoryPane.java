@@ -76,16 +76,17 @@ public class InventoryPane extends BasicPane {
 			childrenInput(input, player);
 			int mouseX = input.getAbsoluteMouseX();
 			int mouseY = input.getAbsoluteMouseY();
-			if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON) && isHit(mouseX, mouseY)){
-				if(parent != null){
-					parent.prioritise(this);
+			if(isHit(mouseX, mouseY)){
+				if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+					if(parent != null){
+						parent.prioritise(this);
+					}
+					mouseX -= getAbsoluteX() + topLeftX;
+					mouseY -= getAbsoluteY() + topLeftY;
+					if(mouseX > 0 && mouseX < this.width - topLeftY){
+						setSelected(mouseY / elementHeight);
+					}
 				}
-				mouseX -= getAbsoluteX() + topLeftX;
-				mouseY -= getAbsoluteY() + topLeftY;
-				if(mouseX > 0 && mouseX < this.width - topLeftY){
-					setSelected(mouseY / elementHeight);
-				}
-				input.clearMousePressedRecord();
 			}
 		}
 	}

@@ -50,7 +50,7 @@ public class BasicPane extends BasicGUIElement{
 				if(parent != null){
 					parent.prioritise(this);
 				}
-				input.clearMousePressedRecord();
+				//input.clearMousePressedRecord();
 			}
 		}
 	}
