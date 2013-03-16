@@ -46,11 +46,12 @@ public class BasicPane extends BasicGUIElement{
 	public void handleInput(Input input, PlayerEntity player){
 		if(visible){
 			childrenInput(input, player);
-			if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON) && isHit(input.getAbsoluteMouseX(), input.getAbsoluteMouseY())){
-				if(parent != null){
-					parent.prioritise(this);
+			if(isHit(input.getAbsoluteMouseX(), input.getAbsoluteMouseY())){
+				if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+					if(parent != null){
+						parent.prioritise(this);
+					}
 				}
-				//input.clearMousePressedRecord();
 			}
 		}
 	}
