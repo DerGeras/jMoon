@@ -3,7 +3,6 @@ package geras.jmoon.entites;
 import geras.jmoon.items.Inventory;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
-import de.matthiasmann.twl.model.SimpleChangableListModel;
 
 public abstract class LivingEntity extends Entity {
 	
@@ -19,11 +18,10 @@ public abstract class LivingEntity extends Entity {
 	
 	protected Inventory inventory;
 
-	protected LivingEntity(SimpleChangableListModel<String> inventoryModel) {
+	protected LivingEntity() {
 		super();
 		nextX = nextY = 0;
 		direction = Map.direction.south;
-		inventory = new Inventory(inventoryModel);
 	}
 
 	@Override

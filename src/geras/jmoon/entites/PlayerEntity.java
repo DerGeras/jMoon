@@ -16,8 +16,6 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
 
-import de.matthiasmann.twl.model.SimpleChangableListModel;
-
 
 public class PlayerEntity extends LivingEntity {
 	
@@ -27,8 +25,8 @@ public class PlayerEntity extends LivingEntity {
 	/**
 	 * Basic constructor, set hunger to 0 and set the image for the rendering
 	 */
-	public PlayerEntity(SimpleChangableListModel<String> inventoryModel){
-		super(inventoryModel);
+	public PlayerEntity(){
+		super();
 		this.hunger = 0;
 		setEntityImg("Sprites/Entities/Hero.png");
 		width = Settings.tileWidth;
@@ -65,7 +63,6 @@ public class PlayerEntity extends LivingEntity {
 	 */
 	public void useItem(Map map, int x, int y){
 		currentTool.useWorld(x, y, map, this);
-		inventory.updateModel();
 	}
 	
 	/**

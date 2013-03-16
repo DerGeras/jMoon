@@ -5,8 +5,6 @@ import geras.jmoon.world.Map;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Graphics;
 
-import de.matthiasmann.twl.model.SimpleChangableListModel;
-
 /**
  * The NPC class
  * @author Geras
@@ -18,8 +16,8 @@ public abstract class NPCEntity extends LivingEntity{
 	protected String name;
 	protected String title;
 
-	protected NPCEntity(SimpleChangableListModel<String> inventoryModel, String name, String title, int posX, int posY) {
-		super(inventoryModel);
+	protected NPCEntity(String name, String title, int posX, int posY) {
+		super();
 		this.name = name;
 		this.title = title;
 		this.posX = posX;

@@ -6,13 +6,10 @@ import org.newdawn.slick.Game;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import de.matthiasmann.twl.model.SimpleChangableListModel;
-
 public class CheaterNPC extends NPCEntity {
 
-	public CheaterNPC(SimpleChangableListModel<String> inventoryModel,
-			String name, String title, int posX, int posY) {
-		super(inventoryModel, name, title, posX, posY);
+	public CheaterNPC(String name, String title, int posX, int posY) {
+		super(name, title, posX, posY);
 		width = 32;
 		height = 32;
 		try{

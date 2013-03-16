@@ -5,6 +5,7 @@ import geras.jmoon.entites.PlayerEntity;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
 public class BasicGUIElement {
@@ -15,9 +16,9 @@ public class BasicGUIElement {
 	protected LinkedList<BasicGUIElement> children = new LinkedList<BasicGUIElement>();
 	protected BasicGUIElement parent;
 	
-	public BasicGUIElement(BasicGUIElement parent, int relativeX, int relativeY){
+	public BasicGUIElement(int relativeX, int relativeY){
 		super();
-		this.parent = parent;
+		this.parent = null;
 		this.relativeX = relativeX;
 		this.relativeY = relativeY;
 	}
@@ -25,16 +26,16 @@ public class BasicGUIElement {
 	/**
 	 * Draw this GUI Element and its children
 	 */
-	public void draw(){
-		drawChildren();
+	public void draw(Graphics g){
+		drawChildren(g);
 	}
 	
 	/**
 	 * draw the children
 	 */
-	protected void drawChildren(){
+	protected void drawChildren(Graphics g){
 		for(BasicGUIElement child: children){
-			child.draw();
+			child.draw(g);
 		}
 	}
 	
@@ -65,6 +66,7 @@ public class BasicGUIElement {
 	 */
 	public void addChild(BasicGUIElement child){
 		children.add(child);
+		child.parent = this;
 	}
 	
 	/**
@@ -73,7 +75,9 @@ public class BasicGUIElement {
 	 * @return true if the child was removed, false otherwise
 	 */
 	public boolean removeChild(BasicGUIElement child){
-		return children.remove(child);
+		boolean res = children.remove(child);
+		if(res) child.parent = null;
+		return res;
 	}
 	
 	/**

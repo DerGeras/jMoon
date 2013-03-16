@@ -2,6 +2,7 @@ package geras.jmoon.gui;
 
 import geras.jmoon.entites.PlayerEntity;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
@@ -16,8 +17,9 @@ public class BasicPane extends BasicGUIElement{
 	protected Image backGroundImg;
 	
 	
-	public BasicPane(BasicGUIElement parent, int relativeX, int relativeY, int width, int height, String imageFile){
-		super(parent, relativeX, relativeY);
+	public BasicPane(int relativeX, int relativeY, int width, int height, String imageFile){
+		super(relativeX, relativeY);
+		this.visible = true;
 		this.width = width;
 		this.height = height;
 		
@@ -30,12 +32,13 @@ public class BasicPane extends BasicGUIElement{
 	
 	
 	@Override
-	public void draw(){
+	public void draw(Graphics g){
 		if(visible){
 			if(backGroundImg != null){
 				backGroundImg.draw(getAbsoluteX(), getAbsoluteY(), width, height);
 			}
-			drawChildren();
+			//draw children
+			drawChildren(g);
 		}
 	}
 	

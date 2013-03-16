@@ -11,9 +11,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="libs/slick.jar"/>
-	<classpathentry kind="lib" path="libs/twl/TWL.jar"/>
-	<classpathentry kind="lib" path="libs/twl/TWLEffects.jar"/>
-	<classpathentry kind="lib" path="libs/twl/external-libs/xpp3-1.1.4c.jar"/>
-	<classpathentry kind="lib" path="libs/twl/external-libs/lzma.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

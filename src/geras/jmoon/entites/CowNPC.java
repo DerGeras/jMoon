@@ -8,15 +8,12 @@ import org.newdawn.slick.Game;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import de.matthiasmann.twl.model.SimpleChangableListModel;
-
 public class CowNPC extends NPCEntity {
 	
 	private CowAI brain = new CowAI(); //the brain of the cow
 
-	public CowNPC(SimpleChangableListModel<String> inventoryModel,
-			String name, String title, int posX, int posY) {
-		super(inventoryModel, name, title, posX, posY);
+	public CowNPC(String name, String title, int posX, int posY) {
+		super(name, title, posX, posY);
 		width = 32;
 		height = 32;
 		move_speed = 0.05f;
@@ -36,7 +33,6 @@ public class CowNPC extends NPCEntity {
 			if(handledItem.getStackSize() > 0){
 				handledItem.setStackSize(handledItem.getStackSize() - 1);
 				player.getInventory().addItem("Milk Bucket", 1);
-				player.getInventory().updateModel();
 			}
 		}
 	}

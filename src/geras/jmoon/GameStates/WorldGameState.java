@@ -5,6 +5,8 @@ import geras.jmoon.entites.CowNPC;
 import geras.jmoon.entites.Entity;
 import geras.jmoon.entites.NPCEntity;
 import geras.jmoon.entites.PlayerEntity;
+import geras.jmoon.gui.BasicGUIElement;
+import geras.jmoon.gui.InventoryPane;
 import geras.jmoon.items.Item;
 import geras.jmoon.items.UsableItem;
 import geras.jmoon.main.JMoonGame;
@@ -16,14 +18,10 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import TWLSlick.BasicTWLGameState;
-import TWLSlick.RootPane;
-import de.matthiasmann.twl.ListBox;
-import de.matthiasmann.twl.model.SimpleChangableListModel;
-
-public class WorldGameState extends BasicTWLGameState {
+public class WorldGameState extends BasicGameState {
 
 	private Map worldMap; //the main map
 	
@@ -31,9 +29,8 @@ public class WorldGameState extends BasicTWLGameState {
 	
 	private static final int id = JMoonGame.GameStates.WORLD.ordinal();
 	
-	private ListBox<String> inventoryListBox;
-	
-	private SimpleChangableListModel<String> inventoryModel = new SimpleChangableListModel<String>();
+	private BasicGUIElement gui;
+	private InventoryPane inventoryPane;
 
 	int cursorX;
 	int cursorY;
@@ -99,6 +96,9 @@ public class WorldGameState extends BasicTWLGameState {
 		g.drawString("Number: " + player.getCurrentTool().getStackSize(), 50, 515);
 		g.drawString("Durability: " + player.getCurrentTool().getDurability(), 50, 530);
 		
+		//draw the gui
+		gui.draw(g);
+		
 	}
 	
 	/**
@@ -107,21 +107,25 @@ public class WorldGameState extends BasicTWLGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		
-		System.out.println("Hi");
-		
 		worldMap = new Map("Sprites/MainSprites.png", Settings.mapWidth, Settings.mapHeight); //load the main map
 		
 		//init player
-		JMoonGame.player = new PlayerEntity(inventoryModel);
+		JMoonGame.player = new PlayerEntity();
 		player = JMoonGame.player;
 		worldMap.entityList.add(player);
 		player.setPosition(100, 100);
 		
 		//init entities
-		worldMap.entityList.add(new CheaterNPC(null, "Nox", "Cheater", 200, 200));
-		worldMap.entityList.add(new CowNPC(null, "GeMoo", "The Furious", 400, 300));
+		worldMap.entityList.add(new CheaterNPC("Nox", "Cheater", 200, 200));
+		worldMap.entityList.add(new CowNPC("GeMoo", "The Furious", 400, 300));
 		
 		worldMap.initialize();
+		
+		
+		//initialize gui
+		gui = new BasicGUIElement(0, 0);
+		inventoryPane = new InventoryPane(300, 50, 200, 400, "ui/Marmor.png", player.getInventory());
+		gui.addChild(inventoryPane);
 		
 	}
 	
@@ -132,9 +136,8 @@ public class WorldGameState extends BasicTWLGameState {
 	public void update(GameContainer container, StateBasedGame game, int timeSinceLastFrame) throws SlickException {
 		
 		//temporary stuff
-		inventoryListBox.giveupKeyboardFocus();
-		int selected = inventoryListBox.getSelected();
-		if(inventoryListBox.isVisible() && selected >= 0){
+		int selected = inventoryPane.getSelected();
+		if(inventoryPane.isVisible() && selected >= 0){
 			Item item = player.getInventory().getItem(selected);
 			if(item.isUsable()){
 				player.setCurrentTool((UsableItem) item);
@@ -155,6 +158,9 @@ public class WorldGameState extends BasicTWLGameState {
 	 * @param input
 	 */
 	public void handleInput(Input input, StateBasedGame game){
+		//give the input to the gui first
+		gui.handleInput(input, player);
+		
 		//Movement
 		if(input.isKeyDown(Input.KEY_A)){
 			player.setNextX(-1);
@@ -171,23 +177,23 @@ public class WorldGameState extends BasicTWLGameState {
 		
 		//Switch Tools
 		if(input.isKeyPressed(Input.KEY_1)){
-			inventoryListBox.setSelected(-1);
+			inventoryPane.setSelected(-1);
 			player.setTool(0);
 		}
 		if(input.isKeyPressed(Input.KEY_2)){
-			inventoryListBox.setSelected(-1);
+			inventoryPane.setSelected(-1);
 			player.setTool(1);
 		}
 		if(input.isKeyPressed(Input.KEY_3)){
-			inventoryListBox.setSelected(-1);
+			inventoryPane.setSelected(-1);
 			player.setTool(2);
 		}
 		if(input.isKeyPressed(Input.KEY_4)){
-			inventoryListBox.setSelected(-1);
+			inventoryPane.setSelected(-1);
 			player.setTool(3);
 		}
 		if(input.isKeyPressed(Input.KEY_5)){
-			inventoryListBox.setSelected(-1);
+			inventoryPane.setSelected(-1);
 			player.setTool(4);
 		}
 		
@@ -210,8 +216,8 @@ public class WorldGameState extends BasicTWLGameState {
 		
 		//Inventory
 		if(input.isKeyPressed(Input.KEY_Q)){
-			inventoryListBox.setVisible(!inventoryListBox.isVisible());
-			inventoryListBox.setSelected(-1);
+			inventoryPane.setVisibility(!inventoryPane.isVisible());
+			inventoryPane.setSelected(-1);
 		}
 		
 		//Menu
@@ -219,26 +225,6 @@ public class WorldGameState extends BasicTWLGameState {
 			game.enterState(JMoonGame.GameStates.MENU.ordinal());
 		}
 	}
-	
-	
-	
-	@Override
-    protected RootPane createRootPane() {
-        RootPane rp = super.createRootPane();
-        rp.setTheme("WorldTheme");
-        
-        inventoryListBox = new ListBox<String>(inventoryModel);
-        
-        rp.add(inventoryListBox);
-        
-		return rp;
-	}
-	
-	@Override
-    protected void layoutRootPane() {
-    	inventoryListBox.adjustSize();
-    	inventoryListBox.setPosition(600, 100);
-    }
 	
 	
 	/**

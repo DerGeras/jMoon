@@ -2,8 +2,6 @@ package geras.jmoon.items;
 
 import java.util.ArrayList;
 
-import de.matthiasmann.twl.model.SimpleChangableListModel;
-
 /**
  * Hold your items!
  * @author Geras
@@ -13,35 +11,27 @@ public class Inventory {
 	
 	private ArrayList<Item> content = new ArrayList<Item>();
 	
-	SimpleChangableListModel<String> inventoryModel;
-	
-	public Inventory(SimpleChangableListModel<String> inventoryModel){
-		this.inventoryModel = inventoryModel;
+	public Inventory(){
 	}
 	
 	/**
 	 * Add the item to the inventory, trying to fill any items already existing,
 	 * or simply adds the item to the inventory
 	 * @param item - the item to add
-	 * @return either the input item (if there is no such item) or the corresponding
-	 * 	item in the inventory
 	 */
-	public void addItem(Item item){
+	public void addItem(Item inputItem){
 		boolean removed = false;
 		for(int i = 0; i < content.size(); i++){
 			Item invItem = content.get(i);
-			if(invItem.name == item.name){
-				item.setStackSize(invItem.addItems(item.getStackSize())); //fill existing Stacks
+			if(invItem.name == inputItem.name){
+				inputItem.setStackSize(invItem.addItems(inputItem.getStackSize())); //fill existing Stacks
 				removed = true;
 			}
 		}
-		if(item.getStackSize() > 0 && !removed){
+		if(inputItem.getStackSize() > 0 && !removed){
+			Item item = ItemFactory.getItem(inputItem.getName(), inputItem.getStackSize());
 			content.add(item); //add an additional stack, if it hasn't been touched yet (no duplicates)
-			if(inventoryModel != null){
-				inventoryModel.addElement(item.toString());
-			}
 		}
-		updateModel();
 	}
 	
 	/**
@@ -63,11 +53,40 @@ public class Inventory {
 		if(tmpAmount > 0 && !removed){
 			Item item = ItemFactory.getItem(itemName, amount);
 			content.add(item); //add an additional stack, if it hasn't been touched yet (no duplicates)
-			if(inventoryModel != null){
-				inventoryModel.addElement(item.toString());
+		}
+	}
+	
+	/**
+	 * remove a number of item from the inventory
+	 * @param item - the item specifying the name and amount of items to remove
+	 * @return - wheter the items could be removed (if not the item remainds unchanged)
+	 */
+	public boolean removeItem(Item item){
+		Item currItem;
+		for(int i = 0; i < content.size(); i++){
+			currItem = content.get(i);
+			if(currItem.getName() == item.getName()){
+				return currItem.removeItems(item.getStackSize());
 			}
 		}
-		updateModel();
+		return false;
+	}
+	
+	/**
+	 * remove a number of item from the inventory
+	 * @param itemName - name of the item
+	 * @param amount - amount to remove
+	 * @return whether the items could be removed
+	 */
+	public boolean removeItem(String itemName, int amount){
+		Item currItem;
+		for(int i = 0; i < content.size(); i++){
+			currItem = content.get(i);
+			if(currItem.getName() == itemName){
+				return currItem.removeItems(amount);
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -102,15 +121,10 @@ public class Inventory {
 	}
 	
 	/**
-	 * update the inventoryModel
+	 * clear the inventory (irreversible btw)
 	 */
-	public void updateModel(){
-		if(inventoryModel != null){
-			for(int i = 0; i < content.size(); i++){
-				Item invItem = content.get(i);
-				inventoryModel.setElement(i, invItem.toString());
-			}
-		}
+	public void clear(){
+		content.clear();
 	}
 	
 	///////////////////////////////////////////////////////
@@ -125,10 +139,6 @@ public class Inventory {
 
 	public void setContent(ArrayList<Item> content) {
 		this.content = content;
-	}
-	
-	public SimpleChangableListModel<String> getInventoryModel(){
-		return inventoryModel;
 	}
 	
 	

@@ -1,25 +1,22 @@
 package geras.jmoon.main;
 
-import geras.jmoon.GameStates.MenuState;
 import geras.jmoon.GameStates.MainMenuGameState;
+import geras.jmoon.GameStates.MenuState;
 import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.settings.Settings;
 
-import java.net.URL;
-
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
-
-import TWLSlick.TWLStateBasedGame;
+import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * 
  * @author Geras
  *
  */
-public class JMoonGame extends TWLStateBasedGame  {
+public class JMoonGame extends StateBasedGame  {
 	
 	public static PlayerEntity player;
 	
@@ -64,12 +61,6 @@ public class JMoonGame extends TWLStateBasedGame  {
 	    } catch (SlickException e) {
 	    	e.printStackTrace();
 	    }
-	}
-
-
-	@Override
-	protected URL getThemeURL() {
-		return JMoonGame.class.getResource("/ui/JMoonTheme.xml");
 	}
 
 }

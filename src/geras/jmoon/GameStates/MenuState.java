@@ -6,16 +6,15 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-
-import TWLSlick.BasicTWLGameState;
 
 /**
  * 
  * @author Geras
  *
  */
-public class MenuState extends BasicTWLGameState  {
+public class MenuState extends BasicGameState  {
 
 	private static final int id = JMoonGame.GameStates.MENU.ordinal();
 
