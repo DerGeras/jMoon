@@ -48,7 +48,6 @@ public class InventoryPane extends BasicPane {
 				g.setColor(Color.black);
 				y += elementHeight;
 			}
-			g.setColor(Color.white);
 			//draw the children
 			drawChildren(g);					
 		}

@@ -2,6 +2,7 @@ package geras.jmoon.entites;
 
 import geras.jmoon.world.Map;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Graphics;
 
@@ -42,6 +43,7 @@ public abstract class NPCEntity extends LivingEntity{
 		int relativeY = (int) (mapTopY + posY);
 		
 		//TODO specify font
+		g.setColor(Color.white);
 		g.drawString(name, relativeX - name.length() / 2, relativeY - height/2 - 40);
 		g.drawString("<" + title + ">", relativeX - title.length() / 2 - 10, relativeY -  height/2 - 20);
 	}

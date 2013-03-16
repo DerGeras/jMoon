@@ -22,6 +22,7 @@ public abstract class LivingEntity extends Entity {
 		super();
 		nextX = nextY = 0;
 		direction = Map.direction.south;
+		inventory = new Inventory();
 	}
 
 	@Override

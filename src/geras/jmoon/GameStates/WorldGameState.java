@@ -14,6 +14,7 @@ import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -92,6 +93,7 @@ public class WorldGameState extends BasicGameState {
 		
 		
 		//display the current Tool
+		g.setColor(Color.white);
 		g.drawString(player.getCurrentTool().getName(), 50, 500);
 		g.drawString("Number: " + player.getCurrentTool().getStackSize(), 50, 515);
 		g.drawString("Durability: " + player.getCurrentTool().getDurability(), 50, 530);
@@ -124,7 +126,7 @@ public class WorldGameState extends BasicGameState {
 		
 		//initialize gui
 		gui = new BasicGUIElement(0, 0);
-		inventoryPane = new InventoryPane(300, 50, 200, 400, "ui/Marmor.png", player.getInventory());
+		inventoryPane = new InventoryPane(550, 50, 200, 400, "ui/Marmor.png", player.getInventory());
 		gui.addChild(inventoryPane);
 		
 	}
