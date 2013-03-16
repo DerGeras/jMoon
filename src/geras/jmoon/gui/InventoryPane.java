@@ -10,6 +10,22 @@ import geras.jmoon.items.Item;
 
 public class InventoryPane extends BasicPane {
 	
+	private class Closer implements ButtonListener{
+		
+		private InventoryPane pane;
+		
+		private Closer(InventoryPane pane){
+			this.pane = pane;
+		}
+		
+		@Override
+		public void buttonClicked() {
+			pane.setVisibility(false);		
+		}
+		
+	}
+	
+	
 	//top left x and y to draw the elements from
 	private static final int topLeftX = 5;
 	private static final int topLeftY = 5;
@@ -18,14 +34,15 @@ public class InventoryPane extends BasicPane {
 	private Inventory inventory;
 	
 	private int selected;
-	
-	
 
 	public InventoryPane(int relativeX, int relativeY,
 			int width, int height, String imageFile, Inventory inventory) {
 		super(relativeX, relativeY, width, height, imageFile);
 		this.setInventory(inventory);
 		this.setSelected(-1);
+		Button xButton = new Button(width - 15, -15, 32, 32, "Sprites/GUI/XButton.png");
+		xButton.addButtonListener(new Closer(this));
+		addChild(xButton);
 	}
 	
 	@Override

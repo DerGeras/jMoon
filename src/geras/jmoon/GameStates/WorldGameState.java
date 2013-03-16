@@ -126,7 +126,7 @@ public class WorldGameState extends BasicGameState {
 		
 		//initialize gui
 		gui = new BasicGUIElement(0, 0);
-		inventoryPane = new InventoryPane(550, 50, 200, 400, "ui/Marmor.png", player.getInventory());
+		inventoryPane = new InventoryPane(550, 50, 200, 400, "Sprites/GUI/Marmor.png", player.getInventory());
 		gui.addChild(inventoryPane);
 		
 	}
@@ -217,7 +217,7 @@ public class WorldGameState extends BasicGameState {
 		}
 		
 		//Inventory
-		if(input.isKeyPressed(Input.KEY_Q)){
+		if(input.isKeyPressed(Input.KEY_I)){
 			inventoryPane.setVisibility(!inventoryPane.isVisible());
 			inventoryPane.setSelected(-1);
 		}
