@@ -9,11 +9,17 @@ import org.newdawn.slick.Input;
 
 public class BasicGUIElement {
 	
+	protected int relativeX;
+	protected int relativeY;
+	
 	protected LinkedList<BasicGUIElement> children = new LinkedList<BasicGUIElement>();
 	protected BasicGUIElement parent;
 	
-	public BasicGUIElement(BasicGUIElement parent){
+	public BasicGUIElement(BasicGUIElement parent, int relativeX, int relativeY){
+		super();
 		this.parent = parent;
+		this.relativeX = relativeX;
+		this.relativeY = relativeY;
 	}
 	
 	/**
@@ -98,5 +104,29 @@ public class BasicGUIElement {
 		list.set(indexA, list.get(indexB));
 		list.set(indexB, tmp);
 	}
+	
+	/**
+	 * get the absolute x position of this element.
+	 * @return - the absolute x
+	 */
+	protected int getAbsoluteX() {
+		if(parent != null){
+			return parent.getAbsoluteX() + relativeX;
+		}
+		return relativeX;
+	}
+	
+	/**
+	 * get the absolute y position of this element.
+	 * @return - the absolute y
+	 */
+	protected int getAbsoluteY() {
+		if(parent != null){
+			return parent.getAbsoluteY() + relativeY;
+		}
+		return relativeY;
+	}
+	
+	
 	
 }

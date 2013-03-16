@@ -8,8 +8,6 @@ import org.newdawn.slick.SlickException;
 
 public class BasicPane extends BasicGUIElement{
 	
-	protected int posX;
-	protected int posY;
 	protected int width;
 	protected int height;
 	
@@ -18,10 +16,8 @@ public class BasicPane extends BasicGUIElement{
 	protected Image backGroundImg;
 	
 	
-	public BasicPane(BasicGUIElement parent, int x, int y, int width, int height, String imageFile){
-		super(parent);
-		this.posX = x;
-		this.posY = y;
+	public BasicPane(BasicGUIElement parent, int relativeX, int relativeY, int width, int height, String imageFile){
+		super(parent, relativeX, relativeY);
 		this.width = width;
 		this.height = height;
 		
@@ -37,7 +33,7 @@ public class BasicPane extends BasicGUIElement{
 	public void draw(){
 		if(visible){
 			if(backGroundImg != null){
-				backGroundImg.draw(posX, posY, width, height);
+				backGroundImg.draw(getAbsoluteX(), getAbsoluteY(), width, height);
 			}
 			drawChildren();
 		}
@@ -62,8 +58,10 @@ public class BasicPane extends BasicGUIElement{
 	 * @param y - y coordinate
 	 */
 	public boolean isHit(int x, int y){
-		boolean hitX = x >= posX && x <= posX + width;
-		boolean hitY = y >= posY && y <= posY + height;
+		int absX = getAbsoluteX();
+		int absY = getAbsoluteY();
+		boolean hitX = x >= absX && x <= absX + width;
+		boolean hitY = y >= absY && y <= absY + height;
 		return hitX && hitY;
 	}
 	
