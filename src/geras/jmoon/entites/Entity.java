@@ -58,8 +58,8 @@ public abstract class Entity {
 	 */
 	public void draw(Graphics g, int mapTopX, int mapTopY, Map map){
 		if(entityImg != null){
-			int relativeX = (int) (mapTopX + posX - (width / 2));
-			int relativeY = (int) (mapTopY + posY - (height / 2));
+			int relativeX = (int) (mapTopX + posX - entityImg.getWidth() / 2);
+			int relativeY = (int) (mapTopY + posY + (height / 2) - entityImg.getHeight());
 			if(relativeX + width > 0 && relativeX < Settings.resolutionX && relativeY + height > 0 && relativeY < Settings.resolutionY){
 				entityImg.draw(relativeX, relativeY);
 			}

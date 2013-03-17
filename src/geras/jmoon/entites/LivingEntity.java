@@ -41,7 +41,7 @@ public abstract class LivingEntity extends Entity {
 		nextX = nextY = 0;
 		//Collision
 		int firstX = (int) ((posX - width / 3) / Settings.tileWidth);
-		int firstY = (int) ((posY - height / 3) / Settings.tileHeight);
+		int firstY = (int) ((posY - width / 3) / Settings.tileHeight);
 		int secondX = (int) ((posX + width / 3) / Settings.tileWidth);
 		int secondY = (int) ((posY + height / 3) / Settings.tileHeight);
 		
