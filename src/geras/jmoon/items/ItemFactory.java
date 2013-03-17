@@ -20,6 +20,7 @@ public class ItemFactory {
 		case "Bucket": return getBucketItem(stackSize);
 		case "Dirt": return getDirtItem(stackSize);
 		case "Fence": return getFenceItem(stackSize);
+		case "Gravel": return getGravelItem(stackSize);
 		case "Hoe" : return getHoeItem(stackSize);
 		case "Milk Bucket": return getMilkBucketItem(stackSize);
 		case "Seeds": return getSeedItem(stackSize);
@@ -52,6 +53,15 @@ public class ItemFactory {
 	 */
 	public static FenceItem getFenceItem(int stackSize){
 		return new FenceItem(stackSize);
+	}
+	
+	/**
+	 * return a GravelItem
+	 * @param stackSize - size of the stack
+	 * @return the new gravel item
+	 */
+	public static GravelItem getGravelItem(int stackSize){
+		return new GravelItem(stackSize);
 	}
 	
 	/**

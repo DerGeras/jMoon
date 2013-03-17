@@ -1,5 +1,7 @@
 package geras.jmoon.entites;
 
+import org.newdawn.slick.Graphics;
+
 import geras.jmoon.items.Inventory;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;

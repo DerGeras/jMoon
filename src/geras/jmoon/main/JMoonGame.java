@@ -56,7 +56,7 @@ public class JMoonGame extends StateBasedGame  {
 			container.setDisplayMode(Settings.resolutionX,Settings.resolutionY,false);
 			container.setTargetFrameRate(300);
 			container.setMinimumLogicUpdateInterval(20);
-			container.setMaximumLogicUpdateInterval(25);
+			container.setMaximumLogicUpdateInterval(20);
 			container.start();
 	    } catch (SlickException e) {
 	    	e.printStackTrace();

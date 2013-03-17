@@ -31,6 +31,16 @@ public class ShovelItem extends UsableItem {
 					durability = maxDurability; //reset durability for the next item
 				}
 			}
+			else{
+				if(fieldValue == WorldElements.GRAVEL_VALUE){
+					map.setField("Ground", fieldX, fieldY, WorldElements.GRASS_VALUE);
+					player.getInventory().addItem("Gravel",1);
+					if(--durability <= 0){
+						--stackSize;
+						durability = maxDurability; //reset durability for the next item
+					}
+				}
+			}
 		}
 
 	}
