@@ -81,6 +81,13 @@ public class BasicGUIElement {
 	}
 	
 	/**
+	 * clears all the children (all references from this Element will be lost)
+	 */
+	public void clearChildren(){
+		children.clear();
+	}
+	
+	/**
 	 * Set priority to the given child. This should only be
 	 * called by the children of this element. This will
 	 * also call prioritise for the parent of this node,

@@ -6,6 +6,8 @@ import geras.jmoon.entites.Entity;
 import geras.jmoon.entites.NPCEntity;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.gui.BasicGUIElement;
+import geras.jmoon.gui.Button;
+import geras.jmoon.gui.ButtonListener;
 import geras.jmoon.gui.InventoryPane;
 import geras.jmoon.items.Item;
 import geras.jmoon.items.UsableItem;
@@ -24,6 +26,21 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class WorldGameState extends BasicGameState {
 
+	private class Closer implements ButtonListener{
+		
+		private InventoryPane pane;
+		
+		private Closer(InventoryPane pane){
+			this.pane = pane;
+		}
+		
+		@Override
+		public void buttonClicked() {
+			pane.setVisibility(false);		
+		}
+		
+	}
+	
 	private Map worldMap; //the main map
 	
 	private PlayerEntity player;
@@ -126,8 +143,12 @@ public class WorldGameState extends BasicGameState {
 		
 		//initialize gui
 		gui = new BasicGUIElement(0, 0);
-		inventoryPane = new InventoryPane(550, 50, 200, 400, "Sprites/GUI/Marmor.png", player.getInventory());
+		inventoryPane = new InventoryPane(550, 50, 200, 400, player.getInventory());
 		gui.addChild(inventoryPane);
+
+		Button xButton = new Button(inventoryPane.getWidth() - 15, -15, 32, 32, "Sprites/GUI/XButton.png");
+		xButton.addButtonListener(new Closer(inventoryPane));
+		inventoryPane.addChild(xButton);
 		
 	}
 	

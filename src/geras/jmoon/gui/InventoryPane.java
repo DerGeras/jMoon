@@ -10,25 +10,10 @@ import geras.jmoon.items.Item;
 
 public class InventoryPane extends BasicPane {
 	
-	private class Closer implements ButtonListener{
-		
-		private InventoryPane pane;
-		
-		private Closer(InventoryPane pane){
-			this.pane = pane;
-		}
-		
-		@Override
-		public void buttonClicked() {
-			pane.setVisibility(false);		
-		}
-		
-	}
-	
 	
 	//top left x and y to draw the elements from
-	private static final int topLeftX = 5;
-	private static final int topLeftY = 5;
+	private static final int topLeftX = 18;
+	private static final int topLeftY = 60;
 	private static final int elementHeight = 20;
 
 	private Inventory inventory;
@@ -36,13 +21,10 @@ public class InventoryPane extends BasicPane {
 	private int selected;
 
 	public InventoryPane(int relativeX, int relativeY,
-			int width, int height, String imageFile, Inventory inventory) {
-		super(relativeX, relativeY, width, height, imageFile);
+			int width, int height, Inventory inventory) {
+		super(relativeX, relativeY, width, height, "Sprites/GUI/InventoryBackground.png");
 		this.setInventory(inventory);
 		this.setSelected(-1);
-		Button xButton = new Button(width - 15, -15, 32, 32, "Sprites/GUI/XButton.png");
-		xButton.addButtonListener(new Closer(this));
-		addChild(xButton);
 	}
 	
 	@Override
@@ -57,6 +39,7 @@ public class InventoryPane extends BasicPane {
 			int x = absX + topLeftX;
 			int y = absY + topLeftY;
 			g.setColor(Color.black);
+			g.drawString("Inventory", absX + 20, absY + 20);
 			Item item;
 			for(int i = 0; i < inventory.getSize(); i++){
 				item = inventory.getItem(i);
@@ -113,6 +96,14 @@ public class InventoryPane extends BasicPane {
 		if(selected < inventory.getContent().size()){
 			this.selected = selected;
 		}
+	}
+	
+	public int getWidth(){
+		return width;
+	}
+	
+	public int getHeight(){
+		return height;
 	}
 
 }
