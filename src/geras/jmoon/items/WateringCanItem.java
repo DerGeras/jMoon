@@ -8,11 +8,11 @@ import geras.jmoon.world.WorldElements;
 public class WateringCanItem extends UsableItem {
 
 	public WateringCanItem() {
-		super("Watering Can", Settings.maxStackSize, 1, 100, 1);
+		super("Watering Can", 1, 1, 100, 1);
 	}
 
 	public WateringCanItem(int stackSize) {
-		super("Watering Can", Settings.maxStackSize, stackSize, 100, 1);
+		super("Watering Can", 1, stackSize, 100, 1);
 	}
 
 	@Override
@@ -24,9 +24,7 @@ public class WateringCanItem extends UsableItem {
 			//water dirt if possible
 			if(map.getField("Ground", fieldX, fieldY) == WorldElements.DIRT_VALUE){
 				map.setField("Ground", fieldX, fieldY, WorldElements.WETDIRT_VALUE);
-				if(--durability <= 0){
-					durability = maxDurability; //reset durability for the next item
-				}
+				--durability;
 			}
 			
 			//or fill up the can

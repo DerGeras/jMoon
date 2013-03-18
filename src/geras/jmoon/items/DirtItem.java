@@ -8,7 +8,7 @@ import geras.jmoon.world.WorldElements;
 public class DirtItem extends UsableItem {
 
 	public DirtItem(int stackSize) {
-		super("Dirt", Settings.maxStackSize, stackSize, 1, 1);
+		super("Dirt", Settings.maxStackSize, stackSize, 100, 1);
 	}
 
 	@Override

@@ -27,6 +27,7 @@ public class CheaterNPC extends NPCEntity {
 		player.getInventory().addItem("Water Bucket", 1);
 		player.getInventory().addItem("Hoe", 1);
 		player.getInventory().addItem("Fence", 64);
+		player.getInventory().addItem("Watering Can", 1);
 	}
 
 	@Override

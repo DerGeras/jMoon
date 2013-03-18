@@ -1,6 +1,7 @@
 package geras.jmoon.items;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Hold your items!
@@ -75,6 +76,7 @@ public class Inventory {
 				return currItem.removeItems(item.getStackSize());
 			}
 		}
+		clean();
 		return false;
 	}
 	
@@ -92,6 +94,7 @@ public class Inventory {
 				return currItem.removeItems(amount);
 			}
 		}
+		clean();
 		return false;
 	}
 
@@ -123,6 +126,7 @@ public class Inventory {
 	 * @return the size of the inventory (#Items)
 	 */
 	public int getSize(){
+		clean();
 		return content.size();
 	}
 	
@@ -131,6 +135,21 @@ public class Inventory {
 	 */
 	public void clear(){
 		content.clear();
+	}
+	
+	/**
+	 * remove all empty Itemstacks
+	 */
+	public void clean(){
+		Iterator<Item> iter = content.iterator();
+		Item currItem;
+		while(iter.hasNext()){
+			currItem = iter.next();
+			if(currItem.getStackSize() == 0){
+				content.remove(currItem);
+				iter = content.iterator();
+			}
+		}
 	}
 	
 	///////////////////////////////////////////////////////

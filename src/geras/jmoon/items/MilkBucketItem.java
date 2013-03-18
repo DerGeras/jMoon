@@ -7,7 +7,7 @@ import geras.jmoon.world.Map;
 public class MilkBucketItem extends UsableItem {
 
 	public MilkBucketItem(int stackSize) {
-		super("Milk Bucket", Settings.maxStackSize, stackSize, 1, 1);
+		super("Milk Bucket", Settings.maxStackSize, stackSize, 100, 1);
 		// TODO Auto-generated constructor stub
 	}
 
