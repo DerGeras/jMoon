@@ -12,6 +12,7 @@ import geras.jmoon.gui.Button;
 import geras.jmoon.gui.ButtonListener;
 import geras.jmoon.gui.InventoryPane;
 import geras.jmoon.gui.TradePane;
+import geras.jmoon.items.HandItem;
 import geras.jmoon.items.Item;
 import geras.jmoon.items.UsableItem;
 import geras.jmoon.main.JMoonGame;
@@ -214,23 +215,7 @@ public class WorldGameState extends BasicGameState {
 		//Switch Tools
 		if(input.isKeyPressed(Input.KEY_1)){
 			inventoryPane.setSelected(-1);
-			player.setTool(0);
-		}
-		if(input.isKeyPressed(Input.KEY_2)){
-			inventoryPane.setSelected(-1);
-			player.setTool(1);
-		}
-		if(input.isKeyPressed(Input.KEY_3)){
-			inventoryPane.setSelected(-1);
-			player.setTool(2);
-		}
-		if(input.isKeyPressed(Input.KEY_4)){
-			inventoryPane.setSelected(-1);
-			player.setTool(3);
-		}
-		if(input.isKeyPressed(Input.KEY_5)){
-			inventoryPane.setSelected(-1);
-			player.setTool(4);
+			player.setCurrentTool(new HandItem());
 		}
 		
 		//Interaction

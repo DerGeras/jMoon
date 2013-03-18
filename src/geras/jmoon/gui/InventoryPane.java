@@ -68,7 +68,7 @@ public class InventoryPane extends BasicPane {
 					}
 					mouseX -= getAbsoluteX() + topLeftX;
 					mouseY -= getAbsoluteY() + topLeftY;
-					if(mouseX > 0 && mouseX < this.width - topLeftY){
+					if(mouseX >= 0 && mouseX < this.width - topLeftY && mouseY >= 0){
 						setSelected(mouseY / elementHeight);
 					}
 				}
@@ -91,6 +91,7 @@ public class InventoryPane extends BasicPane {
 	}
 
 	public int getSelected() {
+		selected = selected < inventory.getSize() ? selected : -1;
 		return selected;
 	}
 

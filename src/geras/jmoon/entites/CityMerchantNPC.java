@@ -24,21 +24,27 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 	}
 
 	@Override
-	public void sellTo(PlayerEntity player, Item item) {
-		int oldSize = item.getStackSize();
-		this.inventory.addItem(item);
-		int soldAmount = oldSize - item.getStackSize();
-		player.getInventory().setMoney((int)Math.ceil(player.getInventory().getMoney() + getSale()*soldAmount*item.getSellingPrice()));
+	public void sellTo(PlayerEntity player, Item item, int amount) {
+		if(item.getStackSize() >= amount){
+			int rest = inventory.addItem(item.getName(), amount);
+			int soldAmount = amount - rest;
+			item.removeItems(soldAmount);
+			player.getInventory().setMoney(player.getInventory().getMoney() + soldAmount * (int)Math.ceil(getSellSale() * item.getSellingPrice()));
+		}
 	}
 
 	@Override
-	public void buyFrom(PlayerEntity player, Item item) {
-		// TODO Auto-generated method stub
-
+	public void buyFrom(PlayerEntity player, Item item, int amount) {
+		if(item.getStackSize() >= amount){
+			int rest = player.getInventory().addItem(item.getName(), amount);
+			int soldAmount = amount - rest;
+			item.removeItems(soldAmount);
+			player.getInventory().setMoney(player.getInventory().getMoney() - soldAmount * (int)Math.ceil(getSellSale() * item.getSellingPrice()));
+		}
 	}
 
 	@Override
-	public float getSale() {
+	public float getSellSale() {
 		//some fixed value for testing
 		return 1.0f;
 	}
@@ -53,6 +59,11 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 	public void interact(PlayerEntity player, Map map, Game game, WorldGameState state) {
 		state.startTrade(this);
 		
+	}
+
+	@Override
+	public float getBuySale() {
+		return 1.0f;
 	}
 
 }

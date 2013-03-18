@@ -44,7 +44,7 @@ public class Inventory {
 	 * @param itemName - name of the item (needs to be registered in the itemfactory)
 	 * @param amount - amount to add
 	 */
-	public void addItem(String itemName, int amount){
+	public int addItem(String itemName, int amount){
 		boolean removed = false;
 		int tmpAmount = amount;
 		for(int i = 0; i < content.size(); i++){
@@ -56,8 +56,10 @@ public class Inventory {
 		}
 		if(tmpAmount > 0 && !removed){
 			Item item = ItemFactory.getItem(itemName, amount);
-			content.add(item); //add an additional stack, if it hasn't been touched yet (no duplicates)
+			content.add(item);//add an additional stack, if it hasn't been touched yet (no duplicates)
+			tmpAmount = 0;
 		}
+		return tmpAmount;
 	}
 	
 	/**

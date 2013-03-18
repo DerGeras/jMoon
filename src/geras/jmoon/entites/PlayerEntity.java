@@ -12,14 +12,11 @@ import geras.jmoon.items.WateringCanItem;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 
-import java.util.ArrayList;
-
 import org.newdawn.slick.Graphics;
 
 
 public class PlayerEntity extends LivingEntity {
 	
-	private ArrayList<UsableItem> tools = new ArrayList<UsableItem>();
 	private UsableItem currentTool;
 
 	/**
@@ -31,22 +28,16 @@ public class PlayerEntity extends LivingEntity {
 		setEntityImg("Sprites/Entities/Hero.png");
 		width = Settings.tileWidth;
 		height = Settings.tileHeight;
-		tools.add(new HandItem());
-		tools.add(new HoeItem());
-		tools.add(new WateringCanItem());
-		tools.add(new SickelItem());
-		tools.add(new ShovelItem());
-		for(UsableItem item : tools){
-			if(item.getName() != "Hand"){
-				inventory.addItem(item);
-			}
-		}
+		inventory.addItem(new HoeItem());
+		inventory.addItem(new WateringCanItem());
+		inventory.addItem(new SickelItem());
+		inventory.addItem(new ShovelItem());
 		inventory.addItem(new SeedItem(64));
 		inventory.addItem(new WaterBucketItem(64));
 		inventory.addItem(new FenceItem(64));
 		inventory.addItem("Bucket", 64);
 		inventory.setMoney(500);
-		currentTool = tools.get(0);
+		currentTool = new HandItem();
 	}
 	
 	public void update(int timesincelastframe, Map map){
@@ -64,27 +55,6 @@ public class PlayerEntity extends LivingEntity {
 	 */
 	public void useItem(Map map, int x, int y){
 		currentTool.useWorld(x, y, map, this);
-	}
-	
-	/**
-	 * Set the tool from the "Hotbar" to be used
-	 * @param toolIndex - index of the tool in the "Hotbar"
-	 */
-	public void setTool(int toolIndex){
-		if(toolIndex >= 0 && toolIndex < tools.size()){
-			currentTool = tools.get(toolIndex);
-		}
-	}
-	
-	/**
-	 * set the tool at the specified index (for the hotbar)
-	 * @param toolIndex - index to set the tool to
-	 * @param item - a usable Item
-	 */
-	public void setTool(int toolIndex, UsableItem item){
-		if(toolIndex >= 0 && toolIndex < tools.size()){
-			tools.set(toolIndex, item);
-		}
 	}
 	
 	public void setCurrentTool(UsableItem item){
