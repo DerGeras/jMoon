@@ -39,14 +39,14 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 			int rest = player.getInventory().addItem(item.getName(), amount);
 			int soldAmount = amount - rest;
 			item.removeItems(soldAmount);
-			player.getInventory().setMoney(player.getInventory().getMoney() - soldAmount * (int)Math.ceil(getSellSale() * item.getSellingPrice()));
+			player.getInventory().setMoney(player.getInventory().getMoney() - soldAmount * (int)Math.ceil(getBuySale() * item.getSellingPrice()));
 		}
 	}
 
 	@Override
 	public float getSellSale() {
 		//some fixed value for testing
-		return 1.0f;
+		return 0.7f;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 
 	@Override
 	public float getBuySale() {
-		return 1.0f;
+		return 1.5f;
 	}
 
 }

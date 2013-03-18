@@ -12,7 +12,7 @@ public class WateringCanItem extends UsableItem {
 	}
 
 	public WateringCanItem(int stackSize) {
-		super("Watering Can", 1, stackSize, 100, 1);
+		super("Watering Can", 1, stackSize, 100, 200);
 	}
 
 	@Override

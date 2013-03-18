@@ -8,7 +8,7 @@ import geras.jmoon.world.WorldElements;
 public class ShovelItem extends UsableItem {
 	
 	public ShovelItem() {
-		super("Shovel" , 1, 1, 100, 1);
+		super("Shovel" , 1, 1, 100, 100);
 	}
 
 	public ShovelItem(int stackSize) {

@@ -12,7 +12,7 @@ public class WaterBucketItem extends UsableItem {
 	}
 	
 	public WaterBucketItem(){
-		super("Water Bucket", Settings.maxStackSize, 1, 100, 1);
+		super("Water Bucket", Settings.maxStackSize, 1, 100, 51);
 	}
 	
 	@Override

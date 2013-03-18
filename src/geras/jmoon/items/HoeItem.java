@@ -8,7 +8,7 @@ import geras.jmoon.world.WorldElements;
 public class HoeItem extends UsableItem {
 
 	public HoeItem(){
-		super("Hoe", 1, 1, 100, 1);
+		super("Hoe", 1, 1, 100, 60);
 	}
 	
 	public HoeItem(int stackSize) {
