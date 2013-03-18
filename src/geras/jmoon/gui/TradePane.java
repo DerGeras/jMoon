@@ -1,5 +1,7 @@
 package geras.jmoon.gui;
 
+import org.newdawn.slick.Graphics;
+
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.entites.Merchant;
 
@@ -63,6 +65,22 @@ public class TradePane extends BasicPane {
 		addChild(playerInventoryPane);
 		addChild(rightButton);
 		addChild(leftButton);
+	}
+	
+	@Override
+	public void draw(Graphics g){
+		if(visible){
+			super.draw(g);
+			
+			int playerSelected = playerInventoryPane.getSelected();
+			String sellPrice = playerSelected == -1 ? "" : Integer.toString((int)Math.ceil(merchant.getSellSale() * player.getInventory().getItem(playerSelected).getSellingPrice()));
+			
+			int merchantSelected = merchantInventoryPane.getSelected();
+			String buyPrice = merchantSelected == -1 ? "" : Integer.toString((int)Math.ceil(merchant.getBuySale() * merchant.getInventory().getItem(merchantSelected).getSellingPrice()));
+			
+			g.drawString(sellPrice, width / 2 - 10, height / 2 - 70);
+			g.drawString(buyPrice, width / 2 - 10, height / 2 + 70);
+		}
 	}
 	
 	/**
