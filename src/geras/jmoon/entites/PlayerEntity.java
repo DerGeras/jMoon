@@ -45,6 +45,7 @@ public class PlayerEntity extends LivingEntity {
 		inventory.addItem(new WaterBucketItem(64));
 		inventory.addItem(new FenceItem(64));
 		inventory.addItem("Bucket", 64);
+		inventory.setMoney(500);
 		currentTool = tools.get(0);
 	}
 	

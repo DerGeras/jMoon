@@ -8,7 +8,7 @@ import geras.jmoon.world.WorldElements;
 public class HandItem extends UsableItem {
 
 	public HandItem(){
-		super("Hand", 1, 1, 1);
+		super("Hand", 1, 1, 1, 0);
 	}
 	
 	@Override

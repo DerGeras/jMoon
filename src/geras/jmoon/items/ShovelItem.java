@@ -8,11 +8,11 @@ import geras.jmoon.world.WorldElements;
 public class ShovelItem extends UsableItem {
 	
 	public ShovelItem() {
-		super("Shovel" , Settings.maxStackSize, 1, 100);
+		super("Shovel" , Settings.maxStackSize, 1, 100, 1);
 	}
 
 	public ShovelItem(int stackSize) {
-		super("Shovel" , Settings.maxStackSize, stackSize, 100);
+		super("Shovel" , Settings.maxStackSize, stackSize, 100, 1);
 	}
 
 	@Override

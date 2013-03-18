@@ -8,11 +8,11 @@ import geras.jmoon.world.WorldElements;
 public class HoeItem extends UsableItem {
 
 	public HoeItem(){
-		super("Hoe", Settings.maxStackSize, 1, 100);
+		super("Hoe", Settings.maxStackSize, 1, 100, 1);
 	}
 	
 	public HoeItem(int stackSize) {
-		super("Hoe", Settings.maxStackSize, stackSize, 100);
+		super("Hoe", Settings.maxStackSize, stackSize, 100, 1);
 	}
 
 	@Override

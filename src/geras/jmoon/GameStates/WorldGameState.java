@@ -50,6 +50,7 @@ public class WorldGameState extends BasicGameState {
 	
 	private BasicGUIElement gui;
 	private InventoryPane inventoryPane;
+	private TradePane tradePane;
 
 	int cursorX;
 	int cursorY;
@@ -119,6 +120,10 @@ public class WorldGameState extends BasicGameState {
 		//draw the gui
 		gui.draw(g);
 		
+		//draw the amount of money
+		g.setColor(Color.yellow);
+		g.drawString("Money: " + player.getInventory().getMoney(), 50, Settings.resolutionY - 50);
+		
 	}
 	
 	/**
@@ -147,11 +152,9 @@ public class WorldGameState extends BasicGameState {
 		inventoryPane = new InventoryPane(550, 50, player.getInventory());
 		gui.addChild(inventoryPane);
 		
-		//DEBUG STUFF
-		inventoryPane.setVisibility(false);
-		TradePane tradePane = new TradePane(0,0,Settings.resolutionX, Settings.resolutionY, player, player);
+		tradePane = new TradePane(0,0,Settings.resolutionX, Settings.resolutionY, player, player);
 		gui.addChild(tradePane);
-		//END DEBUG
+		tradePane.setVisibility(false);
 		
 		Button xButton = new Button(inventoryPane.getWidth() - 15, -15, 32, 32, "Sprites/GUI/XButton.png");
 		xButton.addButtonListener(new Closer(inventoryPane));
@@ -264,5 +267,7 @@ public class WorldGameState extends BasicGameState {
 	public int getID() {
 		return id;
 	}
+	
+	
 	
 }

@@ -11,7 +11,10 @@ public class Inventory {
 	
 	private ArrayList<Item> content = new ArrayList<Item>();
 	
+	private int money;
+	
 	public Inventory(){
+		money = 0;
 	}
 	
 	/**
@@ -139,6 +142,14 @@ public class Inventory {
 
 	public void setContent(ArrayList<Item> content) {
 		this.content = content;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 	
 	

@@ -8,7 +8,7 @@ import geras.jmoon.world.WorldElements;
 public class BucketItem extends UsableItem {
 
 	public BucketItem(int stackSize) {
-		super("Bucket", Settings.maxStackSize, stackSize, 1);
+		super("Bucket", Settings.maxStackSize, stackSize, 1, 1);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -7,11 +7,11 @@ import geras.jmoon.world.Map;
 public class SickelItem extends UsableItem {
 
 	public SickelItem(){
-		super("Sickel", Settings.maxStackSize, 1, 100);
+		super("Sickel", Settings.maxStackSize, 1, 100, 1);
 	}
 	
 	public SickelItem(int stackSize) {
-		super("Sickel", Settings.maxStackSize, stackSize, 100);
+		super("Sickel", Settings.maxStackSize, stackSize, 100, 1);
 	}
 
 	@Override

@@ -8,11 +8,11 @@ import geras.jmoon.world.WorldElements;
 public class WateringCanItem extends UsableItem {
 
 	public WateringCanItem() {
-		super("Watering Can", Settings.maxStackSize, 1, 100);
+		super("Watering Can", Settings.maxStackSize, 1, 100, 1);
 	}
 
 	public WateringCanItem(int stackSize) {
-		super("Watering Can", Settings.maxStackSize, stackSize, 100);
+		super("Watering Can", Settings.maxStackSize, stackSize, 100, 1);
 	}
 
 	@Override

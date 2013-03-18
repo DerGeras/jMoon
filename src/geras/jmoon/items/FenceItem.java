@@ -9,7 +9,7 @@ import geras.jmoon.world.WorldElements;
 public class FenceItem extends UsableItem {
 
 	public FenceItem(int stackSize){
-		super("Fence", Settings.maxStackSize, stackSize, 1);
+		super("Fence", Settings.maxStackSize, stackSize, 1, 1);
 	}
 	
 	@Override

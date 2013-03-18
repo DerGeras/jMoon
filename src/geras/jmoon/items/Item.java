@@ -11,6 +11,8 @@ public abstract class Item {
 	
 	protected int maxDurability;
 	protected int durability; //rest durability
+	
+	protected int sellingPrice;
 
 	/**
 	 * 
@@ -19,12 +21,13 @@ public abstract class Item {
 	 * @param stackSize - stack size
 	 * @param durability - durability (of tools)
 	 */
-	public Item(String name, int maxStackSize, int stackSize, int durability){
+	public Item(String name, int maxStackSize, int stackSize, int durability, int sellingPrice){
 		this.name = name;
 		this.maxStackSize = maxStackSize;
 		this.stackSize = stackSize;
 		this.durability = durability;
 		this.maxDurability = durability;
+		this.setSellingPrice(sellingPrice);
 	}
 	
 	/**
@@ -126,6 +129,14 @@ public abstract class Item {
 	 */
 	public void setDurability(int durability){
 		this.durability = durability;
+	}
+
+	public int getSellingPrice() {
+		return sellingPrice;
+	}
+
+	public void setSellingPrice(int sellingPrice) {
+		this.sellingPrice = sellingPrice;
 	}
 	
 }
