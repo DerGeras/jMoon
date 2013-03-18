@@ -1,5 +1,6 @@
 package geras.jmoon.entites;
 
+import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.world.Map;
 
 import org.newdawn.slick.Game;
@@ -20,7 +21,7 @@ public class CheaterNPC extends NPCEntity {
 		}
 	}
 	
-	public void interact(PlayerEntity player, Map map, Game game){
+	public void interact(PlayerEntity player, Map map, Game game, WorldGameState state){
 		player.getInventory().addItem("Sickel", 1);
 		player.getInventory().addItem("Shovel", 1);
 		player.getInventory().addItem("Water Bucket", 1);

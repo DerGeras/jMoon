@@ -1,5 +1,6 @@
 package geras.jmoon.entites;
 
+import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.world.Map;
 
 import org.newdawn.slick.Color;
@@ -33,7 +34,7 @@ public abstract class NPCEntity extends LivingEntity{
 	 * @param game - current game (Teleporting NPCs?)
 	 * @param g - graphics - might be needed for interface stuff
 	 */
-	public abstract void interact(PlayerEntity player, Map map, Game game);
+	public abstract void interact(PlayerEntity player, Map map, Game game, WorldGameState state);
 	
 	//inherited
 	public void draw(Graphics g, int mapTopX, int mapTopY, Map map){
@@ -44,8 +45,8 @@ public abstract class NPCEntity extends LivingEntity{
 		
 		//TODO specify font
 		g.setColor(Color.white);
-		g.drawString(name, relativeX - name.length() / 2, relativeY - height/2 - 40);
-		g.drawString("<" + title + ">", relativeX - title.length() / 2 - 10, relativeY -  height/2 - 20);
+		g.drawString(name, relativeX - name.length()*8 / 2, relativeY - height/2 - 40);
+		g.drawString("<" + title + ">", relativeX - title.length()*8 / 2 - 10, relativeY -  height/2 - 20);
 	}
 	
 	/**

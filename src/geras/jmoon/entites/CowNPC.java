@@ -1,6 +1,7 @@
 package geras.jmoon.entites;
 
 import geras.jmoon.AI.CowAI;
+import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.items.UsableItem;
 import geras.jmoon.world.Map;
 
@@ -26,7 +27,7 @@ public class CowNPC extends NPCEntity {
 	}
 	
 	@Override
-	public void interact(PlayerEntity player, Map map, Game game){
+	public void interact(PlayerEntity player, Map map, Game game, WorldGameState state){
 		//fill the bucket in case the player carries a bucket
 		UsableItem handledItem = player.getCurrentTool();
 		if(handledItem.getName() == "Bucket"){

@@ -34,6 +34,7 @@ public class Inventory {
 		if(inputItem.getStackSize() > 0 && !removed){
 			Item item = ItemFactory.getItem(inputItem.getName(), inputItem.getStackSize());
 			content.add(item); //add an additional stack, if it hasn't been touched yet (no duplicates)
+			inputItem.setStackSize(0);
 		}
 	}
 	

@@ -1,8 +1,10 @@
 package geras.jmoon.GameStates;
 
 import geras.jmoon.entites.CheaterNPC;
+import geras.jmoon.entites.CityMerchantNPC;
 import geras.jmoon.entites.CowNPC;
 import geras.jmoon.entites.Entity;
+import geras.jmoon.entites.Merchant;
 import geras.jmoon.entites.NPCEntity;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.gui.BasicGUIElement;
@@ -143,6 +145,7 @@ public class WorldGameState extends BasicGameState {
 		//init entities
 		worldMap.entityList.add(new CheaterNPC("Nox", "Cheater", 200, 200));
 		worldMap.entityList.add(new CowNPC("GeMoo", "The Furious", 400, 300));
+		worldMap.entityList.add(new CityMerchantNPC("SiBi", "City Merchant", 500, 500));
 		
 		worldMap.initialize();
 		
@@ -152,7 +155,7 @@ public class WorldGameState extends BasicGameState {
 		inventoryPane = new InventoryPane(550, 50, player.getInventory());
 		gui.addChild(inventoryPane);
 		
-		tradePane = new TradePane(0,0,Settings.resolutionX, Settings.resolutionY, player, player);
+		tradePane = new TradePane(0,0,Settings.resolutionX, Settings.resolutionY, player, null);
 		gui.addChild(tradePane);
 		tradePane.setVisibility(false);
 		
@@ -241,7 +244,7 @@ public class WorldGameState extends BasicGameState {
 			for(Entity entity : worldMap.entityList){
 				if(entity.isNPC() && Math.abs(cursorX - entity.getPosX()) < 32 && Math.abs(cursorY - entity.getPosY()) < 32){
 					if(Math.abs(cursorX - player.getPosX()) < 2f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2f * Settings.tileHeight){
-						((NPCEntity)entity).interact(player, worldMap, game);
+						((NPCEntity)entity).interact(player, worldMap, game, this);
 					}
 				}
 			}
@@ -255,7 +258,8 @@ public class WorldGameState extends BasicGameState {
 		
 		//Menu
 		if(input.isKeyPressed(Input.KEY_ESCAPE)){
-			game.enterState(JMoonGame.GameStates.MENU.ordinal());
+			//game.enterState(JMoonGame.GameStates.MENU.ordinal());
+			tradePane.setVisibility(false);
 		}
 	}
 	
@@ -268,6 +272,14 @@ public class WorldGameState extends BasicGameState {
 		return id;
 	}
 	
-	
+	/**
+	 * start the trading window
+	 * @param merchant
+	 */
+	public void startTrade(Merchant merchant){
+		tradePane.setMerchant(merchant);
+		inventoryPane.setVisibility(false);
+		tradePane.setVisibility(true);
+	}
 	
 }

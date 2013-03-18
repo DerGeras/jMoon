@@ -9,7 +9,7 @@ import geras.jmoon.world.WorldElements;
 public class SeedItem extends UsableItem {
 
 	public SeedItem(int stackSize){
-		super("Seeds", Settings.maxStackSize, stackSize, 0, 1);
+		super("Seeds", Settings.maxStackSize, stackSize, 1, 1);
 	}
 	
 	public SeedItem(){
