@@ -15,14 +15,16 @@ public class InventoryPane extends BasicPane {
 	private static final int topLeftX = 18;
 	private static final int topLeftY = 60;
 	private static final int elementHeight = 20;
+	
+	public static final int inventoryPaneWidth = 200;
+	public static final int inventoryPaneHeight = 400;
 
 	private Inventory inventory;
 	
 	private int selected;
 
-	public InventoryPane(int relativeX, int relativeY,
-			int width, int height, Inventory inventory) {
-		super(relativeX, relativeY, width, height, "Sprites/GUI/InventoryBackground.png");
+	public InventoryPane(int relativeX, int relativeY, Inventory inventory) {
+		super(relativeX, relativeY,  inventoryPaneWidth, inventoryPaneHeight, "Sprites/GUI/InventoryBackground.png");
 		this.setInventory(inventory);
 		this.setSelected(-1);
 	}

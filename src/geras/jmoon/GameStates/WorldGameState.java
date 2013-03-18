@@ -144,7 +144,7 @@ public class WorldGameState extends BasicGameState {
 		
 		//initialize gui
 		gui = new BasicGUIElement(0, 0);
-		inventoryPane = new InventoryPane(550, 50, 200, 400, player.getInventory());
+		inventoryPane = new InventoryPane(550, 50, player.getInventory());
 		gui.addChild(inventoryPane);
 		
 		//DEBUG STUFF

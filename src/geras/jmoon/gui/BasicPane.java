@@ -69,6 +69,13 @@ public class BasicPane extends BasicGUIElement{
 		return hitX && hitY;
 	}
 	
+	public void setVisibility(boolean value){
+		visible = value;
+		if(parent != null){
+			parent.prioritise(this);
+		}
+	}
+	
 	///////////////////////////////////////////////////////
 	//
 	//			Big block of getter/setters
@@ -77,10 +84,6 @@ public class BasicPane extends BasicGUIElement{
 	
 	public boolean isVisible(){
 		return visible;
-	}
-	
-	public void setVisibility(boolean value){
-		visible = value;
 	}
 	
 }

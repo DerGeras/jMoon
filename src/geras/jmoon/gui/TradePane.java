@@ -19,8 +19,8 @@ public class TradePane extends BasicPane {
 		this.visible = true;
 		this.player = player;
 		this.merchant = merchant;
-		this.playerInventoryPane = new InventoryPane(100, 150, 200, 400, this.player.getInventory());
-		this.merchantInventoryPane = new InventoryPane(500, 150, 200, 400, this.merchant.getInventory());
+		this.playerInventoryPane = new InventoryPane(width/4 - InventoryPane.inventoryPaneWidth / 2, 150, this.player.getInventory());
+		this.merchantInventoryPane = new InventoryPane(width/4 * 3 - InventoryPane.inventoryPaneWidth / 2, 150, this.merchant.getInventory());
 		this.rightButton = new Button(width / 2 - 50, height / 2 - 50, 100, 30, "Sprites/GUI/ArrowRight.png");
 		this.leftButton = new Button(width / 2 - 50, height / 2 + 10, 100, 30, "Sprites/GUI/ArrowLeft.png");
 		addChild(playerInventoryPane);
