@@ -8,7 +8,7 @@ import geras.jmoon.world.WorldElements;
 public class GravelItem extends UsableItem {
 
 	public GravelItem(int stackSize) {
-		super("Gravel", 1, stackSize, 100, 1);
+		super("Gravel", 1, stackSize, 1);
 	}
 
 	@Override

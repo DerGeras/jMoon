@@ -9,9 +9,6 @@ public abstract class Item {
 	protected int maxStackSize; //maximum stacksize
 	protected int stackSize; //current stackSize
 	
-	protected int maxDurability;
-	protected int durability; //rest durability
-	
 	protected int sellingPrice;
 
 	/**
@@ -21,12 +18,10 @@ public abstract class Item {
 	 * @param stackSize - stack size
 	 * @param durability - durability (of tools)
 	 */
-	public Item(String name, int maxStackSize, int stackSize, int durability, int sellingPrice){
+	public Item(String name, int maxStackSize, int stackSize, int sellingPrice){
 		this.name = name;
 		this.maxStackSize = maxStackSize;
 		this.stackSize = Math.min(maxStackSize, stackSize);
-		this.durability = durability;
-		this.maxDurability = durability;
 		this.setSellingPrice(sellingPrice);
 	}
 	
@@ -64,7 +59,7 @@ public abstract class Item {
 	
 	@Override
 	public String toString(){
-		return name + " " + stackSize + " " + durability;
+		return name + " " + stackSize;
 	}
 	
 	/**
@@ -113,22 +108,6 @@ public abstract class Item {
 	public int setStackSize(int size){
 		this.stackSize = Math.min(size, maxStackSize);
 		return Math.max(0, size - maxStackSize);
-	}
-	
-	/**
-	 * 
-	 * @return the rest durability of this item
-	 */
-	public int getDurability(){
-		return durability;
-	}
-	
-	/**
-	 * 
-	 * @param durability - new durability value
-	 */
-	public void setDurability(int durability){
-		this.durability = durability;
 	}
 
 	public int getSellingPrice() {

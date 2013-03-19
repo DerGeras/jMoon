@@ -8,11 +8,11 @@ import geras.jmoon.world.WorldElements;
 public class WaterBucketItem extends UsableItem {
 
 	public WaterBucketItem(int stackSize){
-		super("Water Bucket", Settings.maxStackSize, stackSize, 100, 51);
+		super("Water Bucket", Settings.maxStackSize, stackSize, 51);
 	}
 	
 	public WaterBucketItem(){
-		super("Water Bucket", Settings.maxStackSize, 1, 100, 51);
+		super("Water Bucket", Settings.maxStackSize, 1, 51);
 	}
 	
 	@Override

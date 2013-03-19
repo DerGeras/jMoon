@@ -103,7 +103,6 @@ public class WorldGameState extends BasicGameState {
 		g.setColor(Color.white);
 		g.drawString(player.getCurrentTool().getName(), 50, 500);
 		g.drawString("Number: " + player.getCurrentTool().getStackSize(), 50, 515);
-		g.drawString("Durability: " + player.getCurrentTool().getDurability(), 50, 530);
 		
 		//draw the gui
 		gui.draw(g);

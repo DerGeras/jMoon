@@ -5,14 +5,14 @@ import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
 
-public class ShovelItem extends UsableItem {
+public class ShovelItem extends ToolItem {
 	
 	public ShovelItem() {
-		super("Shovel" , 1, 1, 100, 100);
+		super("Shovel" , Settings.maxDurability, Settings.maxDurability, 100);
 	}
 
 	public ShovelItem(int stackSize) {
-		super("Shovel" , 1, 1, 100, 100);
+		super("Shovel" , Settings.maxDurability, Settings.maxDurability, 100);
 	}
 
 	@Override

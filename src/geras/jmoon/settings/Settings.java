@@ -12,6 +12,7 @@ public class Settings {
 	public static int resolutionY = 600;
 	
 	public static final int maxStackSize = 256;
+	public static final int maxDurability = 100;
 	public static final int maxInventorySize = 16;
 	
 }

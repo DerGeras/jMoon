@@ -5,14 +5,14 @@ import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
 
-public class HoeItem extends UsableItem {
+public class HoeItem extends ToolItem {
 
 	public HoeItem(){
-		super("Hoe", 1, 1, 100, 60);
+		super("Hoe", Settings.maxDurability, Settings.maxDurability, 60);
 	}
 	
 	public HoeItem(int stackSize) {
-		super("Hoe", 1, 1, 100, 60);
+		super("Hoe", Settings.maxDurability, Settings.maxDurability, 60);
 	}
 
 	@Override

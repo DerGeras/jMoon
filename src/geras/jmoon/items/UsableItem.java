@@ -6,8 +6,8 @@ import geras.jmoon.world.Map;
 public abstract class UsableItem extends Item {
 	
 	
-	public UsableItem(String name, int maxStackSize, int stackSize, int durability, int sellingPrice) {
-		super(name, maxStackSize, stackSize, durability, sellingPrice);
+	public UsableItem(String name, int maxStackSize, int stackSize, int sellingPrice) {
+		super(name, maxStackSize, stackSize, sellingPrice);
 	}
 
 	/**

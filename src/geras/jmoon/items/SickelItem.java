@@ -4,14 +4,14 @@ import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 
-public class SickelItem extends UsableItem {
+public class SickelItem extends ToolItem {
 
 	public SickelItem(){
-		super("Sickel", 1, 1, 100, 1);
+		super("Sickel", Settings.maxDurability, Settings.maxDurability, 1);
 	}
 	
 	public SickelItem(int stackSize) {
-		super("Sickel", 1, 1, 100, 60);
+		super("Sickel", Settings.maxDurability, Settings.maxDurability, 60);
 	}
 
 	@Override
@@ -22,10 +22,7 @@ public class SickelItem extends UsableItem {
 			
 			if(map.getField("Plants", fieldX, fieldY) != -1){
 				map.getPlant(fieldX, fieldY).harvest(player, map);
-				if(--durability <= 0){
-					--stackSize;
-					durability = maxDurability; //reset durability for the next item
-				}
+				--durability;
 			}
 		}
 

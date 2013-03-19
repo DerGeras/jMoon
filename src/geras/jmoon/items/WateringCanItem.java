@@ -5,14 +5,14 @@ import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
 
-public class WateringCanItem extends UsableItem {
+public class WateringCanItem extends ToolItem {
 
 	public WateringCanItem() {
-		super("Watering Can", 1, 1, 100, 1);
+		super("Watering Can", Settings.maxDurability, Settings.maxDurability, 1);
 	}
 
 	public WateringCanItem(int stackSize) {
-		super("Watering Can", 1, 1, 100, 200);
+		super("Watering Can", Settings.maxDurability, Settings.maxDurability, 200);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class WateringCanItem extends UsableItem {
 			
 			//or fill up the can
 			if(map.getField("Ground", fieldX, fieldY) == WorldElements.WATER_VALUE){
-				durability = 100;
+				durability = this.maxDurability;
 			}
 			
 			
