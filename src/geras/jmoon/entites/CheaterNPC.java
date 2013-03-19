@@ -1,5 +1,8 @@
 package geras.jmoon.entites;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.items.Item;
 import geras.jmoon.world.Map;
@@ -62,6 +65,25 @@ public class CheaterNPC extends NPCEntity implements Merchant{
 	@Override
 	public float getBuySale() {
 		return 0;
+	}
+
+	@Override
+	public void saveToXML(BufferedWriter out) {
+		try {
+			out.append("<entity case=CheaterNPC name=" + name + " title=" + title + " posX=" + posX + " posY=" + posY);
+			out.append(" hunger=" + hunger + " thirst" + thirst + ">");
+			out.flush();
+			out.newLine();
+			
+			//output the inventory
+			inventory.saveToXML(out);
+			
+			out.newLine();
+			out.write("</entity>");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

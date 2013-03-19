@@ -24,7 +24,10 @@ public class WateringCanItem extends ToolItem {
 			//water dirt if possible
 			if(map.getField("Ground", fieldX, fieldY) == WorldElements.DIRT_VALUE){
 				map.setField("Ground", fieldX, fieldY, WorldElements.WETDIRT_VALUE);
-				--durability;
+				if(--durability <= 0){
+					--stackSize;
+					durability = maxDurability; //reset durability for the next item
+				}
 			}
 			
 			//or fill up the can

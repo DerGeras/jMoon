@@ -1,5 +1,8 @@
 package geras.jmoon.entites;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 import geras.jmoon.items.FenceItem;
 import geras.jmoon.items.HandItem;
 import geras.jmoon.items.HoeItem;
@@ -73,6 +76,25 @@ public class PlayerEntity extends LivingEntity {
 	 */
 	public UsableItem getCurrentTool(){
 		return currentTool;
+	}
+
+	@Override
+	public void saveToXML(BufferedWriter out) {
+		try {
+			out.append("<entity case=PlayerEntity posX=" + posX + " posY=" + posY);
+			out.append(" hunger=" + hunger + " thirst" + thirst + ">");
+			out.flush();
+			out.newLine();
+			
+			//output the inventory
+			inventory.saveToXML(out);
+			
+			out.newLine();
+			out.write("</entity>");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	

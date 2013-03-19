@@ -1,5 +1,8 @@
 package geras.jmoon.items;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.world.Map;
 
@@ -24,7 +27,7 @@ public abstract class ToolItem extends UsableItem {
 	
 	@Override
 	public String toString(){
-		return name + " " + durability;
+		return name + " D:" + durability;
 	}
 	
 	/**
@@ -41,6 +44,17 @@ public abstract class ToolItem extends UsableItem {
 	 */
 	public void setDurability(int durability){
 		this.durability = durability;
+	}
+	
+	@Override
+	public void saveToXML(BufferedWriter out){
+		try {
+			out.append("<tool name=" + name + " maxDurability=" + maxDurability + " durability=" + durability + ">");
+			out.append("</tool>");
+			out.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -44,7 +44,6 @@ public class JMoonGame extends StateBasedGame  {
 	}
 	
 	
-	
 	/**
 	 * start here
 	 * Set up the game container and start the game

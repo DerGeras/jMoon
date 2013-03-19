@@ -22,7 +22,10 @@ public class SickelItem extends ToolItem {
 			
 			if(map.getField("Plants", fieldX, fieldY) != -1){
 				map.getPlant(fieldX, fieldY).harvest(player, map);
-				--durability;
+				if(--durability <= 0){
+					--stackSize;
+					durability = maxDurability; //reset durability for the next item
+				}
 			}
 		}
 

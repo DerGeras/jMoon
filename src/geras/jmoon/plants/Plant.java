@@ -3,6 +3,9 @@ package geras.jmoon.plants;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.world.Map;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 /**
  * 
  * @author Geras
@@ -47,6 +50,18 @@ public abstract class Plant {
 	 */
 	public abstract void harvest(PlayerEntity player, Map map);
 	
+	/**
+	 * save to xml file
+	 */
+	public void saveToXML(BufferedWriter out){
+		try {
+			out.append("<plant posX=" + posX + " posY=" + posY + " timeSinceLastGrowth=" + timeSinceLastGrowth + " tileValue=" + tileValue + ">");
+			out.append("</plant>");
+			out.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	///////////////////////////////////////////////////////
 	//

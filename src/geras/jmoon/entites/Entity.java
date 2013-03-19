@@ -1,5 +1,7 @@
 package geras.jmoon.entites;
 
+import java.io.BufferedWriter;
+
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 
@@ -83,6 +85,12 @@ public abstract class Entity {
 	public boolean isNPC(){
 		return false;
 	}
+	
+	/**
+	 * save to xml file
+	 * each entity has to override this method
+	 */
+	public abstract void saveToXML(BufferedWriter out);
 	
 	///////////////////////////////////////////////////////
 	//

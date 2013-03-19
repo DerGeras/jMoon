@@ -1,5 +1,8 @@
 package geras.jmoon.items;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 import geras.jmoon.entites.Entity;
 
 public abstract class Item {
@@ -59,7 +62,7 @@ public abstract class Item {
 	
 	@Override
 	public String toString(){
-		return name + " " + stackSize;
+		return name + " N:" + stackSize;
 	}
 	
 	/**
@@ -67,6 +70,19 @@ public abstract class Item {
 	 */
 	public void useInventory(Entity entity){
 		//Standart: do nothing
+	}
+	
+	/**
+	 * save to xml file
+	 */
+	public void saveToXML(BufferedWriter out){
+		try {
+			out.append("<item name=" + name + " maxStackSize=" + maxStackSize + " stackSize=" + stackSize + ">");
+			out.append("</item>");
+			out.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	///////////////////////////////////////////////////////

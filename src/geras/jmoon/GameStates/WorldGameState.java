@@ -19,6 +19,11 @@ import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -31,8 +36,6 @@ public class WorldGameState extends BasicGameState {
 
 	
 	private Map worldMap; //the main map
-	
-	private PlayerEntity player;
 	
 	private static final int id = JMoonGame.GameStates.WORLD.ordinal();
 	
@@ -58,16 +61,16 @@ public class WorldGameState extends BasicGameState {
 		int midY = container.getHeight() / 2;
 		
 		//top left pixel of the map, if it were drawn completely
-		int mapTopX = Math.max(Settings.resolutionX - Settings.mapWidth * Settings.tileWidth, Math.min(0,midX - (int)player.getPosX()));
-		int mapTopY = Math.max(Settings.resolutionY - Settings.mapHeight * Settings.tileHeight, Math.min(0, midY - (int)player.getPosY()));
+		int mapTopX = Math.max(Settings.resolutionX - Settings.mapWidth * Settings.tileWidth, Math.min(0,midX - (int)JMoonGame.player.getPosX()));
+		int mapTopY = Math.max(Settings.resolutionY - Settings.mapHeight * Settings.tileHeight, Math.min(0, midY - (int)JMoonGame.player.getPosY()));
 		
 		//width and height to be drawn
 		int width = Settings.resolutionX / Settings.tileWidth + 4;
 		int height = Settings.resolutionY / Settings.tileHeight + 4;
 		
 		//first Field to be drawn
-		int topLeftFieldX = Math.min(Settings.mapWidth - width, Math.max(0, (int)player.getPosX() / Settings.tileWidth - (width / 2)));
-		int topLeftFieldY = Math.min(Settings.mapHeight - height, Math.max(0, (int)player.getPosY() / Settings.tileHeight - (height / 2)));
+		int topLeftFieldX = Math.min(Settings.mapWidth - width, Math.max(0, (int)JMoonGame.player.getPosX() / Settings.tileWidth - (width / 2)));
+		int topLeftFieldY = Math.min(Settings.mapHeight - height, Math.max(0, (int)JMoonGame.player.getPosY() / Settings.tileHeight - (height / 2)));
 		
 		//Position where the first field should be drawn
 		int topLeftDrawX = mapTopX + topLeftFieldX * Settings.tileHeight;
@@ -86,7 +89,7 @@ public class WorldGameState extends BasicGameState {
 		cursorX = container.getInput().getMouseX() - mapTopX;
 		cursorY = container.getInput().getMouseY() - mapTopY;
 		
-		if(Math.abs(cursorX - player.getPosX()) < 2.5f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2.5f * Settings.tileHeight){
+		if(Math.abs(cursorX - JMoonGame.player.getPosX()) < 2.5f * Settings.tileWidth && Math.abs(cursorY - JMoonGame.player.getPosY()) < 2.5f * Settings.tileHeight){
 			int cursorFX = cursorX / Settings.tileWidth;
 			int cursorFY = cursorY / Settings.tileHeight;
 			worldMap.getWorldElement().draw(mapTopX + cursorFX * Settings.tileWidth, mapTopY + cursorFY * Settings.tileHeight, cursorFX, cursorFY, WorldElements.OVERLAY_VALUE, worldMap);
@@ -101,15 +104,15 @@ public class WorldGameState extends BasicGameState {
 		
 		//display the current Tool
 		g.setColor(Color.white);
-		g.drawString(player.getCurrentTool().getName(), 50, 500);
-		g.drawString("Number: " + player.getCurrentTool().getStackSize(), 50, 515);
+		g.drawString(JMoonGame.player.getCurrentTool().getName(), 50, 500);
+		g.drawString("Number: " + JMoonGame.player.getCurrentTool().getStackSize(), 50, 515);
 		
 		//draw the gui
 		gui.draw(g);
 		
 		//draw the amount of money
 		g.setColor(Color.yellow);
-		g.drawString("Money: " + player.getInventory().getMoney(), 50, Settings.resolutionY - 50);
+		g.drawString("Money: " + JMoonGame.player.getInventory().getMoney(), 50, Settings.resolutionY - 50);
 		
 	}
 	
@@ -123,9 +126,8 @@ public class WorldGameState extends BasicGameState {
 		
 		//init player
 		JMoonGame.player = new PlayerEntity();
-		player = JMoonGame.player;
-		worldMap.entityList.add(player);
-		player.setPosition(100, 100);
+		worldMap.entityList.add(JMoonGame.player);
+		JMoonGame.player.setPosition(100, 100);
 		
 		//init entities
 		worldMap.entityList.add(new CheaterNPC("Nox", "Cheater", 200, 200));
@@ -137,10 +139,10 @@ public class WorldGameState extends BasicGameState {
 		
 		//initialize gui
 		gui = new BasicGUIElement(0, 0);
-		inventoryPane = new InventoryPane(550, 50, player.getInventory());
+		inventoryPane = new InventoryPane(550, 50, JMoonGame.player.getInventory());
 		gui.addChild(inventoryPane);
 		
-		tradePane = new TradePane(0,0,Settings.resolutionX, Settings.resolutionY, player, null);
+		tradePane = new TradePane(0,0,Settings.resolutionX, Settings.resolutionY, JMoonGame.player, null);
 		gui.addChild(tradePane);
 		tradePane.setVisibility(false);
 		
@@ -159,9 +161,9 @@ public class WorldGameState extends BasicGameState {
 		//temporary stuff
 		int selected = inventoryPane.getSelected();
 		if(inventoryPane.isVisible() && selected >= 0){
-			Item item = player.getInventory().getItem(selected);
+			Item item = JMoonGame.player.getInventory().getItem(selected);
 			if(item.isUsable()){
-				player.setCurrentTool((UsableItem) item);
+				JMoonGame.player.setCurrentTool((UsableItem) item);
 			}
 		}
 		//end of temporary stuff
@@ -180,40 +182,40 @@ public class WorldGameState extends BasicGameState {
 	 */
 	public void handleInput(Input input, StateBasedGame game){
 		//give the input to the gui first
-		gui.handleInput(input, player);
+		gui.handleInput(input, JMoonGame.player);
 		
 		//Movement
 		if(input.isKeyDown(Input.KEY_A)){
-			player.setNextX(-1);
+			JMoonGame.player.setNextX(-1);
 		}
 		if(input.isKeyDown(Input.KEY_D)){
-			player.setNextX(1);
+			JMoonGame.player.setNextX(1);
 		}
 		if(input.isKeyDown(Input.KEY_W)){
-			player.setNextY(-1);
+			JMoonGame.player.setNextY(-1);
 		}
 		if(input.isKeyDown(Input.KEY_S)){
-			player.setNextY(1);
+			JMoonGame.player.setNextY(1);
 		}
 		
 		//Switch Tools
 		if(input.isKeyPressed(Input.KEY_1)){
 			inventoryPane.setSelected(-1);
-			player.setCurrentTool(new HandItem());
+			JMoonGame.player.setCurrentTool(new HandItem());
 		}
 		
 		//Interaction
 		if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
-			if(Math.abs(cursorX - player.getPosX()) < 2.5f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2.5f * Settings.tileHeight){
-				player.useItem(worldMap, cursorX, cursorY);
+			if(Math.abs(cursorX - JMoonGame.player.getPosX()) < 2.5f * Settings.tileWidth && Math.abs(cursorY - JMoonGame.player.getPosY()) < 2.5f * Settings.tileHeight){
+				JMoonGame.player.useItem(worldMap, cursorX, cursorY);
 			}
 		}
 		
 		if(input.isMousePressed(Input.MOUSE_RIGHT_BUTTON)){
 			for(Entity entity : worldMap.entityList){
 				if(entity.isNPC() && Math.abs(cursorX - entity.getPosX()) < 32 && Math.abs(cursorY - entity.getPosY()) < 32){
-					if(Math.abs(cursorX - player.getPosX()) < 2.5f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2.5f * Settings.tileHeight){
-						((NPCEntity)entity).interact(player, worldMap, game, this);
+					if(Math.abs(cursorX - JMoonGame.player.getPosX()) < 2.5f * Settings.tileWidth && Math.abs(cursorY - JMoonGame.player.getPosY()) < 2.5f * Settings.tileHeight){
+						((NPCEntity)entity).interact(JMoonGame.player, worldMap, game, this);
 					}
 				}
 			}
@@ -229,6 +231,12 @@ public class WorldGameState extends BasicGameState {
 		if(input.isKeyPressed(Input.KEY_ESCAPE)){
 			//game.enterState(JMoonGame.GameStates.MENU.ordinal());
 			tradePane.setVisibility(false);
+		}
+		
+		//save
+		//TODO better things here
+		if(input.isKeyPressed(Input.KEY_K)){
+			saveToXML();
 		}
 	}
 	
@@ -249,6 +257,28 @@ public class WorldGameState extends BasicGameState {
 		tradePane.setMerchant(merchant);
 		inventoryPane.setVisibility(false);
 		tradePane.setVisibility(true);
+	}
+	
+	/**
+	 * save this state to xml
+	 */
+	public void saveToXML(){
+		try {
+			//create bufferwriter
+			File file = new File("./save1.xml");
+			FileWriter writer = new FileWriter(file);
+			BufferedWriter out = new BufferedWriter(writer);
+			
+			//save the map
+			worldMap.saveToXML(out);
+			out.newLine();
+			
+			//close the file
+			out.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

@@ -2,6 +2,8 @@ package geras.jmoon.items;
 
 import geras.jmoon.settings.Settings;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -137,6 +139,26 @@ public class Inventory {
 				content.remove(currItem);
 				iter = content.iterator();
 			}
+		}
+	}
+	
+	/**
+	 * save to xml file
+	 */
+	public void saveToXML(BufferedWriter out){
+		try {
+			out.write("<inventory money=" + money + ">");
+			out.newLine();
+			
+			//write out items
+			for(Item item : content){
+				item.saveToXML(out);
+				out.newLine();
+			}
+			
+			out.write("</inventory>");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

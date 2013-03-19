@@ -4,6 +4,8 @@ import geras.jmoon.entites.Entity;
 import geras.jmoon.plants.Plant;
 import geras.jmoon.settings.Settings;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -238,6 +240,48 @@ public class Map {
 	public void render(int x, int y){
 		for(String layer : layerPos){
 			render(x,y,layer);
+		}
+	}
+	
+	public void saveToXML(BufferedWriter out){
+		try {
+			out.write("<map width=" + width + " height=" + height + ">");
+			out.newLine();
+			
+			//save layers
+			out.write("<layers>");
+			out.newLine();
+			for(String layerName : layerPos){
+				layers.get(layerName).saveToXML(out);
+				out.newLine();
+			}
+			out.write("</layers>");
+			out.newLine();
+			
+			//save plants
+			out.write("<plants>");
+			out.newLine();
+			for(Plant plant : plants){
+				plant.saveToXML(out);
+				out.newLine();
+			}
+			out.write("</plants>");
+			out.newLine();
+			
+			//save entities
+			out.write("<entities>");
+			out.newLine();
+			for(Entity entity : entityList){
+				entity.saveToXML(out);
+				out.newLine();
+			}
+			out.write("</entities>");
+			out.newLine();
+			
+			out.write("</map>");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

@@ -1,5 +1,8 @@
 package geras.jmoon.entites;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 import geras.jmoon.AI.CowAI;
 import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.items.UsableItem;
@@ -42,6 +45,26 @@ public class CowNPC extends NPCEntity {
 	public void update(int timesincelastframe, Map map) {
 		brain.update(this, timesincelastframe);
 		move(timesincelastframe, map);		
+	}
+
+	@Override
+	public void saveToXML(BufferedWriter out) {
+		try {
+			out.append("<entity case=CowNPC name=" + name + " title=" + title + " posX=" + posX + " posY=" + posY);
+			out.append(" hunger=" + hunger + " thirst" + thirst + ">");
+			out.flush();
+			out.newLine();
+			
+			//output the inventory
+			inventory.saveToXML(out);
+			
+			out.newLine();
+			out.write("</entity>");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
