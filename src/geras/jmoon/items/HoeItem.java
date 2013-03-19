@@ -12,7 +12,7 @@ public class HoeItem extends UsableItem {
 	}
 	
 	public HoeItem(int stackSize) {
-		super("Hoe", 1, stackSize, 100, 1);
+		super("Hoe", 1, 1, 100, 60);
 	}
 
 	@Override

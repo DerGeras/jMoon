@@ -91,6 +91,9 @@ public class TradePane extends BasicPane {
 		if(this.merchant == null){
 			this.merchantInventoryPane = new InventoryPane(width/4 * 3 - InventoryPane.inventoryPaneWidth / 2, 150, merchant.getInventory());
 			addChild(merchantInventoryPane);
+			Button xButton = new Button(merchantInventoryPane.getWidth() - 15, -15, 32, 32, "Sprites/GUI/XButton.png");
+			xButton.addButtonListener(new Button.CloseButton(this));
+			merchantInventoryPane.addChild(xButton);
 		}
 		this.merchant = merchant;
 		this.merchantInventoryPane.setInventory(merchant.getInventory());

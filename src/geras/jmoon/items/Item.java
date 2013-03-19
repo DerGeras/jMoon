@@ -24,7 +24,7 @@ public abstract class Item {
 	public Item(String name, int maxStackSize, int stackSize, int durability, int sellingPrice){
 		this.name = name;
 		this.maxStackSize = maxStackSize;
-		this.stackSize = stackSize;
+		this.stackSize = Math.min(maxStackSize, stackSize);
 		this.durability = durability;
 		this.maxDurability = durability;
 		this.setSellingPrice(sellingPrice);

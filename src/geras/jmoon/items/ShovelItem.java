@@ -12,7 +12,7 @@ public class ShovelItem extends UsableItem {
 	}
 
 	public ShovelItem(int stackSize) {
-		super("Shovel" , 1, stackSize, 100, 1);
+		super("Shovel" , 1, 1, 100, 100);
 	}
 
 	@Override

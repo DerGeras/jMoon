@@ -21,6 +21,14 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 		catch(SlickException e){
 			e.printStackTrace();
 		}
+		//fill inventory
+		inventory.addItem("Sickel", 1);
+		inventory.addItem("Shovel", 1);
+		inventory.addItem("Water Bucket", 1);
+		inventory.addItem("Hoe", 1);
+		inventory.addItem("Fence", 512);
+		inventory.addItem("Watering Can", 1);
+		
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class SickelItem extends UsableItem {
 	}
 	
 	public SickelItem(int stackSize) {
-		super("Sickel", 1, stackSize, 100, 60);
+		super("Sickel", 1, 1, 100, 60);
 	}
 
 	@Override

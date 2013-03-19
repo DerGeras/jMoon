@@ -8,6 +8,22 @@ import org.newdawn.slick.Input;
 
 public class Button extends BasicPane{
 
+	public static class CloseButton implements ButtonListener{
+		
+		private BasicPane pane;
+		
+		public CloseButton(BasicPane pane){
+			this.pane = pane;
+		}
+		
+		@Override
+		public void buttonClicked() {
+			pane.setVisibility(false);		
+		}
+		
+	}
+	
+	
 	private LinkedList<ButtonListener> listeners = new LinkedList<ButtonListener>();
 	
 	public Button(int relativeX, int relativeY, int width, int height,

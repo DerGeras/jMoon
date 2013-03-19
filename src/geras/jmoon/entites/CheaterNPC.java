@@ -1,13 +1,14 @@
 package geras.jmoon.entites;
 
 import geras.jmoon.GameStates.WorldGameState;
+import geras.jmoon.items.Item;
 import geras.jmoon.world.Map;
 
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class CheaterNPC extends NPCEntity {
+public class CheaterNPC extends NPCEntity implements Merchant{
 
 	public CheaterNPC(String name, String title, int posX, int posY) {
 		super(name, title, posX, posY);
@@ -19,21 +20,48 @@ public class CheaterNPC extends NPCEntity {
 		catch(SlickException e){
 			e.printStackTrace();
 		}
+		//fill inventory
+		inventory.addItem("Sickel", 1);
+		inventory.addItem("Shovel", 1);
+		inventory.addItem("Water Bucket", 1);
+		inventory.addItem("Hoe", 1);
+		inventory.addItem("Fence", 1);
+		inventory.addItem("Watering Can", 1);
 	}
 	
 	public void interact(PlayerEntity player, Map map, Game game, WorldGameState state){
-		player.getInventory().addItem("Sickel", 1);
-		player.getInventory().addItem("Shovel", 1);
-		player.getInventory().addItem("Water Bucket", 1);
-		player.getInventory().addItem("Hoe", 1);
-		player.getInventory().addItem("Fence", 64);
-		player.getInventory().addItem("Watering Can", 1);
+		state.startTrade(this);
 	}
 
 	@Override
 	public void update(int timesincelastframe, Map map) {
 		move(timesincelastframe, map);
 		
+	}
+
+	@Override
+	public void sellTo(PlayerEntity player, Item item, int amount) {
+		//can't sell
+		
+	}
+
+	@Override
+	public void buyFrom(PlayerEntity player, Item item, int amount) {
+		//it's a cheater, you just get the item :)
+		if(item.getStackSize() >= amount && player.getInventory().getMoney() >= item.getSellingPrice() * getBuySale() * amount){
+			player.getInventory().addItem(item.getName(), amount);
+		}
+		
+	}
+
+	@Override
+	public float getSellSale() {
+		return 0;
+	}
+
+	@Override
+	public float getBuySale() {
+		return 0;
 	}
 
 }

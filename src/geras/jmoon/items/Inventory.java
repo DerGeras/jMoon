@@ -1,5 +1,7 @@
 package geras.jmoon.items;
 
+import geras.jmoon.settings.Settings;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -20,23 +22,11 @@ public class Inventory {
 	
 	/**
 	 * Add the item to the inventory, trying to fill any items already existing,
-	 * or simply adds the item to the inventory
+	 * or simply adds a new item to the inventory
 	 * @param item - the item to add
 	 */
 	public void addItem(Item inputItem){
-		boolean removed = false;
-		for(int i = 0; i < content.size(); i++){
-			Item invItem = content.get(i);
-			if(invItem.name == inputItem.name){
-				inputItem.setStackSize(invItem.addItems(inputItem.getStackSize())); //fill existing Stacks
-				removed = true;
-			}
-		}
-		if(inputItem.getStackSize() > 0 && !removed){
-			Item item = ItemFactory.getItem(inputItem.getName(), inputItem.getStackSize());
-			content.add(item); //add an additional stack, if it hasn't been touched yet (no duplicates)
-			inputItem.setStackSize(0);
-		}
+		addItem(inputItem.getName(), inputItem.getStackSize());
 	}
 	
 	/**
@@ -46,19 +36,17 @@ public class Inventory {
 	 * @param amount - amount to add
 	 */
 	public int addItem(String itemName, int amount){
-		boolean removed = false;
 		int tmpAmount = amount;
 		for(int i = 0; i < content.size(); i++){
 			Item invItem = content.get(i);
 			if(invItem.name == itemName){
 				tmpAmount = invItem.addItems(tmpAmount); //fill existing Stacks
-				removed = true;
 			}
 		}
-		if(tmpAmount > 0 && !removed){
-			Item item = ItemFactory.getItem(itemName, amount);
+		while(tmpAmount > 0 && content.size() < Settings.maxInventorySize){
+			Item item = ItemFactory.getItem(itemName, tmpAmount);
 			content.add(item);//add an additional stack, if it hasn't been touched yet (no duplicates)
-			tmpAmount = 0;
+			tmpAmount = Math.max(0, tmpAmount - item.getMaxStackSize());
 		}
 		return tmpAmount;
 	}

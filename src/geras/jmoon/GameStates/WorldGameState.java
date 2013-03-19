@@ -9,7 +9,6 @@ import geras.jmoon.entites.NPCEntity;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.gui.BasicGUIElement;
 import geras.jmoon.gui.Button;
-import geras.jmoon.gui.ButtonListener;
 import geras.jmoon.gui.InventoryPane;
 import geras.jmoon.gui.TradePane;
 import geras.jmoon.items.HandItem;
@@ -30,20 +29,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class WorldGameState extends BasicGameState {
 
-	private class Closer implements ButtonListener{
-		
-		private InventoryPane pane;
-		
-		private Closer(InventoryPane pane){
-			this.pane = pane;
-		}
-		
-		@Override
-		public void buttonClicked() {
-			pane.setVisibility(false);		
-		}
-		
-	}
 	
 	private Map worldMap; //the main map
 	
@@ -101,7 +86,7 @@ public class WorldGameState extends BasicGameState {
 		cursorX = container.getInput().getMouseX() - mapTopX;
 		cursorY = container.getInput().getMouseY() - mapTopY;
 		
-		if(Math.abs(cursorX - player.getPosX()) < 2f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2f * Settings.tileHeight){
+		if(Math.abs(cursorX - player.getPosX()) < 2.5f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2.5f * Settings.tileHeight){
 			int cursorFX = cursorX / Settings.tileWidth;
 			int cursorFY = cursorY / Settings.tileHeight;
 			worldMap.getWorldElement().draw(mapTopX + cursorFX * Settings.tileWidth, mapTopY + cursorFY * Settings.tileHeight, cursorFX, cursorFY, WorldElements.OVERLAY_VALUE, worldMap);
@@ -161,7 +146,7 @@ public class WorldGameState extends BasicGameState {
 		tradePane.setVisibility(false);
 		
 		Button xButton = new Button(inventoryPane.getWidth() - 15, -15, 32, 32, "Sprites/GUI/XButton.png");
-		xButton.addButtonListener(new Closer(inventoryPane));
+		xButton.addButtonListener(new Button.CloseButton(inventoryPane));
 		inventoryPane.addChild(xButton);
 		
 	}
@@ -220,7 +205,7 @@ public class WorldGameState extends BasicGameState {
 		
 		//Interaction
 		if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
-			if(Math.abs(cursorX - player.getPosX()) < 2f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2f * Settings.tileHeight){
+			if(Math.abs(cursorX - player.getPosX()) < 2.5f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2.5f * Settings.tileHeight){
 				player.useItem(worldMap, cursorX, cursorY);
 			}
 		}
@@ -228,7 +213,7 @@ public class WorldGameState extends BasicGameState {
 		if(input.isMousePressed(Input.MOUSE_RIGHT_BUTTON)){
 			for(Entity entity : worldMap.entityList){
 				if(entity.isNPC() && Math.abs(cursorX - entity.getPosX()) < 32 && Math.abs(cursorY - entity.getPosY()) < 32){
-					if(Math.abs(cursorX - player.getPosX()) < 2f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2f * Settings.tileHeight){
+					if(Math.abs(cursorX - player.getPosX()) < 2.5f * Settings.tileWidth && Math.abs(cursorY - player.getPosY()) < 2.5f * Settings.tileHeight){
 						((NPCEntity)entity).interact(player, worldMap, game, this);
 					}
 				}
