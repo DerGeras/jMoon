@@ -308,25 +308,26 @@
 </layer>
 </layers>
 <plants>
-<plant posX="16" posY="10" timeSinceLastGrowth="10120" tileValue="200"></plant>
-<plant posX="16" posY="9" timeSinceLastGrowth="9600" tileValue="200"></plant>
-<plant posX="13" posY="10" timeSinceLastGrowth="9000" tileValue="200"></plant>
-<plant posX="12" posY="10" timeSinceLastGrowth="8780" tileValue="200"></plant>
-<plant posX="10" posY="9" timeSinceLastGrowth="8320" tileValue="200"></plant>
-<plant posX="11" posY="9" timeSinceLastGrowth="7980" tileValue="200"></plant>
-<plant posX="10" posY="8" timeSinceLastGrowth="7640" tileValue="200"></plant>
-<plant posX="10" posY="6" timeSinceLastGrowth="7100" tileValue="200"></plant>
+<plant posX="16" posY="10" timeSinceLastGrowth="20480" tileValue="200"></plant>
+<plant posX="16" posY="9" timeSinceLastGrowth="19960" tileValue="200"></plant>
+<plant posX="13" posY="10" timeSinceLastGrowth="19360" tileValue="200"></plant>
+<plant posX="12" posY="10" timeSinceLastGrowth="19140" tileValue="200"></plant>
+<plant posX="10" posY="9" timeSinceLastGrowth="18680" tileValue="200"></plant>
+<plant posX="11" posY="9" timeSinceLastGrowth="18340" tileValue="200"></plant>
+<plant posX="10" posY="8" timeSinceLastGrowth="18000" tileValue="200"></plant>
+<plant posX="10" posY="6" timeSinceLastGrowth="17460" tileValue="200"></plant>
 </plants>
 <entities>
-<entity case="PlayerEntity" posX="514.0" posY="499.0" hunger="0.0" thirst="0.0">
+<entity case="PlayerEntity" posX="592.0" posY="301.0" hunger="0.0" thirst="0.0">
 <inventory money="542">
 <tool name="Hoe" maxDurability="100" durability="100"></tool>
 <tool name="Watering Can" maxDurability="100" durability="100"></tool>
-<tool name="Shovel" maxDurability="100" durability="100"></tool>
+<tool name="Shovel" maxDurability="100" durability="96"></tool>
 <item name="Seeds" maxStackSize="256" stackSize="47"></item>
 <item name="Water Bucket" maxStackSize="256" stackSize="64"></item>
 <item name="Fence" maxStackSize="256" stackSize="64"></item>
 <item name="Bucket" maxStackSize="256" stackSize="64"></item>
+<item name="Gravel" maxStackSize="256" stackSize="4"></item>
 </inventory>
 </entity>
 <entity case="CheaterNPC" name="Nox" title="Cheater" posX="200.0" posY="200.0" hunger="0.0" thirst="0.0">
@@ -339,7 +340,7 @@
 <tool name="Watering Can" maxDurability="100" durability="100"></tool>
 </inventory>
 </entity>
-<entity case="CowNPC" name="GeMoo" title="The Furious" posX="400.0" posY="290.0" hunger="0.0" thirst="0.0">
+<entity case="CowNPC" name="GeMoo" title="The Furious" posX="300.0" posY="740.0" hunger="0.0" thirst="0.0">
 <inventory money="0">
 </inventory>
 </entity>
