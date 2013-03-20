@@ -105,8 +105,8 @@ public class WorldGameState extends BasicGameState {
 		
 		//display the current Tool
 		g.setColor(Color.white);
-		g.drawString(JMoonGame.player.getCurrentTool().getName(), 50, 500);
-		g.drawString("Number: " + JMoonGame.player.getCurrentTool().getStackSize(), 50, 515);
+		g.drawString(JMoonGame.player.getCurrentTool().getName(), 50, Settings.resolutionY - 100);
+		g.drawString("Number: " + JMoonGame.player.getCurrentTool().getStackSize(), 50, Settings.resolutionY - 85);
 		
 		//draw the gui
 		gui.draw(g);
