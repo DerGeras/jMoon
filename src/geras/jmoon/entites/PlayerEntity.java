@@ -16,6 +16,7 @@ import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 
 import org.newdawn.slick.Graphics;
+import org.xml.sax.Attributes;
 
 
 public class PlayerEntity extends LivingEntity {
@@ -64,6 +65,46 @@ public class PlayerEntity extends LivingEntity {
 		currentTool = item;
 	}
 	
+	@Override
+	public void saveToXML(BufferedWriter out) {
+		try {
+			out.append("<entity case=\"PlayerEntity\" posX=\"" + posX + "\" posY=\"" + posY);
+			out.append("\" hunger=\"" + hunger + "\" thirst=\"" + thirst + "\">");
+			out.flush();
+			out.newLine();
+			
+			//output the inventory
+			inventory.saveToXML(out);
+			
+			out.newLine();
+			out.write("</entity>");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void readFromAttributes(Attributes attributes) {
+		String posXS = attributes.getValue("posX");
+		String posYS = attributes.getValue("posY");
+		String hungerS = attributes.getValue("hunger");
+		String thirstS = attributes.getValue("thirst");
+		
+		if(posXS != null){
+			posX = Float.parseFloat(posXS);
+		}
+		if(posYS != null){
+			posY = Float.parseFloat(posYS);
+		}
+		if(hungerS != null){
+			hunger = Float.parseFloat(hungerS);
+		}
+		if(thirstS != null){
+			thirst = Float.parseFloat(thirstS);
+		}
+	}
+	
 	///////////////////////////////////////////////////////
 	//
 	//			Big block of getter/setters
@@ -78,24 +119,6 @@ public class PlayerEntity extends LivingEntity {
 		return currentTool;
 	}
 
-	@Override
-	public void saveToXML(BufferedWriter out) {
-		try {
-			out.append("<entity case=PlayerEntity posX=" + posX + " posY=" + posY);
-			out.append(" hunger=" + hunger + " thirst" + thirst + ">");
-			out.flush();
-			out.newLine();
-			
-			//output the inventory
-			inventory.saveToXML(out);
-			
-			out.newLine();
-			out.write("</entity>");
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	
 	

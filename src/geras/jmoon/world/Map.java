@@ -46,9 +46,10 @@ public class Map {
 	/**
 	 * Add a layer to the map
 	 */
-	public void addLayer(String name){
+	public MapLayer addLayer(String name){
 		layers.put(name, new MapLayer(name, width, height));
 		layerPos.add(name);
+		return layers.get(name);
 	}
 	
 	/**
@@ -245,7 +246,7 @@ public class Map {
 	
 	public void saveToXML(BufferedWriter out){
 		try {
-			out.write("<map width=" + width + " height=" + height + ">");
+			out.write("<map width=\"" + width + "\" height=\"" + height + "\">");
 			out.newLine();
 			
 			//save layers

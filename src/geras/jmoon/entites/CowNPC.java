@@ -11,6 +11,7 @@ import geras.jmoon.world.Map;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.xml.sax.Attributes;
 
 public class CowNPC extends NPCEntity {
 	
@@ -50,8 +51,8 @@ public class CowNPC extends NPCEntity {
 	@Override
 	public void saveToXML(BufferedWriter out) {
 		try {
-			out.append("<entity case=CowNPC name=" + name + " title=" + title + " posX=" + posX + " posY=" + posY);
-			out.append(" hunger=" + hunger + " thirst" + thirst + ">");
+			out.append("<entity case=\"CowNPC\" name=\"" + name + "\" title=\"" + title + "\" posX=\"" + posX + "\" posY=\"" + posY);
+			out.append("\" hunger=\"" + hunger + "\" thirst=\"" + thirst + "\">");
 			out.flush();
 			out.newLine();
 			
@@ -65,6 +66,30 @@ public class CowNPC extends NPCEntity {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Override
+	public void readFromAttributes(Attributes attributes) {
+		name = attributes.getValue("name");
+		title = attributes.getValue("title");
+		
+		String posXS = attributes.getValue("posX");
+		String posYS = attributes.getValue("posY");
+		String hungerS = attributes.getValue("hunger");
+		String thirstS = attributes.getValue("thirst");
+		
+		if(posXS != null){
+			posX = Float.parseFloat(posXS);
+		}
+		if(posYS != null){
+			posY = Float.parseFloat(posYS);
+		}
+		if(hungerS != null){
+			hunger = Float.parseFloat(hungerS);
+		}
+		if(thirstS != null){
+			thirst = Float.parseFloat(thirstS);
+		}
 	}
 
 }

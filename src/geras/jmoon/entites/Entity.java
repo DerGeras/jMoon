@@ -1,13 +1,14 @@
 package geras.jmoon.entites;
 
-import java.io.BufferedWriter;
-
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
+
+import java.io.BufferedWriter;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.xml.sax.Attributes;
 
 public abstract class Entity {
 	
@@ -91,6 +92,12 @@ public abstract class Entity {
 	 * each entity has to override this method
 	 */
 	public abstract void saveToXML(BufferedWriter out);
+	
+	/**
+	 * read from attributes (XML Attributes)
+	 * @param attributes
+	 */
+	public abstract void readFromAttributes(Attributes attributes);
 	
 	///////////////////////////////////////////////////////
 	//

@@ -3,6 +3,8 @@ package geras.jmoon.items;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
+import org.xml.sax.Attributes;
+
 import geras.jmoon.entites.Entity;
 
 public abstract class Item {
@@ -77,11 +79,27 @@ public abstract class Item {
 	 */
 	public void saveToXML(BufferedWriter out){
 		try {
-			out.append("<item name=" + name + " maxStackSize=" + maxStackSize + " stackSize=" + stackSize + ">");
+			out.append("<item name=\"" + name + "\" maxStackSize=\"" + maxStackSize + "\" stackSize=\"" + stackSize + "\">");
 			out.append("</item>");
 			out.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * read attributes from given XML attributes
+	 * @param attributes
+	 */
+	public void readFromAttributes(Attributes attributes) {
+		String maxStackSizeS = attributes.getValue("maxStackSize");
+		String stackSizeS = attributes.getValue("stackSize");
+		
+		if(maxStackSizeS != null){
+			maxStackSize = Integer.parseInt(maxStackSizeS);
+		}
+		if(stackSizeS != null){
+			stackSize = Integer.parseInt(stackSizeS);
 		}
 	}
 	

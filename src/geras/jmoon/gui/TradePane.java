@@ -99,6 +99,8 @@ public class TradePane extends BasicPane {
 		this.merchantInventoryPane.setInventory(merchant.getInventory());
 		playerInventoryPane.setSelected(-1);
 		merchantInventoryPane.setSelected(-1);
+		this.leftButton.setVisibility(merchant.canBuyFrom());
+		this.rightButton.setVisibility(merchant.canSellTo());
 	}
 
 }

@@ -10,6 +10,7 @@ import geras.jmoon.world.Map;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.xml.sax.Attributes;
 
 public class CheaterNPC extends NPCEntity implements Merchant{
 
@@ -24,12 +25,12 @@ public class CheaterNPC extends NPCEntity implements Merchant{
 			e.printStackTrace();
 		}
 		//fill inventory
-		inventory.addItem("Sickel", 1);
-		inventory.addItem("Shovel", 1);
-		inventory.addItem("Water Bucket", 1);
-		inventory.addItem("Hoe", 1);
-		inventory.addItem("Fence", 1);
-		inventory.addItem("Watering Can", 1);
+//		inventory.addItem("Sickel", 1);
+//		inventory.addItem("Shovel", 1);
+//		inventory.addItem("Water Bucket", 1);
+//		inventory.addItem("Hoe", 1);
+//		inventory.addItem("Fence", 1);
+//		inventory.addItem("Watering Can", 1);
 	}
 	
 	public void interact(PlayerEntity player, Map map, Game game, WorldGameState state){
@@ -70,8 +71,8 @@ public class CheaterNPC extends NPCEntity implements Merchant{
 	@Override
 	public void saveToXML(BufferedWriter out) {
 		try {
-			out.append("<entity case=CheaterNPC name=" + name + " title=" + title + " posX=" + posX + " posY=" + posY);
-			out.append(" hunger=" + hunger + " thirst" + thirst + ">");
+			out.append("<entity case=\"CheaterNPC\" name=\"" + name + "\" title=\"" + title + "\" posX=\"" + posX + "\" posY=\"" + posY);
+			out.append("\" hunger=\"" + hunger + "\" thirst=\"" + thirst + "\">");
 			out.flush();
 			out.newLine();
 			
@@ -84,6 +85,40 @@ public class CheaterNPC extends NPCEntity implements Merchant{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void readFromAttributes(Attributes attributes) {
+		name = attributes.getValue("name");
+		title = attributes.getValue("title");
+		
+		String posXS = attributes.getValue("posX");
+		String posYS = attributes.getValue("posY");
+		String hungerS = attributes.getValue("hunger");
+		String thirstS = attributes.getValue("thirst");
+		
+		if(posXS != null){
+			posX = Float.parseFloat(posXS);
+		}
+		if(posYS != null){
+			posY = Float.parseFloat(posYS);
+		}
+		if(hungerS != null){
+			hunger = Float.parseFloat(hungerS);
+		}
+		if(thirstS != null){
+			thirst = Float.parseFloat(thirstS);
+		}
+	}
+
+	@Override
+	public boolean canBuyFrom() {
+		return true;
+	}
+
+	@Override
+	public boolean canSellTo() {
+		return false;
 	}
 
 }

@@ -147,7 +147,7 @@ public class Inventory {
 	 */
 	public void saveToXML(BufferedWriter out){
 		try {
-			out.write("<inventory money=" + money + ">");
+			out.write("<inventory money=\"" + money + "\">");
 			out.newLine();
 			
 			//write out items

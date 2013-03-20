@@ -15,6 +15,7 @@ import geras.jmoon.items.HandItem;
 import geras.jmoon.items.Item;
 import geras.jmoon.items.UsableItem;
 import geras.jmoon.main.JMoonGame;
+import geras.jmoon.savegames.GameLoader;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
@@ -35,16 +36,16 @@ import org.newdawn.slick.state.StateBasedGame;
 public class WorldGameState extends BasicGameState {
 
 	
-	private Map worldMap; //the main map
+	public Map worldMap; //the main map
 	
 	private static final int id = JMoonGame.GameStates.WORLD.ordinal();
 	
-	private BasicGUIElement gui;
-	private InventoryPane inventoryPane;
-	private TradePane tradePane;
+	public BasicGUIElement gui;
+	public InventoryPane inventoryPane;
+	public TradePane tradePane;
 
-	int cursorX;
-	int cursorY;
+	private int cursorX;
+	private int cursorY;
 	
 	public WorldGameState(){
 		super();
@@ -122,19 +123,25 @@ public class WorldGameState extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		
-		worldMap = new Map("Sprites/MainSprites.png", Settings.mapWidth, Settings.mapHeight); //load the main map
-		
-		//init player
-		JMoonGame.player = new PlayerEntity();
-		worldMap.entityList.add(JMoonGame.player);
-		JMoonGame.player.setPosition(100, 100);
-		
-		//init entities
-		worldMap.entityList.add(new CheaterNPC("Nox", "Cheater", 200, 200));
-		worldMap.entityList.add(new CowNPC("GeMoo", "The Furious", 400, 300));
-		worldMap.entityList.add(new CityMerchantNPC("SiBi", "City Merchant", 500, 500));
-		
-		worldMap.initialize();
+		File file = new File("save1.xml");
+		if(file.exists()){
+			GameLoader.loadGameFromFile(file);
+		}
+		else{
+			worldMap = new Map("Sprites/MainSprites.png", Settings.mapWidth, Settings.mapHeight); //load the main map
+			
+			//init player
+			JMoonGame.player = new PlayerEntity();
+			worldMap.entityList.add(JMoonGame.player);
+			JMoonGame.player.setPosition(100, 100);
+			
+			//init entities
+			worldMap.entityList.add(new CheaterNPC("Nox", "Cheater", 200, 200));
+			worldMap.entityList.add(new CowNPC("GeMoo", "The Furious", 400, 300));
+			worldMap.entityList.add(new CityMerchantNPC("SiBi", "City Merchant", 500, 500));
+			
+			worldMap.initialize();
+		}
 		
 		
 		//initialize gui

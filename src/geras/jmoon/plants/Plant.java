@@ -55,7 +55,7 @@ public abstract class Plant {
 	 */
 	public void saveToXML(BufferedWriter out){
 		try {
-			out.append("<plant posX=" + posX + " posY=" + posY + " timeSinceLastGrowth=" + timeSinceLastGrowth + " tileValue=" + tileValue + ">");
+			out.append("<plant posX=\"" + posX + "\" posY=\"" + posY + "\" timeSinceLastGrowth=\"" + timeSinceLastGrowth + "\" tileValue=\"" + tileValue + "\">");
 			out.append("</plant>");
 			out.flush();
 		} catch (IOException e) {

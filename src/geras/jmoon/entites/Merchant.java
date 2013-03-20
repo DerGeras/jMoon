@@ -36,4 +36,16 @@ public interface Merchant {
 	 * @return
 	 */
 	public float getBuySale();
+	
+	/**
+	 * can you buy from this one?
+	 * @return
+	 */
+	public boolean canBuyFrom();
+	
+	/**
+	 * can you sell to this one?
+	 * @return
+	 */
+	public boolean canSellTo();
 }

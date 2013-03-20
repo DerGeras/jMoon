@@ -20,6 +20,8 @@ public class JMoonGame extends StateBasedGame  {
 	
 	public static PlayerEntity player;
 	
+	public static WorldGameState worldGameState;
+	
 	public enum GameStates{
 		MAIN_MENU,
 		WORLD,
@@ -39,7 +41,7 @@ public class JMoonGame extends StateBasedGame  {
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
 		addState(new MainMenuGameState());
-		addState(new WorldGameState());
+		addState(worldGameState = new WorldGameState());
 		addState(new MenuState());
 	}
 	

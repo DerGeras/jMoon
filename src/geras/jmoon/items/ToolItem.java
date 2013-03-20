@@ -3,6 +3,8 @@ package geras.jmoon.items;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
+import org.xml.sax.Attributes;
+
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.world.Map;
 
@@ -49,11 +51,24 @@ public abstract class ToolItem extends UsableItem {
 	@Override
 	public void saveToXML(BufferedWriter out){
 		try {
-			out.append("<tool name=" + name + " maxDurability=" + maxDurability + " durability=" + durability + ">");
+			out.append("<tool name=\"" + name + "\" maxDurability=\"" + maxDurability + "\" durability=\"" + durability + "\">");
 			out.append("</tool>");
 			out.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void readFromAttributes(Attributes attributes) {
+		String maxDurabilityS = attributes.getValue("maxDurability");
+		String durabilityS = attributes.getValue("durability");
+		
+		if(maxDurabilityS != null){
+			maxDurability = Integer.parseInt(maxDurabilityS);
+		}
+		if(durabilityS != null){
+			durability = Integer.parseInt(durabilityS);
 		}
 	}
 

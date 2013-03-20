@@ -75,14 +75,16 @@ public class MapLayer {
 	public void saveToXML(BufferedWriter out){
 		try {
 			//startElement
-			out.write("<layer name=" + name + " width=" + width + " height=" + height + ">");
+			out.write("<layer name=\"" + name + "\" width=\"" + width + "\" height=\"" + height + "\">");
 			out.newLine();
 			
 			//write content
 			for(int j = 0; j < height; j++){
+				out.append("<line>");
 				for(int i = 0; i < width; i++){
 					out.append(content[i][j] + " ");
 				}
+				out.append("</line>");
 				out.newLine();
 			}
 			out.flush();
@@ -92,6 +94,23 @@ public class MapLayer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public int currLine = 0;
+	
+	/**
+	 * read the content of the layer
+	 * @param ch - char array representation of the content
+	 * @param start - start of the content
+	 * @param length - end of the content
+	 */
+	public void readLine(char ch[], int start, int length){
+		String code = new String(ch, start, length);
+		String[] fields = code.split(" ");
+		for(int i = 0; i < width; i++){
+			content[i][currLine] = Integer.parseInt(fields[i]);
+		}
+		currLine++;
 	}
 	
 }
