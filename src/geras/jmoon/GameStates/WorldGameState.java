@@ -146,7 +146,7 @@ public class WorldGameState extends BasicGameState {
 		
 		//initialize gui
 		gui = new BasicGUIElement(0, 0);
-		inventoryPane = new InventoryPane(550, 50, JMoonGame.player.getInventory());
+		inventoryPane = new InventoryPane(Settings.resolutionX - 250, 50, JMoonGame.player.getInventory());
 		gui.addChild(inventoryPane);
 		
 		tradePane = new TradePane(0,0,Settings.resolutionX, Settings.resolutionY, JMoonGame.player, null);
@@ -156,7 +156,6 @@ public class WorldGameState extends BasicGameState {
 		Button xButton = new Button(inventoryPane.getWidth() - 15, -15, 32, 32, "Sprites/GUI/XButton.png");
 		xButton.addButtonListener(new Button.CloseButton(inventoryPane));
 		inventoryPane.addChild(xButton);
-		
 	}
 	
 	/**

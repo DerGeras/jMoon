@@ -50,7 +50,7 @@ public class MainMenuGameState extends BasicGameState  {
 
 	@Override
 	public void render(GameContainer conainer, StateBasedGame game, Graphics g) throws SlickException {
-		titleImage.draw(0,0);
+		titleImage.draw(0,0,Settings.resolutionX, Settings.resolutionY);
 		gui.draw(g);
 	}
 
