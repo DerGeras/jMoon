@@ -142,7 +142,9 @@ public class SaveGameHandler extends DefaultHandler {
 	 */
 	private void addLayer(Attributes attributes){
 		String name = attributes.getValue("name");
-		currentLayer = JMoonGame.worldGameState.worldMap.addLayer(name);
+		if(attributes.getValue("name") != "Plants"){
+			currentLayer = JMoonGame.worldGameState.worldMap.addLayer(name);
+		}
 	}
 	
 }

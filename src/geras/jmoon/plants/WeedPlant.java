@@ -47,7 +47,7 @@ public class WeedPlant extends Plant {
 	@Override
 	public void harvest(PlayerEntity player, Map map) {
 		int growth = tileValue - WorldElements.WEED_MIN_VALUE;
-		if(growth >= 3){
+		if(growth >= 0){
 			player.getInventory().addItem("Seeds", 1);
 		}
 		if(growth == 5){
