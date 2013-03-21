@@ -274,13 +274,14 @@ public class WorldGameState extends BasicGameState {
 	 */
 	public void saveToXML(){
 		try {
-			//create bufferwriter
+			//create bufferedwriter
 			File file = new File("./save1.xml");
 			FileWriter writer = new FileWriter(file);
 			BufferedWriter out = new BufferedWriter(writer);
 			
 			//start
 			out.append("<game>");
+			out.newLine();
 			
 			//save the clock
 			Clock.saveToXML(out);
