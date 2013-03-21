@@ -32,7 +32,7 @@ public class PotatoPlant extends Plant {
 
 	@Override
 	public boolean grow() {
-		boolean res = tileValue < WorldElements.WEED_MAX_VALUE && map.getField("Ground", posX, posY) == WorldElements.WETDIRT_VALUE;
+		boolean res = tileValue < WorldElements.POTATO_MAX_VALUE && map.getField("Ground", posX, posY) == WorldElements.WETDIRT_VALUE;
 		if(res){
 			map.setField("Plants", posX, posY, ++tileValue);
 		}
@@ -41,8 +41,14 @@ public class PotatoPlant extends Plant {
 
 	@Override
 	public void harvest(PlayerEntity player, Map map) {
-		// TODO Auto-generated method stub
-
+		int growth = tileValue - WorldElements.POTATO_MIN_VALUE;
+		if(growth >= 0){
+			player.getInventory().addItem("Potato Seeds", 1);
+		}
+		if(growth == 5){
+			player.getInventory().addItem("Potato", 5);
+		}
+		map.removePlant(this);
 	}
 
 }

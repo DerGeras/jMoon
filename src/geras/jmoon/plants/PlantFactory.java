@@ -21,7 +21,7 @@ public class PlantFactory {
 		int timeSinceLastGrowth = Integer.parseInt(attributes.getValue("timeSinceLastGrowth"));
 		
 		//Wheat
-		if(tileValue >= WorldElements.WEED_MIN_VALUE && tileValue <= WorldElements.WEED_MAX_VALUE){
+		if(tileValue >= WorldElements.WHEAT_MIN_VALUE && tileValue <= WorldElements.WHEAT_MAX_VALUE){
 			plant = new WheatPlant(posX,posY,tileValue,map);
 			plant.setTimeSinceLastGrowth(timeSinceLastGrowth);
 		}

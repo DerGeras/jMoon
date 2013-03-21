@@ -9,6 +9,7 @@ import geras.jmoon.items.ItemFactory;
 import geras.jmoon.main.JMoonGame;
 import geras.jmoon.plants.Plant;
 import geras.jmoon.plants.PlantFactory;
+import geras.jmoon.time.Clock;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.MapLayer;
 
@@ -30,6 +31,11 @@ public class SaveGameHandler extends DefaultHandler {
 	
 	public void startElement(String uri, String localName,String qName, 
             Attributes attributes) throws SAXException {
+		
+		//load clock
+		if(qName.equalsIgnoreCase("clock")){
+			Clock.readFromAttributes(attributes);
+		}
 		
 		//create a map
 		if(qName.equalsIgnoreCase("map")){

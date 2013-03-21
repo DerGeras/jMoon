@@ -23,7 +23,7 @@ public class WheatPlant extends Plant {
 			return;
 		}
 		//only do something the plant isn't fully grown
-		if(tileValue < WorldElements.WEED_MAX_VALUE){
+		if(tileValue < WorldElements.WHEAT_MAX_VALUE){
 			timeSinceLastGrowth += timeSinceLastFrame;
 			//time to grow?
 			if(timeSinceLastGrowth > growthInterval){
@@ -37,7 +37,7 @@ public class WheatPlant extends Plant {
 
 	@Override
 	public boolean grow() {
-		boolean res = tileValue < WorldElements.WEED_MAX_VALUE && map.getField("Ground", posX, posY) == WorldElements.WETDIRT_VALUE;
+		boolean res = tileValue < WorldElements.WHEAT_MAX_VALUE && map.getField("Ground", posX, posY) == WorldElements.WETDIRT_VALUE;
 		if(res){
 			map.setField("Plants", posX, posY, ++tileValue);
 		}
@@ -46,7 +46,7 @@ public class WheatPlant extends Plant {
 
 	@Override
 	public void harvest(PlayerEntity player, Map map) {
-		int growth = tileValue - WorldElements.WEED_MIN_VALUE;
+		int growth = tileValue - WorldElements.WHEAT_MIN_VALUE;
 		if(growth >= 0){
 			player.getInventory().addItem("Seeds", 1);
 		}

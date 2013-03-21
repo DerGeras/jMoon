@@ -30,8 +30,8 @@ public class WorldElements {
 	public static final int FENCE_VALUE = 101;
 	
 	//Plants
-	public static final int WEED_MIN_VALUE = 200;
-	public static final int WEED_MAX_VALUE = 205;
+	public static final int WHEAT_MIN_VALUE = 200;
+	public static final int WHEAT_MAX_VALUE = 205;
 	public static final int POTATO_MIN_VALUE = 206;
 	public static final int POTATO_MAX_VALUE = 211;
 	
@@ -100,6 +100,13 @@ public class WorldElements {
 		tiles.put("Weed4", worldPNG.getSubImage(3*tileWidth, 5*tileHeight, tileWidth,tileHeight));
 		tiles.put("Weed5", worldPNG.getSubImage(4*tileWidth, 5*tileHeight, tileWidth,tileHeight));
 		tiles.put("Weed6", worldPNG.getSubImage(5*tileWidth, 5*tileHeight, tileWidth,tileHeight));
+		//Potatoes
+		tiles.put("Potato1", worldPNG.getSubImage(0*tileWidth, 6*tileHeight, tileWidth,tileHeight));
+		tiles.put("Potato2", worldPNG.getSubImage(1*tileWidth, 6*tileHeight, tileWidth,tileHeight));
+		tiles.put("Potato3", worldPNG.getSubImage(2*tileWidth, 6*tileHeight, tileWidth,tileHeight));
+		tiles.put("Potato4", worldPNG.getSubImage(3*tileWidth, 6*tileHeight, tileWidth,tileHeight));
+		tiles.put("Potato5", worldPNG.getSubImage(4*tileWidth, 6*tileHeight, tileWidth,tileHeight));
+		tiles.put("Potato6", worldPNG.getSubImage(5*tileWidth, 6*tileHeight, tileWidth,tileHeight));
 		
 		
 	}
@@ -131,8 +138,11 @@ public class WorldElements {
 		}
 		
 		//Crops'n'Weed
-		if(tileValue >= WEED_MIN_VALUE && tileValue <= WEED_MAX_VALUE){
-			drawWeed(x,y,map,tileValue - WEED_MIN_VALUE);
+		if(tileValue >= WHEAT_MIN_VALUE && tileValue <= WHEAT_MAX_VALUE){
+			drawWheat(x,y,map,tileValue - WHEAT_MIN_VALUE);
+		}
+		if(tileValue >= POTATO_MIN_VALUE && tileValue <= POTATO_MAX_VALUE){
+			drawPotatoes(x,y,map,tileValue - POTATO_MIN_VALUE);
 		}
 	}
 	
@@ -279,8 +289,8 @@ public class WorldElements {
 	}
 	
 	
-	//Crops'n'Weed
-	private void drawWeed(int x, int y, Map map, int growth){
+	//Crops
+	private void drawWheat(int x, int y, Map map, int growth){
 		switch(growth){
 		case 0: tiles.get("Weed1").draw(x,y);break;
 		case 1: tiles.get("Weed2").draw(x,y);break;
@@ -288,6 +298,16 @@ public class WorldElements {
 		case 3: tiles.get("Weed4").draw(x,y);break;
 		case 4: tiles.get("Weed5").draw(x,y);break;
 		case 5: tiles.get("Weed6").draw(x,y);break;
+		}
+	}
+	private void drawPotatoes(int x, int y, Map map, int growth){
+		switch(growth){
+		case 0: tiles.get("Potato1").draw(x,y);break;
+		case 1: tiles.get("Potato2").draw(x,y);break;
+		case 2: tiles.get("Potato3").draw(x,y);break;
+		case 3: tiles.get("Potato4").draw(x,y);break;
+		case 4: tiles.get("Potato5").draw(x,y);break;
+		case 5: tiles.get("Potato6").draw(x,y);break;
 		}
 	}
 	

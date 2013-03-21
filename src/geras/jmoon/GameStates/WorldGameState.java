@@ -17,6 +17,7 @@ import geras.jmoon.items.UsableItem;
 import geras.jmoon.main.JMoonGame;
 import geras.jmoon.savegames.GameLoader;
 import geras.jmoon.settings.Settings;
+import geras.jmoon.time.Clock;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
 
@@ -164,6 +165,9 @@ public class WorldGameState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int timeSinceLastFrame) throws SlickException {
 		
+		//update time
+		Clock.update(timeSinceLastFrame);
+		
 		//temporary stuff
 		int selected = inventoryPane.getSelected();
 		if(inventoryPane.isVisible() && selected >= 0){
@@ -275,9 +279,19 @@ public class WorldGameState extends BasicGameState {
 			FileWriter writer = new FileWriter(file);
 			BufferedWriter out = new BufferedWriter(writer);
 			
+			//start
+			out.append("<game>");
+			
+			//save the clock
+			Clock.saveToXML(out);
+			out.newLine();
+			
 			//save the map
 			worldMap.saveToXML(out);
 			out.newLine();
+			
+			//stop
+			out.append("</game>");
 			
 			//close the file
 			out.close();

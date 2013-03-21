@@ -1,19 +1,12 @@
 package geras.jmoon.entites;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-
-import geras.jmoon.items.FenceItem;
 import geras.jmoon.items.HandItem;
-import geras.jmoon.items.HoeItem;
-import geras.jmoon.items.SeedItem;
-import geras.jmoon.items.ShovelItem;
-import geras.jmoon.items.SickelItem;
 import geras.jmoon.items.UsableItem;
-import geras.jmoon.items.WaterBucketItem;
-import geras.jmoon.items.WateringCanItem;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 import org.newdawn.slick.Graphics;
 import org.xml.sax.Attributes;
@@ -32,14 +25,15 @@ public class PlayerEntity extends LivingEntity {
 		setEntityImg("Sprites/Entities/Hero.png");
 		width = Settings.tileWidth;
 		height = Settings.tileHeight;
-		inventory.addItem(new HoeItem());
-		inventory.addItem(new WateringCanItem());
-		inventory.addItem(new SickelItem());
-		inventory.addItem(new ShovelItem());
-		inventory.addItem(new SeedItem(64));
-		inventory.addItem(new WaterBucketItem(64));
-		inventory.addItem(new FenceItem(64));
+		inventory.addItem("Hoe",1);
+		inventory.addItem("Watering Can", 1);
+		inventory.addItem("Sickel",1);
+		inventory.addItem("Shovel",1);
+		inventory.addItem("Seeds", 64);
+		inventory.addItem("Water Bucket", 64);
+		inventory.addItem("Fence",64);
 		inventory.addItem("Bucket", 64);
+		inventory.addItem("Potato Seeds", 64);
 		inventory.setMoney(500);
 		currentTool = new HandItem();
 	}
