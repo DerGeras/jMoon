@@ -20,9 +20,15 @@ public class PlantFactory {
 		int posY = Integer.parseInt(attributes.getValue("posY"));
 		int timeSinceLastGrowth = Integer.parseInt(attributes.getValue("timeSinceLastGrowth"));
 		
-		//Weed
+		//Wheat
 		if(tileValue >= WorldElements.WEED_MIN_VALUE && tileValue <= WorldElements.WEED_MAX_VALUE){
-			plant = new WeedPlant(posX,posY,tileValue,map);
+			plant = new WheatPlant(posX,posY,tileValue,map);
+			plant.setTimeSinceLastGrowth(timeSinceLastGrowth);
+		}
+		
+		//Potatoes
+		if(tileValue >= WorldElements.POTATO_MIN_VALUE && tileValue <= WorldElements.POTATO_MAX_VALUE){
+			plant = new PotatoPlant(posX, posY, tileValue, map);
 			plant.setTimeSinceLastGrowth(timeSinceLastGrowth);
 		}
 		

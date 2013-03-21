@@ -32,6 +32,8 @@ public class WorldElements {
 	//Plants
 	public static final int WEED_MIN_VALUE = 200;
 	public static final int WEED_MAX_VALUE = 205;
+	public static final int POTATO_MIN_VALUE = 206;
+	public static final int POTATO_MAX_VALUE = 211;
 	
 	private Image worldPNG;
 	
@@ -90,13 +92,16 @@ public class WorldElements {
 		//Other Decoration
 		tiles.put("Rock", worldPNG.getSubImage(4 * tileWidth, 1*tileHeight, tileWidth, tileHeight));
 		
-		//Crops'n'Weed
+		//Crops
+		//Wheat
 		tiles.put("Weed1", worldPNG.getSubImage(0*tileWidth, 5*tileHeight, tileWidth,tileHeight));
 		tiles.put("Weed2", worldPNG.getSubImage(1*tileWidth, 5*tileHeight, tileWidth,tileHeight));
 		tiles.put("Weed3", worldPNG.getSubImage(2*tileWidth, 5*tileHeight, tileWidth,tileHeight));
 		tiles.put("Weed4", worldPNG.getSubImage(3*tileWidth, 5*tileHeight, tileWidth,tileHeight));
 		tiles.put("Weed5", worldPNG.getSubImage(4*tileWidth, 5*tileHeight, tileWidth,tileHeight));
 		tiles.put("Weed6", worldPNG.getSubImage(5*tileWidth, 5*tileHeight, tileWidth,tileHeight));
+		
+		
 	}
 	
 	/**

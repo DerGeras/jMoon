@@ -23,6 +23,8 @@ public class ItemFactory {
 		case "Gravel": return getGravelItem(stackSize);
 		case "Hoe" : return getHoeItem(stackSize);
 		case "Milk Bucket": return getMilkBucketItem(stackSize);
+		case "Potato": return getPotatoItem(stackSize);
+		case "Potato Seeds": return getPotatoSeedsItem(stackSize);
 		case "Seeds": return getSeedItem(stackSize);
 		case "Shovel": return getShovelItem(stackSize);
 		case "Sickel": return getSickelItem(stackSize);
@@ -80,6 +82,25 @@ public class ItemFactory {
 	 */
 	public static MilkBucketItem getMilkBucketItem(int stackSize){
 		return new MilkBucketItem(stackSize);
+	}
+	
+	
+	/**
+	 * return a PotatoItem
+	 * @param stackSize - size of the stack
+	 * @return the new potato item
+	 */
+	public static PotatoItem getPotatoItem(int stackSize){
+		return new PotatoItem(stackSize);
+	}
+	
+	/**
+	 * return a PotatoItem
+	 * @param stackSize - size of the stack
+	 * @return the new potato item
+	 */
+	public static PotatoSeedsItem getPotatoSeedsItem(int stackSize){
+		return new PotatoSeedsItem(stackSize);
 	}
 	
 	/**

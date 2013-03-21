@@ -9,9 +9,9 @@ import geras.jmoon.world.WorldElements;
  * @author Geras
  *
  */
-public class WeedPlant extends Plant {
+public class WheatPlant extends Plant {
 
-	public WeedPlant(int x, int y, int tileValue, Map map) {
+	public WheatPlant(int x, int y, int tileValue, Map map) {
 		super(x, y, tileValue, map);
 	}
 
