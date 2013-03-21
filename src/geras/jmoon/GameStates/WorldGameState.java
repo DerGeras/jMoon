@@ -134,12 +134,14 @@ public class WorldGameState extends BasicGameState {
 			//init player
 			JMoonGame.player = new PlayerEntity();
 			worldMap.entityList.add(JMoonGame.player);
-			JMoonGame.player.setPosition(100, 100);
+			int midX = Settings.mapWidth / 2 * Settings.tileWidth;
+			int midY = Settings.mapHeight / 2 * Settings.tileHeight;
+			JMoonGame.player.setPosition(midX, midY);
 			
 			//init entities
-			worldMap.entityList.add(new CheaterNPC("Nox", "Cheater", 200, 200));
-			worldMap.entityList.add(new CowNPC("GeMoo", "The Furious", 400, 300));
-			worldMap.entityList.add(new CityMerchantNPC("SiBi", "City Merchant", 500, 500));
+			worldMap.entityList.add(new CheaterNPC("Nox", "Cheater", midX - 200, midY + 200));
+			worldMap.entityList.add(new CowNPC("GeMoo", "The Furious", midX - 100, midY - 300));
+			worldMap.entityList.add(new CityMerchantNPC("SiBi", "City Merchant", midX - 300, midY));
 			
 			worldMap.initialize();
 		}
@@ -282,7 +284,7 @@ public class WorldGameState extends BasicGameState {
 			//create bufferedwriter
 			File file = new File("./save1.xml");
 			FileWriter writer = new FileWriter(file);
-			BufferedWriter out = new BufferedWriter(writer);
+			BufferedWriter out = new BufferedWriter(writer, 100000);
 			
 			//start
 			out.append("<game>");
@@ -298,6 +300,7 @@ public class WorldGameState extends BasicGameState {
 			
 			//stop
 			out.append("</game>");
+			out.flush();
 			
 			//close the file
 			out.close();
