@@ -165,24 +165,26 @@ public class WorldGameState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int timeSinceLastFrame) throws SlickException {
 		
-		//update time
-		Clock.update(timeSinceLastFrame);
-		
-		//temporary stuff
-		int selected = inventoryPane.getSelected();
-		if(inventoryPane.isVisible() && selected >= 0){
-			Item item = JMoonGame.player.getInventory().getItem(selected);
-			if(item.isUsable()){
-				JMoonGame.player.setCurrentTool((UsableItem) item);
+		if(container.hasFocus()){
+			//update time
+			Clock.update(timeSinceLastFrame);
+			
+			//temporary stuff
+			int selected = inventoryPane.getSelected();
+			if(inventoryPane.isVisible() && selected >= 0){
+				Item item = JMoonGame.player.getInventory().getItem(selected);
+				if(item.isUsable()){
+					JMoonGame.player.setCurrentTool((UsableItem) item);
+				}
 			}
-		}
-		//end of temporary stuff
-		
-		handleInput(container.getInput(), game);
-		worldMap.updatePlants(timeSinceLastFrame);
-		//Update all entities
-		for(Entity entity : worldMap.entityList){
-			entity.update(timeSinceLastFrame,worldMap);
+			//end of temporary stuff
+			
+			handleInput(container.getInput(), game);
+			worldMap.updatePlants(timeSinceLastFrame);
+			//Update all entities
+			for(Entity entity : worldMap.entityList){
+				entity.update(timeSinceLastFrame,worldMap);
+			}
 		}
 	}
 
@@ -240,13 +242,16 @@ public class WorldGameState extends BasicGameState {
 		//Menu
 		if(input.isKeyPressed(Input.KEY_ESCAPE)){
 			//game.enterState(JMoonGame.GameStates.MENU.ordinal());
-			tradePane.setVisibility(false);
+			if(tradePane.isVisible()){
+				tradePane.setVisibility(false);
+				inventoryPane.setVisibility(true);
+			}
 		}
 		
 		//save
 		//TODO better things here
 		if(input.isKeyPressed(Input.KEY_K)){
-			saveToXML();
+			JMoonGame.saveGame();
 		}
 	}
 	

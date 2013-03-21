@@ -75,7 +75,7 @@ public class MapLayer {
 	public void saveToXML(BufferedWriter out){
 		try {
 			//startElement
-			out.write("<layer name=\"" + name + "\" width=\"" + width + "\" height=\"" + height + "\">");
+			out.append("<layer name=\"" + name + "\" width=\"" + width + "\" height=\"" + height + "\">");
 			out.newLine();
 			
 			//write content
@@ -93,7 +93,7 @@ public class MapLayer {
 			out.write("</layer>");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 	
 	public int currLine = 0;

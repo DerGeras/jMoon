@@ -250,33 +250,33 @@ public class Map {
 			out.newLine();
 			
 			//save layers
-			out.write("<layers>");
+			out.append("<layers>");
 			out.newLine();
 			for(String layerName : layerPos){
 				layers.get(layerName).saveToXML(out);
 				out.newLine();
 			}
-			out.write("</layers>");
+			out.append("</layers>");
 			out.newLine();
 			
 			//save plants
-			out.write("<plants>");
+			out.append("<plants>");
 			out.newLine();
 			for(Plant plant : plants){
 				plant.saveToXML(out);
 				out.newLine();
 			}
-			out.write("</plants>");
+			out.append("</plants>");
 			out.newLine();
 			
 			//save entities
-			out.write("<entities>");
+			out.append("<entities>");
 			out.newLine();
 			for(Entity entity : entityList){
 				entity.saveToXML(out);
 				out.newLine();
 			}
-			out.write("</entities>");
+			out.append("</entities>");
 			out.newLine();
 			
 			out.write("</map>");

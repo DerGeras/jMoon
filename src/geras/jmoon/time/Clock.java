@@ -1,5 +1,7 @@
 package geras.jmoon.time;
 
+import geras.jmoon.main.JMoonGame;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 
@@ -12,7 +14,10 @@ import org.xml.sax.Attributes;
  */
 public class Clock {
 
+	public static final int saveInterval = 10000; //interval to autosave
+	
 	private static long timeSinceStart = 0;
+	private static int timeSinceLastSave = 0;
 	
 	/**
 	 * update the clock
@@ -20,6 +25,11 @@ public class Clock {
 	 */
 	public static void update(int timeSinceLastFrame){
 		setTimeSinceStart(getTimeSinceStart() + timeSinceLastFrame);
+		timeSinceLastSave += timeSinceLastFrame;
+		if(timeSinceLastSave >= saveInterval){
+			JMoonGame.saveGame();
+			timeSinceLastSave -= saveInterval;
+		}
 	}
 
 	/**

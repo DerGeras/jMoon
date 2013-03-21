@@ -42,9 +42,6 @@ public class PotatoPlant extends Plant {
 	@Override
 	public void harvest(PlayerEntity player, Map map) {
 		int growth = tileValue - WorldElements.POTATO_MIN_VALUE;
-		if(growth >= 0){
-			player.getInventory().addItem("Potato Seeds", 1);
-		}
 		if(growth == 5){
 			player.getInventory().addItem("Potato", 5);
 		}

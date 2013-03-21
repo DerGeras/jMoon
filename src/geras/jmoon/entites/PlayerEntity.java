@@ -33,7 +33,7 @@ public class PlayerEntity extends LivingEntity {
 		inventory.addItem("Water Bucket", 64);
 		inventory.addItem("Fence",64);
 		inventory.addItem("Bucket", 64);
-		inventory.addItem("Potato Seeds", 64);
+		inventory.addItem("Potato", 64);
 		inventory.setMoney(500);
 		currentTool = new HandItem();
 	}

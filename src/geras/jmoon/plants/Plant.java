@@ -57,7 +57,6 @@ public abstract class Plant {
 		try {
 			out.append("<plant posX=\"" + posX + "\" posY=\"" + posY + "\" timeSinceLastGrowth=\"" + timeSinceLastGrowth + "\" tileValue=\"" + tileValue + "\">");
 			out.append("</plant>");
-			out.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

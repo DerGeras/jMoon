@@ -53,7 +53,6 @@ public abstract class ToolItem extends UsableItem {
 		try {
 			out.append("<tool name=\"" + name + "\" maxDurability=\"" + maxDurability + "\" durability=\"" + durability + "\">");
 			out.append("</tool>");
-			out.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

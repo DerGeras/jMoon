@@ -81,7 +81,6 @@ public abstract class Item {
 		try {
 			out.append("<item name=\"" + name + "\" maxStackSize=\"" + maxStackSize + "\" stackSize=\"" + stackSize + "\">");
 			out.append("</item>");
-			out.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
