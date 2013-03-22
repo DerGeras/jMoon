@@ -1,16 +1,15 @@
 package geras.jmoon.entites;
 
+import geras.jmoon.GameStates.WorldGameState;
+import geras.jmoon.items.Item;
+import geras.jmoon.world.Map;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.xml.sax.Attributes;
-
-import geras.jmoon.GameStates.WorldGameState;
-import geras.jmoon.items.Item;
-import geras.jmoon.world.Map;
 
 public class CityMerchantNPC extends NPCEntity implements Merchant {
 
@@ -96,30 +95,6 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
-	}
-	
-	@Override
-	public void readFromAttributes(Attributes attributes) {
-		name = attributes.getValue("name");
-		title = attributes.getValue("title");
-		
-		String posXS = attributes.getValue("posX");
-		String posYS = attributes.getValue("posY");
-		String hungerS = attributes.getValue("hunger");
-		String thirstS = attributes.getValue("thirst");
-		
-		if(posXS != null){
-			posX = Float.parseFloat(posXS);
-		}
-		if(posYS != null){
-			posY = Float.parseFloat(posYS);
-		}
-		if(hungerS != null){
-			hunger = Float.parseFloat(hungerS);
-		}
-		if(thirstS != null){
-			thirst = Float.parseFloat(thirstS);
-		}
 	}
 
 	@Override

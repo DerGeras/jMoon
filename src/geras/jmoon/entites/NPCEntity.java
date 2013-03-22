@@ -6,6 +6,7 @@ import geras.jmoon.world.Map;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Graphics;
+import org.xml.sax.Attributes;
 
 /**
  * The NPC class
@@ -47,6 +48,30 @@ public abstract class NPCEntity extends LivingEntity{
 		g.setColor(Color.white);
 		g.drawString(name, relativeX - name.length()*8 / 2, relativeY + height/2 - entityImg.getHeight() - 40);
 		g.drawString("<" + title + ">", relativeX - title.length()*8 / 2 - 10, relativeY + height/2 -  entityImg.getHeight() - 20);
+	}
+	
+	@Override
+	public void readFromAttributes(Attributes attributes) {
+		name = attributes.getValue("name");
+		title = attributes.getValue("title");
+		
+		String posXS = attributes.getValue("posX");
+		String posYS = attributes.getValue("posY");
+		String hungerS = attributes.getValue("hunger");
+		String thirstS = attributes.getValue("thirst");
+		
+		if(posXS != null){
+			posX = Float.parseFloat(posXS);
+		}
+		if(posYS != null){
+			posY = Float.parseFloat(posYS);
+		}
+		if(hungerS != null){
+			hunger = Float.parseFloat(hungerS);
+		}
+		if(thirstS != null){
+			thirst = Float.parseFloat(thirstS);
+		}
 	}
 	
 	/**

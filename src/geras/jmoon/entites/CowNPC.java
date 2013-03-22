@@ -1,17 +1,16 @@
 package geras.jmoon.entites;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-
 import geras.jmoon.AI.CowAI;
 import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.items.UsableItem;
 import geras.jmoon.world.Map;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.xml.sax.Attributes;
 
 public class CowNPC extends NPCEntity {
 	
@@ -66,30 +65,6 @@ public class CowNPC extends NPCEntity {
 			e.printStackTrace();
 		}
 		
-	}
-	
-	@Override
-	public void readFromAttributes(Attributes attributes) {
-		name = attributes.getValue("name");
-		title = attributes.getValue("title");
-		
-		String posXS = attributes.getValue("posX");
-		String posYS = attributes.getValue("posY");
-		String hungerS = attributes.getValue("hunger");
-		String thirstS = attributes.getValue("thirst");
-		
-		if(posXS != null){
-			posX = Float.parseFloat(posXS);
-		}
-		if(posYS != null){
-			posY = Float.parseFloat(posYS);
-		}
-		if(hungerS != null){
-			hunger = Float.parseFloat(hungerS);
-		}
-		if(thirstS != null){
-			thirst = Float.parseFloat(thirstS);
-		}
 	}
 
 }
