@@ -1,5 +1,5 @@
 <game>
-<clock timeSinceStart="30000"></clock>
+<clock timeSinceStart="16880"></clock>
 <map width="100" height="100">
 <layers>
 <layer name="Ground" width="100" height="100">
@@ -312,8 +312,8 @@
 <plants>
 </plants>
 <entities>
-<entity case="PlayerEntity" posX="1732.0" posY="1609.0" hunger="0.0" thirst="0.0">
-<inventory money="500">
+<entity case="PlayerEntity" posX="1660.0" posY="1780.0" hunger="0.0" thirst="0.0">
+<inventory money="212">
 <tool name="Hoe" maxDurability="100" durability="100"></tool>
 <tool name="Watering Can" maxDurability="100" durability="100"></tool>
 <tool name="Sickel" maxDurability="100" durability="100"></tool>
@@ -323,13 +323,17 @@
 <item name="Fence" maxStackSize="256" stackSize="64"></item>
 <item name="Bucket" maxStackSize="256" stackSize="64"></item>
 <item name="Potato" maxStackSize="256" stackSize="64"></item>
+<tool name="Sickel" maxDurability="100" durability="100"></tool>
+<tool name="Sickel" maxDurability="100" durability="100"></tool>
+<tool name="Shovel" maxDurability="100" durability="100"></tool>
+<tool name="Shovel" maxDurability="100" durability="100"></tool>
 </inventory>
 </entity>
 <entity case="CheaterNPC" name="Nox" title="Cheater" posX="1400.0" posY="1800.0" hunger="0.0" thirst="0.0">
 <inventory money="0">
 </inventory>
 </entity>
-<entity case="CowNPC" name="GeMoo" title="The Furious" posX="1450.0" posY="1400.0" hunger="0.0" thirst="0.0">
+<entity case="CowNPC" name="GeMoo" title="The Furious" posX="1400.0" posY="1443.0" hunger="0.0" thirst="0.0">
 <inventory money="0">
 </inventory>
 </entity>
@@ -342,6 +346,13 @@
 <item name="Fence" maxStackSize="256" stackSize="256"></item>
 <item name="Fence" maxStackSize="256" stackSize="256"></item>
 <tool name="Watering Can" maxDurability="100" durability="100"></tool>
+</inventory>
+</entity>
+<entity case="BlackSmithNPC" name="Mad-Murdoc" title="Blacksmith" posX="1900.0" posY="1900.0" hunger="0.0" thirst="0.0">
+<inventory money="0">
+<item name="Bucket" maxStackSize="256" stackSize="5"></item>
+<tool name="Hoe" maxDurability="100" durability="100"></tool>
+<tool name="Hoe" maxDurability="100" durability="100"></tool>
 </inventory>
 </entity>
 </entities>

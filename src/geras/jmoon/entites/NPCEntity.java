@@ -18,7 +18,7 @@ public abstract class NPCEntity extends LivingEntity{
 	protected String name;
 	protected String title;
 
-	protected NPCEntity(String name, String title, int posX, int posY) {
+	public NPCEntity(String name, String title, int posX, int posY) {
 		super();
 		this.name = name;
 		this.title = title;

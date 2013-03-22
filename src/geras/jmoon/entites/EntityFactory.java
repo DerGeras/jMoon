@@ -17,6 +17,7 @@ public class EntityFactory {
 		case "CheaterNPC": entity = new CheaterNPC("", "", 50, 50);break;
 		case "CityMerchantNPC": entity = new CityMerchantNPC("", "", 50, 50);break;
 		case "CowNPC": entity = new CowNPC("", "", 50, 50);break;
+		case "BlackSmithNPC": entity = new BlackSmithNPC("", "", 50, 50);break;
 		}
 		
 		//read the attributes

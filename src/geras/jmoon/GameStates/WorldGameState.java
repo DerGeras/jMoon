@@ -1,5 +1,6 @@
 package geras.jmoon.GameStates;
 
+import geras.jmoon.entites.BlackSmithNPC;
 import geras.jmoon.entites.CheaterNPC;
 import geras.jmoon.entites.CityMerchantNPC;
 import geras.jmoon.entites.CowNPC;
@@ -142,6 +143,7 @@ public class WorldGameState extends BasicGameState {
 			worldMap.entityList.add(new CheaterNPC("Nox", "Cheater", midX - 200, midY + 200));
 			worldMap.entityList.add(new CowNPC("GeMoo", "The Furious", midX - 100, midY - 300));
 			worldMap.entityList.add(new CityMerchantNPC("SiBi", "City Merchant", midX - 300, midY));
+			worldMap.entityList.add(new BlackSmithNPC("Mad-Murdoc", "Blacksmith", midX + 300, midY + 300));
 			
 			worldMap.initialize();
 		}

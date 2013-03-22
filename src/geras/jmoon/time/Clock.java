@@ -14,7 +14,7 @@ import org.xml.sax.Attributes;
  */
 public class Clock {
 
-	public static final int saveInterval = 10000; //interval to autosave
+	public static final int saveInterval = 120000; //interval to autosave
 	
 	private static long timeSinceStart = 0;
 	private static int timeSinceLastSave = 0;

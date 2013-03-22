@@ -19,8 +19,8 @@ public abstract class Entity {
 	protected float posX; //x position on the map
 	protected float posY; //y position on the map
 	
-	protected int width; //width of the entity
-	protected int height; //height of the entity
+	protected int width = 32; //width of the entity
+	protected int height = 32; //height of the entity
 
 	protected Image entityImg; //image for the entity
 	

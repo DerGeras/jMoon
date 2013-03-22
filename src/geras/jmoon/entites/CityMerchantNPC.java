@@ -18,13 +18,14 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 		super(name, title, posX, posY);
 		width = 32;
 		height = 32;
-		//TODO own Image for this one
+		
 		try{
-			this.entityImg = new Image("Sprites/Entities/Hero.png");
+			this.entityImg = new Image("Sprites/Entities/CityMerchant.png");
 		}
 		catch(SlickException e){
 			e.printStackTrace();
 		}
+		
 		//fill inventory
 		inventory.addItem("Sickel", 1);
 		inventory.addItem("Shovel", 1);
