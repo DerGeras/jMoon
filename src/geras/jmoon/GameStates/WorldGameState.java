@@ -79,6 +79,9 @@ public class WorldGameState extends BasicGameState {
 		int topLeftDrawX = mapTopX + topLeftFieldX * Settings.tileHeight;
 		int topLeftDrawY = mapTopY + topLeftFieldY * Settings.tileHeight;
 		
+		//start using the world Elements
+		worldMap.getWorldElement().startUse();
+		
 		//Render ground
 		worldMap.render(topLeftDrawX, topLeftDrawY, topLeftFieldX, topLeftFieldY, width, height, "Ground");
 		
@@ -97,6 +100,9 @@ public class WorldGameState extends BasicGameState {
 			int cursorFY = cursorY / Settings.tileHeight;
 			worldMap.getWorldElement().draw(mapTopX + cursorFX * Settings.tileWidth, mapTopY + cursorFY * Settings.tileHeight, cursorFX, cursorFY, WorldElements.OVERLAY_VALUE, worldMap);
 		}
+		
+		//stop using the world Elements and flush
+		worldMap.getWorldElement().endUse();
 		
 		
 		// draw entites
@@ -125,7 +131,9 @@ public class WorldGameState extends BasicGameState {
 		//TODO redo
 		//draw a minimap
 //		g.scale(0.1f, 0.1f);
+//		worldMap.getWorldElement().startUse();
 //		worldMap.render(0, 0);
+//		worldMap.getWorldElement().endUse();
 //		g.resetTransform();
 	}
 	
