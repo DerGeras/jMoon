@@ -113,6 +113,11 @@ public class WorldElements {
 	
 	/**
 	 * draw the given tile at coordinate x,y
+	 * 
+	 * IMPORTANT!!!!
+	 * sartUse at start and endUse at the end of the usage!!!!!!!
+	 * IMPORTANT!!!!
+	 * 
 	 * @param x - the x coordinate
 	 * @param y - the y coordinate
 	 * @param fieldX - x coordinate on the map
@@ -146,6 +151,20 @@ public class WorldElements {
 		}
 	}
 	
+	/**
+	 * start the usage for the local Spritesheet
+	 */
+	public void startUse(){
+		worldPNG.startUse();
+	}
+	
+	/**
+	 * end the usage for the local spritesheet
+	 */
+	public void endUse(){
+		worldPNG.endUse();
+	}
+	
 	
 	/////////////////////////////////////////////////////////////
 	//
@@ -158,36 +177,36 @@ public class WorldElements {
 
 
 	private void drawGrass(int x,int y, Map map){
-		tiles.get("Grass").draw(x,y);
+		tiles.get("Grass").drawEmbedded(x,y);
 	}
 	
 	private void drawGravel(int x, int y, Map map){
-		tiles.get("Gravel").draw(x,y);
+		tiles.get("Gravel").drawEmbedded(x,y);
 	}
 	
 	private void drawStone(int x, int y, Map map){
-		tiles.get("Stone").draw(x, y);
+		tiles.get("Stone").drawEmbedded(x, y);
 	}
 	
 	private void drawDirt(int x, int y, Map map){
-		tiles.get("Dirt").draw(x,y);
+		tiles.get("Dirt").drawEmbedded(x,y);
 	}
 	
 	private void drawWetDirt(int x, int y, Map map) {
-		tiles.get("WetDirt").draw(x,y);
+		tiles.get("WetDirt").drawEmbedded(x,y);
 		
 	}
 	
 	private void drawWater(int x, int y, Map map){
-		tiles.get("Water").draw(x,y);
+		tiles.get("Water").drawEmbedded(x,y);
 	}
 	
 	private void drawHole(int x, int y, Map map){
-		tiles.get("Hole").draw(x,y);
+		tiles.get("Hole").drawEmbedded(x,y);
 	}
 	
 	private void drawOverlay(int x, int y, Map map){
-		tiles.get("Overlay").draw(x,y);
+		tiles.get("Overlay").drawEmbedded(x,y);
 	}
 	
 	//Decoration
@@ -206,36 +225,36 @@ public class WorldElements {
 			if(map.getField("Decoration", fieldX, fieldY + 1) == FENCE_VALUE){
 				if(map.getField("Decoration", fieldX - 1, fieldY) == FENCE_VALUE){
 					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-						tiles.get("FenceCenter").draw(x,y);
+						tiles.get("FenceCenter").drawEmbedded(x,y);
 					}
 					else{
-						tiles.get("FenceTopCenter").draw(x,y);
+						tiles.get("FenceTopCenter").drawEmbedded(x,y);
 					}
 				}
 				else{
 					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-						tiles.get("FenceCenterLeft").draw(x,y);
+						tiles.get("FenceCenterLeft").drawEmbedded(x,y);
 					}
 					else{
-						tiles.get("FenceTopLeft").draw(x,y);
+						tiles.get("FenceTopLeft").drawEmbedded(x,y);
 					}
 				}
 			}
 			else{
 				if(map.getField("Decoration", fieldX - 1, fieldY) == FENCE_VALUE){
 					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-						tiles.get("FenceBottomCenter").draw(x,y);
+						tiles.get("FenceBottomCenter").drawEmbedded(x,y);
 					}
 					else{
-						tiles.get("FenceLeftRightCenter").draw(x,y);
+						tiles.get("FenceLeftRightCenter").drawEmbedded(x,y);
 					}
 				}
 				else{
 					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-						tiles.get("FenceBottomLeft").draw(x,y);
+						tiles.get("FenceBottomLeft").drawEmbedded(x,y);
 					}
 					else{
-						tiles.get("FenceLeft").draw(x,y);
+						tiles.get("FenceLeft").drawEmbedded(x,y);
 					}
 				}
 			}
@@ -246,18 +265,18 @@ public class WorldElements {
 		if(map.getField("Decoration", fieldX-1, fieldY) == FENCE_VALUE){
 			if(map.getField("Decoration", fieldX, fieldY + 1) == FENCE_VALUE){
 				if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-					tiles.get("FenceCenterRight").draw(x,y);
+					tiles.get("FenceCenterRight").drawEmbedded(x,y);
 				}
 				else{
-					tiles.get("FenceTopRight").draw(x,y);
+					tiles.get("FenceTopRight").drawEmbedded(x,y);
 				}
 			}
 			else{
 				if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-					tiles.get("FenceBottomRight").draw(x,y);
+					tiles.get("FenceBottomRight").drawEmbedded(x,y);
 				}
 				else{
-					tiles.get("FenceRight").draw(x,y);
+					tiles.get("FenceRight").drawEmbedded(x,y);
 				}
 			}
 			return;
@@ -266,49 +285,58 @@ public class WorldElements {
 		//check bottom
 		if(map.getField("Decoration", fieldX, fieldY + 1) == FENCE_VALUE){
 			if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-				tiles.get("FenceTopBottomCenter").draw(x,y);
+				tiles.get("FenceTopBottomCenter").drawEmbedded(x,y);
 			}
 			else{
-				tiles.get("FenceTop").draw(x,y);
+				tiles.get("FenceTop").drawEmbedded(x,y);
 			}
 			return;
 		}
 		
 		//Check top
 		if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-			tiles.get("FenceBottom").draw(x,y);
+			tiles.get("FenceBottom").drawEmbedded(x,y);
 			return;
 		}
 		//Standalone
-		tiles.get("Fence").draw(x,y);
+		tiles.get("Fence").drawEmbedded(x,y);
 	}
 	
 	
 	private void drawRock(int x, int y, Map map){
-		tiles.get("Rock").draw(x,y);
+		tiles.get("Rock").drawEmbedded(x,y);
 	}
 	
 	
 	//Crops
 	private void drawWheat(int x, int y, Map map, int growth){
 		switch(growth){
-		case 0: tiles.get("Weed1").draw(x,y);break;
-		case 1: tiles.get("Weed2").draw(x,y);break;
-		case 2: tiles.get("Weed3").draw(x,y);break;
-		case 3: tiles.get("Weed4").draw(x,y);break;
-		case 4: tiles.get("Weed5").draw(x,y);break;
-		case 5: tiles.get("Weed6").draw(x,y);break;
+		case 0: tiles.get("Weed1").drawEmbedded(x,y);break;
+		case 1: tiles.get("Weed2").drawEmbedded(x,y);break;
+		case 2: tiles.get("Weed3").drawEmbedded(x,y);break;
+		case 3: tiles.get("Weed4").drawEmbedded(x,y);break;
+		case 4: tiles.get("Weed5").drawEmbedded(x,y);break;
+		case 5: tiles.get("Weed6").drawEmbedded(x,y);break;
 		}
 	}
 	private void drawPotatoes(int x, int y, Map map, int growth){
 		switch(growth){
-		case 0: tiles.get("Potato1").draw(x,y);break;
-		case 1: tiles.get("Potato2").draw(x,y);break;
-		case 2: tiles.get("Potato3").draw(x,y);break;
-		case 3: tiles.get("Potato4").draw(x,y);break;
-		case 4: tiles.get("Potato5").draw(x,y);break;
-		case 5: tiles.get("Potato6").draw(x,y);break;
+		case 0: tiles.get("Potato1").drawEmbedded(x,y);break;
+		case 1: tiles.get("Potato2").drawEmbedded(x,y);break;
+		case 2: tiles.get("Potato3").drawEmbedded(x,y);break;
+		case 3: tiles.get("Potato4").drawEmbedded(x,y);break;
+		case 4: tiles.get("Potato5").drawEmbedded(x,y);break;
+		case 5: tiles.get("Potato6").drawEmbedded(x,y);break;
 		}
+	}
+	
+	
+	/**
+	 * 
+	 * @return the sprite sheet used by this instance
+	 */
+	public Image getSpriteSheet(){
+		return this.worldPNG;
 	}
 	
 }

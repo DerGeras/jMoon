@@ -191,6 +191,7 @@ public class Map {
 			throw new IllegalArgumentException("Layer " + layer + " doesn't exist");
 		}
 		MapLayer currLayer;
+		worldElements.startUse();
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
 				currLayer = layers.get(layer);
@@ -208,6 +209,7 @@ public class Map {
 				worldElements.draw(x + i * Settings.tileWidth,y + j * Settings.tileHeight, sx + i, sy + j, tileValue, this);
 			}
 		}
+		worldElements.endUse();
 	}
 	
 	/**
