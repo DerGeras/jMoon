@@ -113,10 +113,19 @@ public class WorldGameState extends BasicGameState {
 		//draw the gui
 		gui.draw(g);
 		
+		//draw the time
+		g.drawString("Day " + Clock.getDay() + " " + Clock.getHour() + ":" + Clock.getMinute(), Settings.resolutionX / 2 - 50, 50);
+		
 		//draw the amount of money
 		g.setColor(Color.yellow);
 		g.drawString("Money: " + JMoonGame.player.getInventory().getMoney(), 50, Settings.resolutionY - 50);
 		
+		
+		//TODO redo
+		//draw a minimap
+//		g.scale(0.1f, 0.1f);
+//		worldMap.render(0, 0);
+//		g.resetTransform();
 	}
 	
 	/**

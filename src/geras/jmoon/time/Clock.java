@@ -14,9 +14,10 @@ import org.xml.sax.Attributes;
  */
 public class Clock {
 
-	public static final int saveInterval = 60000; //interval to autosave
+	public static final int saveInterval = 60 * 1000; //interval to autosave
+	public static final int millisecondsPerDay = 10 * 60 * 1000; // duration of a day
 	
-	private static long timeSinceStart = 0;
+	private static long milliSecondsSinceStart = 0;
 	private static int timeSinceLastSave = 0;
 	
 	/**
@@ -38,7 +39,7 @@ public class Clock {
 	 */
 	public static void saveToXML(BufferedWriter out){
 		try {
-			out.append("<clock timeSinceStart=\"" + timeSinceStart + "\">");
+			out.append("<clock timeSinceStart=\"" + milliSecondsSinceStart + "\">");
 			out.append("</clock>");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -53,20 +54,48 @@ public class Clock {
 		String timeSinceStartS = attributes.getValue("timeSinceStart");
 		
 		if(timeSinceStartS != null){
-			timeSinceStart = Long.parseLong(timeSinceStartS);
+			milliSecondsSinceStart = Long.parseLong(timeSinceStartS);
 		}
 	}
 	
+	/**
+	 * get the time since start (in ms)
+	 * @return
+	 */
 	public static long getTimeSinceStart() {
-		return timeSinceStart;
+		return milliSecondsSinceStart;
 	}
 
 	/**
-	 * Note: Set to note if value < 0
+	 * Note: Set to 0 if value < 0
 	 * @param value
 	 */
 	public static void setTimeSinceStart(long value) {
-		Clock.timeSinceStart = Math.max(0, value);
+		Clock.milliSecondsSinceStart = Math.max(0, value);
+	}
+	
+	/**
+	 * 
+	 * @return the current day (since game start)
+	 */
+	public static long getDay(){
+		return milliSecondsSinceStart / (long)millisecondsPerDay;
+	}
+	
+	/**
+	 * return the current hour (of this day)
+	 * @return
+	 */
+	public static long getHour(){
+		return (milliSecondsSinceStart / (long)(millisecondsPerDay / 24)) % 24l;
+	}
+	
+	/**
+	 * return the current minute (of this hour)
+	 * @return
+	 */
+	public static long getMinute(){
+		return (milliSecondsSinceStart / (long)(millisecondsPerDay / 24 / 60)) % 60l;
 	}
 	
 }
