@@ -1,6 +1,6 @@
 package geras.jmoon.entites;
 
-import geras.jmoon.settings.Settings;
+import geras.jmoon.main.JMoonGame;
 import geras.jmoon.world.Map;
 
 import java.io.BufferedWriter;
@@ -63,7 +63,7 @@ public abstract class Entity {
 		if(entityImg != null){
 			int relativeX = (int) (mapTopX + posX - entityImg.getWidth() / 2);
 			int relativeY = (int) (mapTopY + posY + (height / 2) - entityImg.getHeight());
-			if(relativeX + width > 0 && relativeX < Settings.resolutionX && relativeY + height > 0 && relativeY < Settings.resolutionY){
+			if(relativeX + width > 0 && relativeX < JMoonGame.gameContainer.getWidth() && relativeY + height > 0 && relativeY < JMoonGame.gameContainer.getHeight()){
 				entityImg.draw(relativeX, relativeY);
 			}
 		}

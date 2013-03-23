@@ -4,7 +4,6 @@ import geras.jmoon.gui.BasicGUIElement;
 import geras.jmoon.gui.Button;
 import geras.jmoon.gui.ButtonListener;
 import geras.jmoon.main.JMoonGame;
-import geras.jmoon.settings.Settings;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -42,15 +41,15 @@ public class MainMenuGameState extends BasicGameState  {
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		titleImage = new Image("Sprites/TitleScreen.png");
 		gui = new BasicGUIElement(0, 0);
-		Button button = new Button(Settings.resolutionX / 2 - 64, Settings.resolutionY / 2 + 64, 128, 32, "Sprites/GUI/Start_Game.png");
+		Button button = new Button(container.getWidth() / 2 - 64, container.getHeight() / 2 + 64, 128, 32, "Sprites/GUI/Start_Game.png");
 		button.addButtonListener(new GameStateSwitcher(game, JMoonGame.GameStates.WORLD.ordinal()));
 		gui.addChild(button);
 	
 	}
 
 	@Override
-	public void render(GameContainer conainer, StateBasedGame game, Graphics g) throws SlickException {
-		titleImage.draw(0,0,Settings.resolutionX, Settings.resolutionY);
+	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		titleImage.draw(0,0,container.getWidth(), container.getHeight());
 		gui.draw(g);
 	}
 

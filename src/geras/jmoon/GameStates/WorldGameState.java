@@ -59,17 +59,17 @@ public class WorldGameState extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		
-		//middle of the map
+		//middle of the screen
 		int midX = container.getWidth() / 2;
 		int midY = container.getHeight() / 2;
 		
 		//top left pixel of the map, if it were drawn completely
-		int mapTopX = Math.max(Settings.resolutionX - Settings.mapWidth * Settings.tileWidth, Math.min(0,midX - (int)JMoonGame.player.getPosX()));
-		int mapTopY = Math.max(Settings.resolutionY - Settings.mapHeight * Settings.tileHeight, Math.min(0, midY - (int)JMoonGame.player.getPosY()));
+		int mapTopX = Math.max(container.getWidth() - Settings.mapWidth * Settings.tileWidth, Math.min(0,midX - (int)JMoonGame.player.getPosX()));
+		int mapTopY = Math.max(container.getHeight() - Settings.mapHeight * Settings.tileHeight, Math.min(0, midY - (int)JMoonGame.player.getPosY()));
 		
 		//width and height to be drawn
-		int width = Settings.resolutionX / Settings.tileWidth + 4;
-		int height = Settings.resolutionY / Settings.tileHeight + 4;
+		int width = container.getWidth() / Settings.tileWidth + 4;
+		int height = container.getHeight() / Settings.tileHeight + 4;
 		
 		//first Field to be drawn
 		int topLeftFieldX = Math.min(Settings.mapWidth - width, Math.max(0, (int)JMoonGame.player.getPosX() / Settings.tileWidth - (width / 2)));
@@ -107,19 +107,19 @@ public class WorldGameState extends BasicGameState {
 		
 		//display the current Tool
 		g.setColor(Color.white);
-		g.drawString(JMoonGame.player.getCurrentTool().getName(), 50, Settings.resolutionY - 100);
-		g.drawString("Number: " + JMoonGame.player.getCurrentTool().getStackSize(), 50, Settings.resolutionY - 85);
+		g.drawString(JMoonGame.player.getCurrentTool().getName(), 50, container.getHeight() - 100);
+		g.drawString("Number: " + JMoonGame.player.getCurrentTool().getStackSize(), 50, container.getHeight() - 85);
 		
 		//draw the gui
 		gui.draw(g);
 		
 		//draw the time
 		g.setColor(Color.white);
-		g.drawString("Day " + Clock.getDay() + " " + Clock.getHour() + ":" + Clock.getMinute(), Settings.resolutionX / 2 - 50, 50);
+		g.drawString("Day " + Clock.getDay() + " " + Clock.getHour() + ":" + Clock.getMinute(), container.getWidth() / 2 - 50, 50);
 		
 		//draw the amount of money
 		g.setColor(Color.yellow);
-		g.drawString("Money: " + JMoonGame.player.getInventory().getMoney(), 50, Settings.resolutionY - 50);
+		g.drawString("Money: " + JMoonGame.player.getInventory().getMoney(), 50, container.getHeight() - 50);
 		
 		
 		//TODO redo
@@ -157,14 +157,14 @@ public class WorldGameState extends BasicGameState {
 			
 			worldMap.initialize();
 		}
-		
-		
+
+
 		//initialize gui
 		gui = new BasicGUIElement(0, 0);
-		inventoryPane = new InventoryPane(Settings.resolutionX - 250, 50, JMoonGame.player.getInventory());
+		inventoryPane = new InventoryPane(container.getWidth() - 250, 50, JMoonGame.player.getInventory());
 		gui.addChild(inventoryPane);
 		
-		tradePane = new TradePane(0,0,Settings.resolutionX, Settings.resolutionY, JMoonGame.player, null);
+		tradePane = new TradePane(0,0,container.getWidth(), container.getHeight(), JMoonGame.player, null);
 		gui.addChild(tradePane);
 		tradePane.setVisibility(false);
 		

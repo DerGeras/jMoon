@@ -21,6 +21,7 @@ public class JMoonGame extends StateBasedGame  {
 	public static PlayerEntity player;
 	
 	public static WorldGameState worldGameState;
+	public static AppGameContainer gameContainer;
 	
 	public enum GameStates{
 		MAIN_MENU,
@@ -57,12 +58,14 @@ public class JMoonGame extends StateBasedGame  {
 	 */
 	public static void main(String[] argv) {
 		try {
-			AppGameContainer container = new AppGameContainer(new JMoonGame());
-			container.setDisplayMode(Settings.resolutionX,Settings.resolutionY,false);
-			container.setTargetFrameRate(300);
-			container.setMinimumLogicUpdateInterval(20);
-			container.setMaximumLogicUpdateInterval(20);
-			container.start();
+			gameContainer = new AppGameContainer(new JMoonGame());
+			int resX = Math.min(gameContainer.getScreenWidth(), Settings.initResolutionX);
+			int resY = Math.min(gameContainer.getScreenHeight(), Settings.initResolutionY);
+			gameContainer.setDisplayMode(resX,resY,false);
+			gameContainer.setTargetFrameRate(300);
+			gameContainer.setMinimumLogicUpdateInterval(20);
+			gameContainer.setMaximumLogicUpdateInterval(20);
+			gameContainer.start();
 	    } catch (SlickException e) {
 	    	e.printStackTrace();
 	    }

@@ -8,8 +8,8 @@ public class Settings {
 	public static final int mapWidth = 100;
 	public static final int mapHeight = 100;
 	
-	public static int resolutionX = 1024;
-	public static int resolutionY = 720;
+	public static int initResolutionX = 1024;
+	public static int initResolutionY = 720;
 	
 	public static final int maxStackSize = 256;
 	public static final int maxDurability = 100;

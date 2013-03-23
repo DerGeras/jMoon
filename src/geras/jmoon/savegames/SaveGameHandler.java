@@ -62,7 +62,6 @@ public class SaveGameHandler extends DefaultHandler {
 		
 		//entitis
 		if(qName.equalsIgnoreCase("entity") && currMap != null){
-			System.out.println(attributes.getValue("case"));
 			currEntity = EntityFactory.getEntity(attributes);
 			currMap.entityList.add(currEntity);
 		}
@@ -126,7 +125,6 @@ public class SaveGameHandler extends DefaultHandler {
 		
 		//read layerContent
 		if(inLayerLine){
-			System.out.println(length / 2);
 			currentLayer.readLine(ch, start, length);
 		}
 		
