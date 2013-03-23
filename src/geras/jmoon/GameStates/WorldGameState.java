@@ -114,6 +114,7 @@ public class WorldGameState extends BasicGameState {
 		gui.draw(g);
 		
 		//draw the time
+		g.setColor(Color.white);
 		g.drawString("Day " + Clock.getDay() + " " + Clock.getHour() + ":" + Clock.getMinute(), Settings.resolutionX / 2 - 50, 50);
 		
 		//draw the amount of money

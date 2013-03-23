@@ -83,16 +83,17 @@ public class Clock {
 	}
 	
 	/**
-	 * return the current hour (of this day)
-	 * @return
+	 * 
+	 * 
+	 * @return the current hour (of this day)
 	 */
 	public static long getHour(){
 		return (milliSecondsSinceStart / (long)(millisecondsPerDay / 24)) % 24l;
 	}
 	
 	/**
-	 * return the current minute (of this hour)
-	 * @return
+	 * 
+	 * @return the current minute (of this hour)
 	 */
 	public static long getMinute(){
 		return (milliSecondsSinceStart / (long)(millisecondsPerDay / 24 / 60)) % 60l;
