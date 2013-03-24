@@ -10,28 +10,54 @@ public class ItemFactory {
 	/**
 	 * return an item with specified paramets
 	 * @param name - name of the item
-	 * @param maxStackSize - maximum stack size
-	 * @param stackSize - stackSize that the item should have
-	 * @param durability - durability that the item should have
+	 * @param value - stackSize or durability that the item should have
 	 * @return the specified item
 	 */
-	public static Item getItem(String name, int stackSize){
+	public static Item getItem(String name, int value){
 		switch(name){
-		case "Bucket": return getBucketItem(stackSize);
-		case "Dirt": return getDirtItem(stackSize);
-		case "Fence": return getFenceItem(stackSize);
-		case "Gravel": return getGravelItem(stackSize);
-		case "Hoe" : return getHoeItem(stackSize);
-		case "Milk Bucket": return getMilkBucketItem(stackSize);
-		case "Potato": return getPotatoItem(stackSize);
-		case "Seeds": return getSeedItem(stackSize);
-		case "Shovel": return getShovelItem(stackSize);
-		case "Sickel": return getSickelItem(stackSize);
-		case "Water Bucket": return getWaterBucketItem(stackSize);
-		case "Watering Can": return getWateringCanItem(stackSize);
-		case "Wheat": return getWheatItem(stackSize);
+		case "Bucket": return getBucketItem(value);
+		case "Dirt": return getDirtItem(value);
+		case "Fence": return getFenceItem(value);
+		case "Gravel": return getGravelItem(value);
+		case "Hoe" : return getHoeItem(value);
+		case "Milk Bucket": return getMilkBucketItem(value);
+		case "Potato": return getPotatoItem(value);
+		case "Seeds": return getSeedItem(value);
+		case "Shovel": return getShovelItem(value);
+		case "Sickel": return getSickelItem(value);
+		case "Water Bucket": return getWaterBucketItem(value);
+		case "Watering Can": return getWateringCanItem(value);
+		case "Wheat": return getWheatItem(value);
 		default: return null;
 		}
+	}
+	
+	/**
+	 * return an item with specified paramets
+	 * @param name - name of the item
+	 * @param value - stackSize or durability that the item should have
+	 * @return the specified item
+	 */
+	public static Item getItem(String name, int value, int durability){
+		Item item = null;
+		switch(name){
+		case "Bucket": item = getBucketItem(value); break;
+		case "Dirt": item = getDirtItem(value); break;
+		case "Fence": item = getFenceItem(value); break;
+		case "Gravel": item = getGravelItem(value); break;
+		case "Hoe" : item = getHoeItem(value); break;
+		case "Milk Bucket": item = getMilkBucketItem(value); break;
+		case "Potato": item = getPotatoItem(value);break;
+		case "Seeds": item = getSeedItem(value); break;
+		case "Shovel": item = getShovelItem(value); break;
+		case "Sickel": item = getSickelItem(value); break;
+		case "Water Bucket": item = getWaterBucketItem(value); break;
+		case "Watering Can": item = getWateringCanItem(value); break;
+		case "Wheat": item = getWheatItem(value); break;
+		default: item = null; break;
+		}
+		item.setDurability(durability);
+		return item;
 	}
 	
 	/**
@@ -67,11 +93,11 @@ public class ItemFactory {
 	
 	/**
 	 * return a HoeItem
-	 * @param stackSize - size of the stack
+	 * @param durability - size of the stack
 	 * @return the new hoe item
 	 */
-	public static HoeItem getHoeItem(int stackSize){
-		return new HoeItem(stackSize);
+	public static HoeItem getHoeItem(int durability){
+		return new HoeItem(durability);
 	}
 	
 	/**
@@ -95,20 +121,20 @@ public class ItemFactory {
 	
 	/**
 	 * return a ShovelItem
-	 * @param stackSize - size of the stack
+	 * @param durability - size of the stack
 	 * @return the new shovel item
 	 */
-	public static ShovelItem getShovelItem(int stackSize){
-		return new ShovelItem(stackSize);
+	public static ShovelItem getShovelItem(int durability){
+		return new ShovelItem(durability);
 	}
 	
 	/**
 	 * return a SickelItem
-	 * @param stackSize - size of the stack
+	 * @param durability - size of the stack
 	 * @return sickel item
 	 */
-	public static SickelItem getSickelItem(int stackSize){
-		return new SickelItem(stackSize);
+	public static SickelItem getSickelItem(int durability){
+		return new SickelItem(durability);
 	}
 	
 	/**
@@ -131,11 +157,11 @@ public class ItemFactory {
 	
 	/**
 	 * return a WateringCanItem
-	 * @param stackSize - size of the stack
+	 * @param durability - size of the stack
 	 * @return the new watering can item
 	 */
-	public static WateringCanItem getWateringCanItem(int stackSize){
-		return new WateringCanItem(stackSize);
+	public static WateringCanItem getWateringCanItem(int durability){
+		return new WateringCanItem(durability);
 	}
 	
 	/**

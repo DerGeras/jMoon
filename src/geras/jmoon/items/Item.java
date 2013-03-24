@@ -9,6 +9,11 @@ import geras.jmoon.entites.Entity;
 
 public abstract class Item {
 	
+	//only used for tools
+	protected int maxDurability;
+	protected int durability; //rest durability
+	
+	
 	protected String name; //name of the item
 	
 	protected int maxStackSize; //maximum stacksize
@@ -21,7 +26,6 @@ public abstract class Item {
 	 * @param name - Name of the item
 	 * @param maxStackSize - maximum stack size
 	 * @param stackSize - stack size
-	 * @param durability - durability (of tools)
 	 */
 	public Item(String name, int maxStackSize, int stackSize, int sellingPrice){
 		this.name = name;
@@ -149,6 +153,22 @@ public abstract class Item {
 
 	public void setSellingPrice(int sellingPrice) {
 		this.sellingPrice = sellingPrice;
+	}
+	
+	/**
+	 * 
+	 * @return the rest durability of this item
+	 */
+	public int getDurability(){
+		return durability;
+	}
+	
+	/**
+	 * 
+	 * @param durability - new durability value
+	 */
+	public void setDurability(int durability){
+		this.durability = durability;
 	}
 	
 }

@@ -77,16 +77,16 @@ public class SaveGameHandler extends DefaultHandler {
 		
 		//items
 		if(qName.equalsIgnoreCase("item") && currInventory != null){
-			Item item = ItemFactory.getItem(attributes.getValue("name"), 1);
+			Item item = ItemFactory.getItem(attributes.getValue("name"), 1, 0);
 			item.readFromAttributes(attributes);
-			currInventory.addItem(item);
+			currInventory.addStrictItem(item);
 		}
 		
 		//items
 		if(qName.equalsIgnoreCase("tool") && currInventory != null){
-			Item item = ItemFactory.getItem(attributes.getValue("name"), 1);
+			Item item = ItemFactory.getItem(attributes.getValue("name"), 1, 0);
 			item.readFromAttributes(attributes);
-			currInventory.addItem(item);
+			currInventory.addStrictItem(item);
 		}
 	}
 	

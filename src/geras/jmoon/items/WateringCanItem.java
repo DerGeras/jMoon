@@ -7,12 +7,8 @@ import geras.jmoon.world.WorldElements;
 
 public class WateringCanItem extends ToolItem {
 
-	public WateringCanItem() {
-		super("Watering Can", Settings.maxDurability, Settings.maxDurability, 1);
-	}
-
-	public WateringCanItem(int stackSize) {
-		super("Watering Can", Settings.maxDurability, Settings.maxDurability, 200);
+	public WateringCanItem(int durability) {
+		super("Watering Can", Settings.maxDurability, durability, 200);
 	}
 
 	@Override

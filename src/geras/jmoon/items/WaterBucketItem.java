@@ -11,10 +11,6 @@ public class WaterBucketItem extends UsableItem {
 		super("Water Bucket", Settings.maxStackSize, stackSize, 51);
 	}
 	
-	public WaterBucketItem(){
-		super("Water Bucket", Settings.maxStackSize, 1, 51);
-	}
-	
 	@Override
 	public void useWorld(int x, int y, Map map, PlayerEntity player) {
 		//fill a hole with water

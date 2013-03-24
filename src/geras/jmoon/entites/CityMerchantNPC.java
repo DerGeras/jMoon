@@ -38,7 +38,7 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 	@Override
 	public void sellTo(PlayerEntity player, Item item, int amount) {
 		if(item.getStackSize() >= amount){
-			int rest = inventory.addItem(item.getName(), amount);
+			int rest = inventory.addItem(item.getName(), amount, item.getDurability());
 			int soldAmount = amount - rest;
 			item.removeItems(soldAmount);
 			player.getInventory().setMoney(player.getInventory().getMoney() + soldAmount * (int)Math.ceil(getSellSale() * item.getSellingPrice()));
@@ -47,8 +47,8 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 
 	@Override
 	public void buyFrom(PlayerEntity player, Item item, int amount) {
-		if(item.getStackSize() >= amount && player.getInventory().getMoney() >= item.getSellingPrice() * getBuySale() * amount){
-			int rest = player.getInventory().addItem(item.getName(), amount);
+		if(item.getStackSize() >= amount && player.getInventory().getMoney() >= (int)Math.ceil(item.getSellingPrice() * getBuySale()) * amount){
+			int rest = player.getInventory().addItem(item.getName(), amount, item.getDurability());
 			int soldAmount = amount - rest;
 			item.removeItems(soldAmount);
 			player.getInventory().setMoney(player.getInventory().getMoney() - soldAmount * (int)Math.ceil(getBuySale() * item.getSellingPrice()));

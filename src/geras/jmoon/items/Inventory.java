@@ -28,7 +28,15 @@ public class Inventory {
 	 * @param item - the item to add
 	 */
 	public void addItem(Item inputItem){
-		addItem(inputItem.getName(), inputItem.getStackSize());
+		addItem(inputItem.getName(), inputItem.getStackSize(), inputItem.getDurability());
+	}
+	
+	/**
+	 * add this specific item directly to the inventory
+	 * @param inputItem - the item to add
+	 */
+	public void addStrictItem(Item inputItem){
+		content.add(inputItem);
 	}
 	
 	/**
@@ -47,6 +55,29 @@ public class Inventory {
 		}
 		while(tmpAmount > 0 && content.size() < Settings.maxInventorySize){
 			Item item = ItemFactory.getItem(itemName, tmpAmount);
+			content.add(item);//add an additional stack, if it hasn't been touched yet (no duplicates)
+			tmpAmount = Math.max(0, tmpAmount - item.getMaxStackSize());
+		}
+		return tmpAmount;
+	}
+	
+	/**
+	 * add an item with the specified name to the inventory, first trying to fill any existing stacks,
+	 * or add a new item from the itemfactory
+	 * @param itemName - name of the item (needs to be registered in the itemfactory)
+	 * @param durability - durability (for tools)
+	 * @param amount - amount to add
+	 */
+	public int addItem(String itemName, int amount, int durability){
+		int tmpAmount = amount;
+		for(int i = 0; i < content.size(); i++){
+			Item invItem = content.get(i);
+			if(invItem.name == itemName){
+				tmpAmount = invItem.addItems(tmpAmount); //fill existing Stacks
+			}
+		}
+		while(tmpAmount > 0 && content.size() < Settings.maxInventorySize){
+			Item item = ItemFactory.getItem(itemName, tmpAmount, durability);
 			content.add(item);//add an additional stack, if it hasn't been touched yet (no duplicates)
 			tmpAmount = Math.max(0, tmpAmount - item.getMaxStackSize());
 		}

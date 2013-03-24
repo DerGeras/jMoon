@@ -5,13 +5,9 @@ import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 
 public class SickelItem extends ToolItem {
-
-	public SickelItem(){
-		super("Sickel", Settings.maxDurability, Settings.maxDurability, 1);
-	}
 	
-	public SickelItem(int stackSize) {
-		super("Sickel", Settings.maxDurability, Settings.maxDurability, 60);
+	public SickelItem(int durability) {
+		super("Sickel", Settings.maxDurability, durability, 60);
 	}
 
 	@Override

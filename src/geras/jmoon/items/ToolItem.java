@@ -9,9 +9,6 @@ import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.world.Map;
 
 public abstract class ToolItem extends UsableItem {
-
-	protected int maxDurability;
-	protected int durability; //rest durability
 	
 	public ToolItem(String name, int maxDurability, int durability, int sellingPrice) {
 		super(name, 1, 1, sellingPrice);
@@ -30,22 +27,6 @@ public abstract class ToolItem extends UsableItem {
 	@Override
 	public String toString(){
 		return name + " D:" + durability;
-	}
-	
-	/**
-	 * 
-	 * @return the rest durability of this item
-	 */
-	public int getDurability(){
-		return durability;
-	}
-	
-	/**
-	 * 
-	 * @param durability - new durability value
-	 */
-	public void setDurability(int durability){
-		this.durability = durability;
 	}
 	
 	@Override
@@ -69,6 +50,7 @@ public abstract class ToolItem extends UsableItem {
 		if(durabilityS != null){
 			durability = Integer.parseInt(durabilityS);
 		}
+		System.out.println(durability);
 	}
 
 }

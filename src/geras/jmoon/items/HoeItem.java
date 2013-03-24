@@ -6,13 +6,9 @@ import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
 
 public class HoeItem extends ToolItem {
-
-	public HoeItem(){
-		super("Hoe", Settings.maxDurability, Settings.maxDurability, 60);
-	}
 	
-	public HoeItem(int stackSize) {
-		super("Hoe", Settings.maxDurability, Settings.maxDurability, 60);
+	public HoeItem(int durability) {
+		super("Hoe", Settings.maxDurability, durability, 60);
 	}
 
 	@Override

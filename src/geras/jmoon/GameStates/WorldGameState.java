@@ -49,6 +49,8 @@ public class WorldGameState extends BasicGameState {
 	private int cursorX;
 	private int cursorY;
 	
+	private boolean paused = false;
+	
 	public WorldGameState(){
 		super();
 	}
@@ -135,6 +137,7 @@ public class WorldGameState extends BasicGameState {
 //		worldMap.render(0, 0);
 //		worldMap.getWorldElement().endUse();
 //		g.resetTransform();
+	
 	}
 	
 	/**
@@ -188,24 +191,29 @@ public class WorldGameState extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame game, int timeSinceLastFrame) throws SlickException {
 		
 		if(container.hasFocus()){
-			//update time
-			Clock.update(timeSinceLastFrame);
+			//give the input to the gui first
+			gui.handleInput(container.getInput(), JMoonGame.player);
 			
-			//temporary stuff
-			int selected = inventoryPane.getSelected();
-			if(inventoryPane.isVisible() && selected >= 0){
-				Item item = JMoonGame.player.getInventory().getItem(selected);
-				if(item.isUsable()){
-					JMoonGame.player.setCurrentTool((UsableItem) item);
+			if(!paused){
+				//update time
+				Clock.update(timeSinceLastFrame);
+				
+				//temporary stuff
+				int selected = inventoryPane.getSelected();
+				if(inventoryPane.isVisible() && selected >= 0){
+					Item item = JMoonGame.player.getInventory().getItem(selected);
+					if(item.isUsable()){
+						JMoonGame.player.setCurrentTool((UsableItem) item);
+					}
 				}
-			}
-			//end of temporary stuff
-			
-			handleInput(container.getInput(), game);
-			worldMap.updatePlants(timeSinceLastFrame);
-			//Update all entities
-			for(Entity entity : worldMap.entityList){
-				entity.update(timeSinceLastFrame,worldMap);
+				//end of temporary stuff
+				
+				handleInput(container.getInput(), game);
+				worldMap.updatePlants(timeSinceLastFrame);
+				//Update all entities
+				for(Entity entity : worldMap.entityList){
+					entity.update(timeSinceLastFrame,worldMap);
+				}
 			}
 		}
 	}
@@ -215,8 +223,6 @@ public class WorldGameState extends BasicGameState {
 	 * @param input
 	 */
 	public void handleInput(Input input, StateBasedGame game){
-		//give the input to the gui first
-		gui.handleInput(input, JMoonGame.player);
 		
 		//Movement
 		if(input.isKeyDown(Input.KEY_A)){
@@ -230,12 +236,6 @@ public class WorldGameState extends BasicGameState {
 		}
 		if(input.isKeyDown(Input.KEY_S)){
 			JMoonGame.player.setNextY(1);
-		}
-		
-		//Switch Tools
-		if(input.isKeyPressed(Input.KEY_1)){
-			inventoryPane.setSelected(-1);
-			JMoonGame.player.setCurrentTool(new HandItem());
 		}
 		
 		//Interaction
@@ -255,10 +255,15 @@ public class WorldGameState extends BasicGameState {
 			}
 		}
 		
+		//Switch Tools
+		if(input.isKeyPressed(Input.KEY_1)){
+			inventoryPane.setSelected(-1);
+			JMoonGame.player.setCurrentTool(new HandItem());
+		}
+		
 		//Inventory
 		if(input.isKeyPressed(Input.KEY_I)){
 			inventoryPane.setVisibility(!inventoryPane.isVisible());
-			inventoryPane.setSelected(-1);
 		}
 		
 		//Menu
@@ -267,6 +272,9 @@ public class WorldGameState extends BasicGameState {
 			if(tradePane.isVisible()){
 				tradePane.setVisibility(false);
 				inventoryPane.setVisibility(true);
+			}
+			else{
+				//paused = true;
 			}
 		}
 		
