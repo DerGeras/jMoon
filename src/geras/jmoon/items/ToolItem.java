@@ -50,7 +50,6 @@ public abstract class ToolItem extends UsableItem {
 		if(durabilityS != null){
 			durability = Integer.parseInt(durabilityS);
 		}
-		System.out.println(durability);
 	}
 
 }

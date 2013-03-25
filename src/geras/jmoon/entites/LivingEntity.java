@@ -3,6 +3,7 @@ package geras.jmoon.entites;
 import geras.jmoon.items.Inventory;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
+import geras.jmoon.world.WorldElements;
 
 public abstract class LivingEntity extends Entity {
 	
@@ -17,12 +18,17 @@ public abstract class LivingEntity extends Entity {
 	protected int nextY; //direction to move on the next update (-1, 0, 1)
 	
 	protected Inventory inventory;
+	
+	protected int[] obstacles;
 
 	protected LivingEntity() {
 		super();
 		nextX = nextY = 0;
 		direction = Map.direction.south;
 		inventory = new Inventory();
+		obstacles = new int[2];
+		obstacles[0] = WorldElements.ROCK_VALUE;
+		obstacles[1] = WorldElements.FENCE_VALUE;
 	}
 
 	@Override
@@ -45,13 +51,30 @@ public abstract class LivingEntity extends Entity {
 		int secondX = (int) ((posX + width / 3) / Settings.tileWidth);
 		int secondY = (int) ((posY + height / 3) / Settings.tileHeight);
 		
-		if(map.getField("Decoration", firstX, firstY) != -1
-				|| map.getField("Decoration", secondX, firstY) != -1
-				|| map.getField("Decoration", firstX, secondY) != -1
-				|| map.getField("Decoration", secondX, secondY) != -1){
+		boolean topLeftHit = isObstacle(map.getField("Decoration", firstX, firstY));
+		boolean topRightHit = isObstacle(map.getField("Decoration", secondX, firstY));
+		boolean BottomLeftHit = isObstacle(map.getField("Decoration", firstX, secondY));
+		boolean BottomRightHit = isObstacle(map.getField("Decoration", secondX, secondY));
+		
+		if(topLeftHit || BottomLeftHit || topRightHit || BottomRightHit){
 			posX = oldX;
 			posY = oldY;
+			//TODO better ideas for this one -.-
 		}
+	}
+	
+	/**
+	 * helper method, is this tileValue an obstacles?
+	 * @param tileValue
+	 * @return
+	 */
+	protected boolean isObstacle(int tileValue){
+		for(int i : obstacles){
+			if(i == tileValue){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	///////////////////////////////////////////////////////
