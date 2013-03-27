@@ -1,6 +1,7 @@
 package geras.jmoon.gui;
 
 import geras.jmoon.entites.PlayerEntity;
+import geras.jmoon.main.JMoonGame;
 
 import java.util.LinkedList;
 
@@ -19,6 +20,25 @@ public class Button extends BasicPane{
 		@Override
 		public void buttonClicked() {
 			pane.setVisibility(false);		
+		}
+		
+	}
+	
+	public static class SaveButton implements ButtonListener{
+
+		@Override
+		public void buttonClicked() {
+			JMoonGame.saveGame();			
+		}
+		
+	}
+	
+	public static class SaveAndQuitButton implements ButtonListener{
+
+		@Override
+		public void buttonClicked() {
+			JMoonGame.saveGame();
+			JMoonGame.gameContainer.exit();
 		}
 		
 	}

@@ -8,21 +8,12 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 import org.newdawn.slick.Game;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 public class CheaterNPC extends NPCEntity implements Merchant{
 
 	public CheaterNPC(String name, String title, int posX, int posY) {
 		super(name, title, posX, posY);
-		width = 32;
-		height = 32;
-		try{
-			this.entityImg = new Image("Sprites/Entities/Cheater.png");
-		}
-		catch(SlickException e){
-			e.printStackTrace();
-		}
+		setEntityImg("Sprites/Entities/Cheater.png");
 		//fill inventory
 //		inventory.addItem("Sickel", 1);
 //		inventory.addItem("Shovel", 1);

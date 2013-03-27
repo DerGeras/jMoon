@@ -23,6 +23,8 @@ public abstract class LivingEntity extends Entity {
 
 	protected LivingEntity() {
 		super();
+		width = Settings.tileWidth;
+		height = Settings.tileHeight;
 		nextX = nextY = 0;
 		direction = Map.direction.south;
 		inventory = new Inventory();

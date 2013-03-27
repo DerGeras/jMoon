@@ -2,7 +2,6 @@ package geras.jmoon.entites;
 
 import geras.jmoon.items.HandItem;
 import geras.jmoon.items.UsableItem;
-import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 
 import java.io.BufferedWriter;
@@ -23,8 +22,6 @@ public class PlayerEntity extends LivingEntity {
 		super();
 		this.hunger = 0;
 		setEntityImg("Sprites/Entities/Hero.png");
-		width = Settings.tileWidth;
-		height = Settings.tileHeight;
 		inventory.addItem("Hoe",1);
 		inventory.addItem("Watering Can", 1);
 		inventory.addItem("Sickel",1);

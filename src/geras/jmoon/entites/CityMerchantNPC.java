@@ -8,8 +8,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 import org.newdawn.slick.Game;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 public class CityMerchantNPC extends NPCEntity implements Merchant {
 
@@ -18,12 +16,7 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 		width = 32;
 		height = 32;
 		
-		try{
-			this.entityImg = new Image("Sprites/Entities/CityMerchant.png");
-		}
-		catch(SlickException e){
-			e.printStackTrace();
-		}
+		setEntityImg("Sprites/Entities/CityMerchant.png");
 		
 		//fill inventory
 		inventory.addItem("Sickel", 1);

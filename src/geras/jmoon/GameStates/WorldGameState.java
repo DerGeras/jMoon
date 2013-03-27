@@ -8,9 +8,11 @@ import geras.jmoon.entites.Entity;
 import geras.jmoon.entites.Merchant;
 import geras.jmoon.entites.NPCEntity;
 import geras.jmoon.entites.PlayerEntity;
+import geras.jmoon.entites.PressF10NPC;
 import geras.jmoon.gui.BasicGUIElement;
 import geras.jmoon.gui.Button;
 import geras.jmoon.gui.InventoryPane;
+import geras.jmoon.gui.MenuPane;
 import geras.jmoon.gui.TradePane;
 import geras.jmoon.items.HandItem;
 import geras.jmoon.items.Item;
@@ -45,6 +47,7 @@ public class WorldGameState extends BasicGameState {
 	public BasicGUIElement gui;
 	public InventoryPane inventoryPane;
 	public TradePane tradePane;
+	public MenuPane menuPane;
 
 	private int cursorX;
 	private int cursorY;
@@ -165,6 +168,7 @@ public class WorldGameState extends BasicGameState {
 			worldMap.entityList.add(new CowNPC("GeMoo", "The Furious", midX - 100, midY - 300));
 			worldMap.entityList.add(new CityMerchantNPC("SiBi", "City Merchant", midX - 300, midY));
 			worldMap.entityList.add(new BlackSmithNPC("Mad-Murdoc", "Blacksmith", midX + 300, midY + 300));
+			worldMap.entityList.add(new PressF10NPC(midX,midY));
 			
 			worldMap.initialize();
 		}
@@ -182,6 +186,10 @@ public class WorldGameState extends BasicGameState {
 		Button xButton = new Button(inventoryPane.getWidth() - 15, -15, 32, 32, "Sprites/GUI/XButton.png");
 		xButton.addButtonListener(new Button.CloseButton(inventoryPane));
 		inventoryPane.addChild(xButton);
+		
+		menuPane = new MenuPane(0, 0, container.getWidth(), container.getHeight(), this);
+		gui.addChild(menuPane);
+		menuPane.setVisibility(false);
 	}
 	
 	/**
@@ -274,14 +282,10 @@ public class WorldGameState extends BasicGameState {
 				inventoryPane.setVisibility(true);
 			}
 			else{
-				//paused = true;
+				JMoonGame.saveGame();
+				pause();
+				menuPane.setVisibility(true);
 			}
-		}
-		
-		//save
-		//TODO better things here
-		if(input.isKeyPressed(Input.KEY_K)){
-			JMoonGame.saveGame();
 		}
 	}
 	
@@ -336,6 +340,22 @@ public class WorldGameState extends BasicGameState {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * pause the game.
+	 * unpause to unpause
+	 */
+	public void pause(){
+		paused = true;
+	}
+	
+	/**
+	 * unpause the game
+	 * pause to pause
+	 */
+	public void unPause(){
+		paused = false;
 	}
 	
 }

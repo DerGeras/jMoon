@@ -9,8 +9,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 import org.newdawn.slick.Game;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 public class CowNPC extends NPCEntity {
 	
@@ -18,15 +16,8 @@ public class CowNPC extends NPCEntity {
 
 	public CowNPC(String name, String title, int posX, int posY) {
 		super(name, title, posX, posY);
-		width = 32;
-		height = 32;
 		move_speed = 0.05f;
-		try{
-			this.entityImg = new Image("Sprites/Entities/Cow.png");
-		}
-		catch(SlickException e){
-			e.printStackTrace();
-		}
+		setEntityImg("Sprites/Entities/Cow.png");
 	}
 	
 	@Override
