@@ -179,6 +179,7 @@ public class WorldGameState extends BasicGameState {
 		gui = new BasicGUIElement(0, 0);
 		inventoryPane = new InventoryPane(container.getWidth() - 250, 50, JMoonGame.player.getInventory());
 		gui.addChild(inventoryPane);
+		inventoryPane.setVisibility(false);
 		
 		tradePane = new TradePane(0,0,container.getWidth(), container.getHeight(), JMoonGame.player, null);
 		gui.addChild(tradePane);
@@ -287,6 +288,11 @@ public class WorldGameState extends BasicGameState {
 				pause();
 				menuPane.setVisibility(true);
 			}
+		}
+		
+		//Help Menu
+		if(input.isKeyPressed(Input.KEY_F10)){
+			PressF10NPC.pressF10();
 		}
 	}
 	

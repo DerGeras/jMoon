@@ -1,5 +1,5 @@
 <game>
-<clock timeSinceStart="14900"></clock>
+<clock timeSinceStart="29860"></clock>
 <map width="100" height="100">
 <layers>
 <layer name="Ground" width="100" height="100">
@@ -312,7 +312,7 @@
 <plants>
 </plants>
 <entities>
-<entity case="PlayerEntity" posX="1975.0" posY="1762.0" hunger="0.0" thirst="0.0">
+<entity case="PlayerEntity" posX="1591.0" posY="1501.0" hunger="0.0" thirst="0.0">
 <inventory money="500">
 <tool name="Hoe" maxDurability="100" durability="100"></tool>
 <tool name="Watering Can" maxDurability="100" durability="100"></tool>
@@ -329,7 +329,7 @@
 <inventory money="0">
 </inventory>
 </entity>
-<entity case="CowNPC" name="GeMoo" title="The Furious" posX="1597.0" posY="1203.0" hunger="0.0" thirst="0.0">
+<entity case="CowNPC" name="GeMoo" title="The Furious" posX="1400.0" posY="1290.0" hunger="0.0" thirst="0.0">
 <inventory money="0">
 </inventory>
 </entity>
@@ -355,7 +355,7 @@
 <tool name="Hoe" maxDurability="100" durability="100"></tool>
 </inventory>
 </entity>
-<entity case="PressF10NPC" name="Press F10" title="Not crazy" posX="1975.0" posY="1762.0" hunger="0.0" thirst="0.0" pressedF10="false">
+<entity case="PressF10NPC" name="Press F10" title="Not crazy" posX="1600.0" posY="1600.0" hunger="0.0" thirst="0.0" pressedF10="true" initialX="1600.0" initialY="1600.0">
 <inventory money="0">
 </inventory>
 </entity>

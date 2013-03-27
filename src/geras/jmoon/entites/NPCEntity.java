@@ -38,6 +38,7 @@ public abstract class NPCEntity extends LivingEntity{
 	public abstract void interact(PlayerEntity player, Map map, Game game, WorldGameState state);
 	
 	//inherited
+	@Override
 	public void draw(Graphics g, int mapTopX, int mapTopY, Map map){
 		super.draw(g, mapTopX, mapTopY, map);
 		//draw title and name
