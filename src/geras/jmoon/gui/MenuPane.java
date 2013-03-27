@@ -11,6 +11,8 @@ public class MenuPane extends BasicPane {
 
 	public MenuPane(int relativeX, int relativeY, int width, int height, WorldGameState state) {
 		super(relativeX, relativeY, width, height, "Sprites/GUI/MenuBackGround.png");
+		this.state = state;
+		
 		Button saveAndExitButton = new Button(width / 2 - 64, height / 2 + 100, 128, 32, "Sprites/GUI/Save_and_Quit.png");
 		saveAndExitButton.addButtonListener(new Button.SaveAndQuitButton());
 		addChild(saveAndExitButton);

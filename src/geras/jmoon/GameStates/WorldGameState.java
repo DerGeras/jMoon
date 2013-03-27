@@ -121,8 +121,6 @@ public class WorldGameState extends BasicGameState {
 		g.drawString(JMoonGame.player.getCurrentTool().getName(), 50, container.getHeight() - 100);
 		g.drawString("Number: " + JMoonGame.player.getCurrentTool().getStackSize(), 50, container.getHeight() - 85);
 		
-		//draw the gui
-		gui.draw(g);
 		
 		//draw the time
 		g.setColor(Color.white);
@@ -131,6 +129,9 @@ public class WorldGameState extends BasicGameState {
 		//draw the amount of money
 		g.setColor(Color.yellow);
 		g.drawString("Money: " + JMoonGame.player.getInventory().getMoney(), 50, container.getHeight() - 50);
+		
+		//draw the gui
+		gui.draw(g);
 		
 		
 		//TODO redo

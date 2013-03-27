@@ -1,5 +1,5 @@
 <game>
-<clock timeSinceStart="8300"></clock>
+<clock timeSinceStart="14900"></clock>
 <map width="100" height="100">
 <layers>
 <layer name="Ground" width="100" height="100">
@@ -329,7 +329,7 @@
 <inventory money="0">
 </inventory>
 </entity>
-<entity case="CowNPC" name="GeMoo" title="The Furious" posX="1497.0" posY="1303.0" hunger="0.0" thirst="0.0">
+<entity case="CowNPC" name="GeMoo" title="The Furious" posX="1597.0" posY="1203.0" hunger="0.0" thirst="0.0">
 <inventory money="0">
 </inventory>
 </entity>
