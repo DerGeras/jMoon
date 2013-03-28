@@ -1,5 +1,6 @@
 package geras.jmoon.entites;
 
+import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.items.HandItem;
 import geras.jmoon.items.Item;
 import geras.jmoon.items.UsableItem;
@@ -8,6 +9,7 @@ import geras.jmoon.world.Map;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
+import org.newdawn.slick.Game;
 import org.newdawn.slick.Graphics;
 import org.xml.sax.Attributes;
 
@@ -130,6 +132,13 @@ public class PlayerEntity extends LivingEntity implements Merchant{
 	}
 
 
+	@Override
+	public void interact(PlayerEntity player, Map map, Game game,
+			WorldGameState state) {
+		//Currently no player interactions
+		
+	}
+
 	
 	///////////////////////////////////////////////////////
 	//
@@ -144,6 +153,7 @@ public class PlayerEntity extends LivingEntity implements Merchant{
 	public UsableItem getCurrentTool(){
 		return currentTool;
 	}
+
 
 
 	

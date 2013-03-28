@@ -301,7 +301,7 @@ public class Map {
 			for(int j = 0; j < Settings.mapHeight; j++){
 				//Ground Layer
 				if(j == middle - 1 || j == middle || j == middle + 1){
-					gorundLayer.setField(i, j, WorldElements.GRAVEL_VALUE);					
+					gorundLayer.setField(i, j, WorldElements.STONE_VALUE);					
 				}
 				else{
 					gorundLayer.setField(i, j, WorldElements.GRASS_VALUE);

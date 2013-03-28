@@ -159,6 +159,22 @@ public class Inventory {
 	}
 	
 	/**
+	 * add money to the inventory
+	 * @param amount
+	 */
+	public void addMoney(int amount){
+		money += amount;
+	}
+	
+	/**
+	 * remove money from the inventory
+	 * @param amount
+	 */
+	public void removeMoney(int amount){
+		money -= amount;
+	}
+	
+	/**
 	 * remove all empty Itemstacks
 	 */
 	public void clean(){

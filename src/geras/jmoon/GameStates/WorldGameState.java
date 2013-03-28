@@ -2,11 +2,11 @@ package geras.jmoon.GameStates;
 
 import geras.jmoon.entites.BlackSmithNPC;
 import geras.jmoon.entites.CheaterNPC;
+import geras.jmoon.entites.ChestEntity;
 import geras.jmoon.entites.CityMerchantNPC;
 import geras.jmoon.entites.CowNPC;
 import geras.jmoon.entites.Entity;
 import geras.jmoon.entites.Merchant;
-import geras.jmoon.entites.NPCEntity;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.entites.PressF10NPC;
 import geras.jmoon.gui.BasicGUIElement;
@@ -156,6 +156,7 @@ public class WorldGameState extends BasicGameState {
 		}
 		else{
 			worldMap = new Map("Sprites/MainSprites.png", Settings.mapWidth, Settings.mapHeight); //load the main map
+			worldMap.initialize();
 			
 			//init player
 			JMoonGame.player = new PlayerEntity();
@@ -171,7 +172,10 @@ public class WorldGameState extends BasicGameState {
 			worldMap.entityList.add(new BlackSmithNPC("Mad-Murdoc", "Blacksmith", midX + 300, midY + 300));
 			worldMap.entityList.add(new PressF10NPC(midX,midY));
 			
-			worldMap.initialize();
+			//init chests
+			worldMap.entityList.add(new ChestEntity(midX - 256 + 16, midY - 512 + 16));
+			worldMap.entityList.add(new ChestEntity(midX - 64 + 16, midY - 32 + 16));
+			
 		}
 
 
@@ -257,9 +261,9 @@ public class WorldGameState extends BasicGameState {
 		
 		if(input.isMousePressed(Input.MOUSE_RIGHT_BUTTON)){
 			for(Entity entity : worldMap.entityList){
-				if(entity.isNPC() && Math.abs(cursorX - entity.getPosX()) < 32 && Math.abs(cursorY - entity.getPosY()) < 32){
+				if(Math.abs(cursorX - entity.getPosX()) < 32 && Math.abs(cursorY - entity.getPosY()) < 32){
 					if(Math.abs(cursorX - JMoonGame.player.getPosX()) < 2.5f * Settings.tileWidth && Math.abs(cursorY - JMoonGame.player.getPosY()) < 2.5f * Settings.tileHeight){
-						((NPCEntity)entity).interact(JMoonGame.player, worldMap, game, this);
+						entity.interact(JMoonGame.player, worldMap, game, this);
 					}
 				}
 			}

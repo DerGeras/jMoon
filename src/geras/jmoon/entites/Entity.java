@@ -1,10 +1,12 @@
 package geras.jmoon.entites;
 
+import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.main.JMoonGame;
 import geras.jmoon.world.Map;
 
 import java.io.BufferedWriter;
 
+import org.newdawn.slick.Game;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -86,6 +88,16 @@ public abstract class Entity {
 	public boolean isNPC(){
 		return false;
 	}
+	
+	/**
+	 * This needs to be overwritten by the different NPCs
+	 * Standart is doing nothing
+	 * @param plaer - the player that interacts with the NPC
+	 * @param map - current map
+	 * @param game - current game (Teleporting NPCs?)
+	 * @param g - graphics - might be needed for interface stuff
+	 */
+	public abstract void interact(PlayerEntity player, Map map, Game game, WorldGameState state);
 	
 	/**
 	 * save to xml file

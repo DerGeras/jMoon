@@ -1,10 +1,8 @@
 package geras.jmoon.entites;
 
-import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.world.Map;
 
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Game;
 import org.newdawn.slick.Graphics;
 import org.xml.sax.Attributes;
 
@@ -26,16 +24,6 @@ public abstract class NPCEntity extends LivingEntity{
 		this.posX = posX;
 		this.posY = posY;
 	}
-	
-	/**
-	 * This needs to be overwritten by the different NPCs
-	 * Standart is doing nothing
-	 * @param plaer - the player that interacts with the NPC
-	 * @param map - current map
-	 * @param game - current game (Teleporting NPCs?)
-	 * @param g - graphics - might be needed for interface stuff
-	 */
-	public abstract void interact(PlayerEntity player, Map map, Game game, WorldGameState state);
 	
 	//inherited
 	@Override
