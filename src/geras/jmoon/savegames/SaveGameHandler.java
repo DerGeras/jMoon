@@ -2,7 +2,6 @@ package geras.jmoon.savegames;
 
 import geras.jmoon.entites.Entity;
 import geras.jmoon.entites.EntityFactory;
-import geras.jmoon.entites.LivingEntity;
 import geras.jmoon.items.Inventory;
 import geras.jmoon.items.Item;
 import geras.jmoon.items.ItemFactory;

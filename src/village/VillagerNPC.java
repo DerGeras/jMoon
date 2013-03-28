@@ -19,7 +19,7 @@ import org.xml.sax.Attributes;
 
 public class VillagerNPC extends NPCEntity implements Merchant{
 	
-	private static float hungerRatio = 8 / Clock.millisecondsPerDay;
+	private static float hungerRatio = 8.0f / Clock.millisecondsPerDay;
 	
 	public static int OUT_OF_FIELD_VALUE_X = -50;
 	public static int OUT_OF_FIELD_VAlUE_Y = -50;

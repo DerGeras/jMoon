@@ -5,6 +5,7 @@ import java.util.LinkedList;
 public class Village {
 	
 	private static LinkedList<VillagerNPC> villagers = new LinkedList<VillagerNPC>();
+	public static final float MAX_HUNGER_TO_GROW = 4.0f;
 	
 	/**
 	 * add a villager
