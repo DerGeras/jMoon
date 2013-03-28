@@ -8,32 +8,21 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 import org.newdawn.slick.Game;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
-public class BlackSmithNPC extends NPCEntity implements Merchant{
+public class BakerNPC extends NPCEntity implements Merchant{
 
-	public BlackSmithNPC(String name, String title, int posX, int posY) {
+	public BakerNPC(String name, String title, int posX, int posY) {
 		super(name, title, posX, posY);
 		
-		try{
-			this.entityImg = new Image("Sprites/Entities/Blacksmith.png");
-		}
-		catch(SlickException e){
-			e.printStackTrace();
-		}
-		
-		//fill inventory
-		inventory.addItem("Sickel", 2);
-		inventory.addItem("Shovel", 2);
-		inventory.addItem("Bucket", 5);
-		inventory.addItem("Hoe", 2);
-		
+		//TODO get own image
+		setEntityImg("Sprites/Entities/Hero.png");
+		inventory.addItem("Bread", 10);
 	}
 
 	@Override
 	public void interact(PlayerEntity player, Map map, Game game,
 			WorldGameState state) {
+
 		state.startTrade(this);
 
 	}
@@ -47,7 +36,7 @@ public class BlackSmithNPC extends NPCEntity implements Merchant{
 	@Override
 	public void saveToXML(BufferedWriter out) {
 		try {
-			out.append("<entity case=\"BlackSmithNPC\" name=\"" + name + "\" title=\"" + title + "\" posX=\"" + posX + "\" posY=\"" + posY);
+			out.append("<entity case=\"BakerNPC\" name=\"" + name + "\" title=\"" + title + "\" posX=\"" + posX + "\" posY=\"" + posY);
 			out.append("\" hunger=\"" + hunger + "\" thirst=\"" + thirst + "\">");
 			out.flush();
 			out.newLine();
@@ -61,18 +50,24 @@ public class BlackSmithNPC extends NPCEntity implements Merchant{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	@Override
 	public void sellTo(Merchant merchant, Item item, int amount) {
-		//can't sell to the BlackSmith (currently)
+		if(item.getName() == "Wheat" && item.getStackSize() >= amount){
+			int rest = inventory.addItem(item.getName(), amount, item.getDurability());
+			int soldAmount = amount - rest;
+			item.removeItems(soldAmount);
+			merchant.getInventory().setMoney(merchant.getInventory().getMoney() + soldAmount * (int)Math.ceil(getSellSale() * item.getSellingPrice()));
+		}
 		
 	}
 
 	@Override
 	public void buyFrom(Merchant merchant, Item item, int amount) {
-		if(item.getStackSize() >= amount && merchant.getInventory().getMoney() >= item.getSellingPrice() * getBuySale() * amount){
-			int rest = merchant.getInventory().addItem(item.getName(), amount);
+		if(item.getName() == "Bread" && item.getStackSize() >= amount && merchant.getInventory().getMoney() >= (int)Math.ceil(item.getSellingPrice() * getBuySale()) * amount){
+			int rest = merchant.getInventory().addItem(item.getName(), amount, item.getDurability());
 			int soldAmount = amount - rest;
 			item.removeItems(soldAmount);
 			merchant.getInventory().setMoney(merchant.getInventory().getMoney() - soldAmount * (int)Math.ceil(getBuySale() * item.getSellingPrice()));
@@ -81,12 +76,12 @@ public class BlackSmithNPC extends NPCEntity implements Merchant{
 
 	@Override
 	public float getSellSale() {
-		return 2.0f;
+		return 1;
 	}
 
 	@Override
 	public float getBuySale() {
-		return 0.9f;
+		return 1;
 	}
 
 	@Override
@@ -96,7 +91,7 @@ public class BlackSmithNPC extends NPCEntity implements Merchant{
 
 	@Override
 	public boolean canSellTo() {
-		return false;
+		return true;
 	}
 
 }

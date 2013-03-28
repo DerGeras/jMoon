@@ -28,6 +28,7 @@ public class ItemFactory {
 	public static Item getItem(String name, int stackSize, int durability){
 		Item item = null;
 		switch(name){
+		case "Bread": item = getBreadItem(stackSize);break;
 		case "Bucket": item = getBucketItem(stackSize); break;
 		case "Dirt": item = getDirtItem(stackSize); break;
 		case "Fence": item = getFenceItem(stackSize); break;
@@ -46,6 +47,16 @@ public class ItemFactory {
 		return item;
 	}
 	
+	
+	/**
+	 * return a BreadItem
+	 * @param stackSize - size of the stack
+	 * @return the new bread item
+	 */
+	public static BreadItem getBreadItem(int stackSize){
+		return new BreadItem(stackSize);
+	}
+	
 	/**
 	 * return a BucketItem
 	 * @param stackSize - size of the stack
@@ -55,6 +66,11 @@ public class ItemFactory {
 		return new BucketItem(stackSize);
 	}
 	
+	/**
+	 * return a DirtItem
+	 * @param stackSize - size of the stack
+	 * @return the new dirt item
+	 */
 	public static DirtItem getDirtItem(int stackSize){
 		return new DirtItem(stackSize);
 	}

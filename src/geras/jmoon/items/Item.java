@@ -1,11 +1,12 @@
 package geras.jmoon.items;
 
+import geras.jmoon.entites.Entity;
+import geras.jmoon.entites.LivingEntity;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 
 import org.xml.sax.Attributes;
-
-import geras.jmoon.entites.Entity;
 
 public abstract class Item {
 	
@@ -76,6 +77,13 @@ public abstract class Item {
 	 */
 	public void useInventory(Entity entity){
 		//Standart: do nothing
+	}
+	
+	/**
+	 * eat this item, if you can
+	 */
+	public void eat(LivingEntity entity){
+		//standart: do nothing
 	}
 	
 	/**

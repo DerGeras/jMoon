@@ -124,7 +124,7 @@ public class WorldGameState extends BasicGameState {
 		
 		//draw the time
 		g.setColor(Color.white);
-		g.drawString("Day " + Clock.getDay() + " " + Clock.getHour() + ":" + Clock.getMinute(), container.getWidth() / 2 - 50, 50);
+		g.drawString("Day " + Clock.getDay() + " " + Clock.getHour() + ":" + Clock.getMinute(), 20, 30);
 		
 		//draw the amount of money
 		g.setColor(Color.yellow);
@@ -274,6 +274,9 @@ public class WorldGameState extends BasicGameState {
 		//Inventory
 		if(input.isKeyPressed(Input.KEY_I)){
 			inventoryPane.setVisibility(!inventoryPane.isVisible());
+		}
+		if(input.isKeyPressed(Input.KEY_E)){
+			JMoonGame.player.getCurrentTool().eat(JMoonGame.player);
 		}
 		
 		//Menu

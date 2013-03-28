@@ -34,16 +34,16 @@ public class CheaterNPC extends NPCEntity implements Merchant{
 	}
 
 	@Override
-	public void sellTo(PlayerEntity player, Item item, int amount) {
+	public void sellTo(Merchant merchant, Item item, int amount) {
 		//can't sell
 		
 	}
 
 	@Override
-	public void buyFrom(PlayerEntity player, Item item, int amount) {
+	public void buyFrom(Merchant merchant, Item item, int amount) {
 		//it's a cheater, you just get the item :)
-		if(item.getStackSize() >= amount && player.getInventory().getMoney() >= item.getSellingPrice() * getBuySale() * amount){
-			player.getInventory().addItem(item.getName(), amount);
+		if(item.getStackSize() >= amount && merchant.getInventory().getMoney() >= item.getSellingPrice() * getBuySale() * amount){
+			merchant.getInventory().addItem(item.getName(), amount);
 		}
 		
 	}

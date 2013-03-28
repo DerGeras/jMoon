@@ -18,7 +18,8 @@ public class EntityFactory {
 		case "CityMerchantNPC": entity = new CityMerchantNPC("", "", 50, 50);break;
 		case "CowNPC": entity = new CowNPC("", "", 50, 50);break;
 		case "BlackSmithNPC": entity = new BlackSmithNPC("", "", 50, 50);break;
-		case "PressF10NPC": entity = new PressF10NPC(50, 50);
+		case "PressF10NPC": entity = new PressF10NPC(50, 50);break;
+		case "BakerNPC": entity = new BakerNPC("", "", 50, 50);break;
 		}
 		
 		//read the attributes

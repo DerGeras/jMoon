@@ -1,6 +1,7 @@
 package geras.jmoon.entites;
 
 import geras.jmoon.items.HandItem;
+import geras.jmoon.items.Item;
 import geras.jmoon.items.UsableItem;
 import geras.jmoon.world.Map;
 
@@ -11,7 +12,7 @@ import org.newdawn.slick.Graphics;
 import org.xml.sax.Attributes;
 
 
-public class PlayerEntity extends LivingEntity {
+public class PlayerEntity extends LivingEntity implements Merchant{
 	
 	private UsableItem currentTool;
 
@@ -95,6 +96,40 @@ public class PlayerEntity extends LivingEntity {
 			thirst = Float.parseFloat(thirstS);
 		}
 	}
+	
+	@Override
+	public void sellTo(Merchant merchant, Item item, int amount) {
+		//do nothing
+		
+	}
+
+	@Override
+	public void buyFrom(Merchant merchant, Item item, int amount) {
+		//do nothing
+		
+	}
+
+	@Override
+	public float getSellSale() {
+		return 1;
+	}
+
+	@Override
+	public float getBuySale() {
+		return 1;
+	}
+
+	@Override
+	public boolean canBuyFrom() {
+		return false;
+	}
+
+	@Override
+	public boolean canSellTo() {
+		return false;
+	}
+
+
 	
 	///////////////////////////////////////////////////////
 	//

@@ -29,22 +29,22 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 	}
 
 	@Override
-	public void sellTo(PlayerEntity player, Item item, int amount) {
+	public void sellTo(Merchant merchant, Item item, int amount) {
 		if(item.getStackSize() >= amount){
 			int rest = inventory.addItem(item.getName(), amount, item.getDurability());
 			int soldAmount = amount - rest;
 			item.removeItems(soldAmount);
-			player.getInventory().setMoney(player.getInventory().getMoney() + soldAmount * (int)Math.ceil(getSellSale() * item.getSellingPrice()));
+			merchant.getInventory().setMoney(merchant.getInventory().getMoney() + soldAmount * (int)Math.ceil(getSellSale() * item.getSellingPrice()));
 		}
 	}
 
 	@Override
-	public void buyFrom(PlayerEntity player, Item item, int amount) {
-		if(item.getStackSize() >= amount && player.getInventory().getMoney() >= (int)Math.ceil(item.getSellingPrice() * getBuySale()) * amount){
-			int rest = player.getInventory().addItem(item.getName(), amount, item.getDurability());
+	public void buyFrom(Merchant merchant, Item item, int amount) {
+		if(item.getStackSize() >= amount && merchant.getInventory().getMoney() >= (int)Math.ceil(item.getSellingPrice() * getBuySale()) * amount){
+			int rest = merchant.getInventory().addItem(item.getName(), amount, item.getDurability());
 			int soldAmount = amount - rest;
 			item.removeItems(soldAmount);
-			player.getInventory().setMoney(player.getInventory().getMoney() - soldAmount * (int)Math.ceil(getBuySale() * item.getSellingPrice()));
+			merchant.getInventory().setMoney(merchant.getInventory().getMoney() - soldAmount * (int)Math.ceil(getBuySale() * item.getSellingPrice()));
 		}
 	}
 
