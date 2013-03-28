@@ -1,5 +1,6 @@
 package geras.jmoon.items;
 
+import geras.jmoon.entites.LivingEntity;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.plants.PotatoPlant;
 import geras.jmoon.settings.Settings;
@@ -23,6 +24,14 @@ public class PotatoItem extends UsableItem {
 				map.addPlant(new PotatoPlant(fieldX, fieldY, WorldElements.POTATO_MIN_VALUE, map));
 				stackSize--;
 			}
+		}
+	}
+	
+	@Override
+	public void eat(LivingEntity entity){
+		if(stackSize > 0 && entity.getHunger() > 2.0f){
+			entity.setHunger(entity.getHunger() - 2.0f);
+			stackSize--;
 		}
 	}
 

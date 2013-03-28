@@ -14,7 +14,7 @@ import org.xml.sax.Attributes;
 
 public class ChestEntity extends Entity implements Merchant {
 	
-	private Inventory inventory;
+	protected Inventory inventory;
 	
 	public ChestEntity(int posX, int posY){
 		super();

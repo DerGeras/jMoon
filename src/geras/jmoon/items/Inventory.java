@@ -134,6 +134,7 @@ public class Inventory {
 	 * @return the item with the specified name or null
 	 */
 	public Item getItem(String name){
+		clean();
 		for(Item item : content){
 			if(item.getName() == name){
 				return item;

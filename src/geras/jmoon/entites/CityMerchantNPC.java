@@ -76,7 +76,6 @@ public class CityMerchantNPC extends NPCEntity implements Merchant {
 		try {
 			out.append("<entity case=\"CityMerchantNPC\" name=\"" + name + "\" title=\"" + title + "\" posX=\"" + posX + "\" posY=\"" + posY);
 			out.append("\" hunger=\"" + hunger + "\" thirst=\"" + thirst + "\">");
-			out.flush();
 			out.newLine();
 			
 			//output the inventory

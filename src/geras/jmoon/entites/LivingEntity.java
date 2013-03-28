@@ -1,6 +1,5 @@
 package geras.jmoon.entites;
 
-import geras.jmoon.items.Inventory;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
@@ -17,17 +16,17 @@ public abstract class LivingEntity extends Entity {
 	protected int nextX; //direction to move on the next update (-1, 0, 1)
 	protected int nextY; //direction to move on the next update (-1, 0, 1)
 	
-	protected Inventory inventory;
 	
 	protected int[] obstacles;
 
 	protected LivingEntity() {
 		super();
+		hunger = 0;
+		thirst = 0;
 		width = Settings.tileWidth;
 		height = Settings.tileHeight;
 		nextX = nextY = 0;
 		direction = Map.direction.south;
-		inventory = new Inventory();
 		obstacles = new int[2];
 		obstacles[0] = WorldElements.ROCK_VALUE;
 		obstacles[1] = WorldElements.FENCE_VALUE;
@@ -95,7 +94,7 @@ public abstract class LivingEntity extends Entity {
 	 */
 	public void setHunger(float hunger) {
 		if(hunger < 0.0f) this.hunger = 0.0f;
-		if(hunger > 16.0f) this.hunger = 16.0f;
+		if(hunger > Settings.maxHunger) this.hunger = Settings.maxHunger;
 		this.hunger = hunger;
 	}
 	
@@ -109,7 +108,7 @@ public abstract class LivingEntity extends Entity {
 	 */
 	public void setThirst(float thirst) {
 		if(thirst < 0.0f) this.thirst = 0.0f;
-		if(thirst > 16.0f) this.thirst = 16.0f;
+		if(thirst > Settings.maxThirst) this.thirst = Settings.maxThirst;
 		this.thirst = thirst;
 	}
 	
@@ -143,14 +142,6 @@ public abstract class LivingEntity extends Entity {
 			this.direction = Map.direction.north;
 		}
 		if(nextY == 0)this.nextY = 0;
-	}
-	
-	public Inventory getInventory(){
-		return inventory;
-	}
-	
-	public void setInventory(Inventory inventory){
-		this.inventory = inventory;
 	}
 
 }

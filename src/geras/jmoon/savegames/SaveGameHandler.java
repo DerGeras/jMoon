@@ -68,8 +68,8 @@ public class SaveGameHandler extends DefaultHandler {
 		
 		//inventory
 		if(qName.equalsIgnoreCase("inventory") && currEntity != null){
-			if(currEntity instanceof LivingEntity){ //yes, I saw it, and I hate it
-				currInventory = ((LivingEntity) currEntity).getInventory();
+			if(currEntity != null){ //yes, I saw it, and I hate it
+				currInventory = currEntity.getInventory();
 				currInventory.clear();
 				currInventory.setMoney(Integer.parseInt(attributes.getValue("money")));
 			}

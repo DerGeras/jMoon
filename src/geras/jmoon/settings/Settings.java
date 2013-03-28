@@ -15,4 +15,9 @@ public class Settings {
 	public static final int maxDurability = 100;
 	public static final int maxInventorySize = 16;
 	
+	public static final float maxHunger = 16.0f;
+	public static final float maxThirst = 16.0f;
+	
+	public static final int maxVillagerCount = 150;
+	
 }

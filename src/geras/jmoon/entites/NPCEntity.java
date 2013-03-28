@@ -43,7 +43,13 @@ public abstract class NPCEntity extends LivingEntity{
 	@Override
 	public void readFromAttributes(Attributes attributes) {
 		name = attributes.getValue("name");
+		if(name == null){
+			name = "";
+		}
 		title = attributes.getValue("title");
+		if(title == null){
+			title = "";
+		}
 		
 		String posXS = attributes.getValue("posX");
 		String posYS = attributes.getValue("posY");

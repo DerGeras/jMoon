@@ -1,8 +1,11 @@
 package geras.jmoon.entites;
 
+import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.main.JMoonGame;
 
 import org.xml.sax.Attributes;
+
+import village.VillagerNPC;
 
 public class EntityFactory {
 
@@ -20,7 +23,9 @@ public class EntityFactory {
 		case "BlackSmithNPC": entity = new BlackSmithNPC("", "", 50, 50);break;
 		case "PressF10NPC": entity = new PressF10NPC(50, 50);break;
 		case "BakerNPC": entity = new BakerNPC("", "", 50, 50);break;
-		case "ChestEntity": entity = new ChestEntity(128,128);
+		case "ChestEntity": entity = new ChestEntity(128,128);break;
+		case "StallChestEntity": entity = new StallChestEntity(WorldGameState.stallX, WorldGameState.stallY);break;
+		case "VillagerNPC": entity = new VillagerNPC();break;
 		}
 		
 		//read the attributes

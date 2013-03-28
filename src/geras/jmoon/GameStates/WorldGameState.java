@@ -1,5 +1,6 @@
 package geras.jmoon.GameStates;
 
+import geras.jmoon.entites.BakerNPC;
 import geras.jmoon.entites.BlackSmithNPC;
 import geras.jmoon.entites.CheaterNPC;
 import geras.jmoon.entites.ChestEntity;
@@ -9,6 +10,7 @@ import geras.jmoon.entites.Entity;
 import geras.jmoon.entites.Merchant;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.entites.PressF10NPC;
+import geras.jmoon.entites.StallChestEntity;
 import geras.jmoon.gui.BasicGUIElement;
 import geras.jmoon.gui.Button;
 import geras.jmoon.gui.InventoryPane;
@@ -28,6 +30,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -37,12 +40,20 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import village.Village;
+import village.VillagerNPC;
+
 public class WorldGameState extends BasicGameState {
 
+	
+	public static int stallX = Settings.tileWidth * Settings.mapHeight / 3;
+	public static int stallY = Settings.tileHeight * Settings.mapHeight / 2 - Settings.tileHeight * 2;
+	public static StallChestEntity stall;
 	
 	public Map worldMap; //the main map
 	
 	private static final int id = JMoonGame.GameStates.WORLD.ordinal();
+
 	
 	public BasicGUIElement gui;
 	public InventoryPane inventoryPane;
@@ -126,10 +137,15 @@ public class WorldGameState extends BasicGameState {
 		g.setColor(Color.white);
 		g.drawString("Day " + Clock.getDay() + " " + Clock.getHour() + ":" + Clock.getMinute(), 20, 30);
 		
+		//draw the amount of villagers
+		g.setColor(Color.white);
+		g.drawString("Villagers: " + Village.getVillagerCount(), 20, 50);
+		
 		//draw the amount of money
 		g.setColor(Color.yellow);
 		g.drawString("Money: " + JMoonGame.player.getInventory().getMoney(), 50, container.getHeight() - 50);
 		
+				
 		//draw the gui
 		gui.draw(g);
 		
@@ -170,14 +186,23 @@ public class WorldGameState extends BasicGameState {
 			worldMap.entityList.add(new CowNPC("GeMoo", "The Furious", midX - 100, midY - 300));
 			worldMap.entityList.add(new CityMerchantNPC("SiBi", "City Merchant", midX - 300, midY));
 			worldMap.entityList.add(new BlackSmithNPC("Mad-Murdoc", "Blacksmith", midX + 300, midY + 300));
+			worldMap.entityList.add(new BakerNPC("west_", "Baker", midX + 340, midY + 300));
 			worldMap.entityList.add(new PressF10NPC(midX,midY));
+			
+			VillagerNPC villager;
+			for(int i = 0; i < 10; i++){
+				villager = new VillagerNPC();
+				villager.setHunger(i - 1.0f);
+				worldMap.entityList.add(villager);
+			}
+			
+			//init StallChest
+			worldMap.entityList.add(new StallChestEntity(stallX + 16, stallY + 16));
 			
 			//init chests
 			worldMap.entityList.add(new ChestEntity(midX - 256 + 16, midY - 512 + 16));
-			worldMap.entityList.add(new ChestEntity(midX - 64 + 16, midY - 32 + 16));
 			
 		}
-
 
 		//initialize gui
 		gui = new BasicGUIElement(0, 0);
@@ -224,8 +249,16 @@ public class WorldGameState extends BasicGameState {
 				
 				handleInput(container.getInput(), game);
 				worldMap.updatePlants(timeSinceLastFrame);
+				
+				//add villagers?
+				if(Village.getAverageHungerValue() < 2 && Village.getVillagerCount() < Settings.maxVillagerCount){
+					worldMap.entityList.add(new VillagerNPC());
+				}
+				
 				//Update all entities
-				for(Entity entity : worldMap.entityList){
+				LinkedList<Entity> entityList = new LinkedList<Entity>();
+				entityList.addAll(worldMap.entityList);
+				for(Entity entity : entityList){
 					entity.update(timeSinceLastFrame,worldMap);
 				}
 			}

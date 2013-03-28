@@ -1,6 +1,7 @@
 package geras.jmoon.entites;
 
 import geras.jmoon.GameStates.WorldGameState;
+import geras.jmoon.items.Inventory;
 import geras.jmoon.main.JMoonGame;
 import geras.jmoon.world.Map;
 
@@ -25,6 +26,8 @@ public abstract class Entity {
 	protected int height = 32; //height of the entity
 
 	protected Image entityImg; //image for the entity
+
+	protected Inventory inventory;
 	
 	/**
 	 * Basic Constructor, initialize values
@@ -33,6 +36,7 @@ public abstract class Entity {
 	protected Entity(){
 		posX = posY = 0;
 		EntityId = getNextFreeEntityId();
+		inventory = new Inventory();
 	}
 	
 	/**
@@ -160,6 +164,15 @@ public abstract class Entity {
 	
 	public int getHeight(){
 		return height;
+	}
+	
+	
+	public Inventory getInventory(){
+		return inventory;
+	}
+	
+	public void setInventory(Inventory inventory){
+		this.inventory = inventory;
 	}
 	
 }
