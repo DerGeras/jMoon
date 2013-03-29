@@ -1,5 +1,6 @@
 package geras.jmoon.gui;
 
+import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.entites.PlayerEntity;
 import geras.jmoon.main.JMoonGame;
 
@@ -29,6 +30,24 @@ public class Button extends BasicPane{
 		@Override
 		public void buttonClicked() {
 			JMoonGame.saveGame();			
+		}
+		
+	}
+	
+	public static class ContinueButton implements ButtonListener{
+
+		private BasicPane pane;
+		private WorldGameState state;
+		
+		public ContinueButton(BasicPane pane, WorldGameState state){
+			this.pane = pane;
+			this.state = state;
+		}
+		
+		@Override
+		public void buttonClicked() {
+			pane.setVisibility(false);
+			state.unPause();
 		}
 		
 	}

@@ -13,6 +13,10 @@ public class MenuPane extends BasicPane {
 		super(relativeX, relativeY, width, height, "Sprites/GUI/MenuBackGround.png");
 		this.state = state;
 		
+		Button continueButton = new Button(width / 2 - 64, height / 2, 128, 32, "Sprites/GUI/ContinueButton.png");
+		continueButton.addButtonListener(new Button.ContinueButton(this, state));
+		addChild(continueButton);
+		
 		Button saveAndExitButton = new Button(width / 2 - 64, height / 2 + 100, 128, 32, "Sprites/GUI/Save_and_Quit.png");
 		saveAndExitButton.addButtonListener(new Button.SaveAndQuitButton());
 		addChild(saveAndExitButton);
