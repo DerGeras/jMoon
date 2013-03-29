@@ -27,14 +27,19 @@ public class VillagerNPC extends NPCEntity implements Merchant{
 	private VillagerAI brain = new VillagerAI();
 
 	public VillagerNPC(){
-		super("", "", OUT_OF_FIELD_VALUE_X, OUT_OF_FIELD_VAlUE_Y);
+		super("", "Villager", OUT_OF_FIELD_VALUE_X, OUT_OF_FIELD_VAlUE_Y);
+		
 		Village.addVillager(this);
 		setEntityImg("Sprites/Entities/Hero.png");
+		move_speed /= 2;
 	}
 	
 	public VillagerNPC(String name, String title, int posX, int posY) {
 		super(name, title, posX, posY);
+		
 		Village.addVillager(this);
+		setEntityImg("Sprites/Entities/Hero.png");
+		move_speed /= 2;
 	}
 	
 	@Override

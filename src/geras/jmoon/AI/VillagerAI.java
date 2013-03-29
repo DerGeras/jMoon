@@ -33,7 +33,7 @@ public class VillagerAI{
 		}
 		
 		//go to the stall
-		if(villager.getHunger() > 8.0f && timeSinceLastBuy > timeBetweenBuys && (villager.getPosX() == VillagerNPC.OUT_OF_FIELD_VALUE_X || villager.getPosY() == VillagerNPC.OUT_OF_FIELD_VAlUE_Y)){
+		if(villager.getHunger() > 6.0f && timeSinceLastBuy > timeBetweenBuys && (villager.getPosX() == VillagerNPC.OUT_OF_FIELD_VALUE_X || villager.getPosY() == VillagerNPC.OUT_OF_FIELD_VAlUE_Y)){
 			villager.setPosition(42, Settings.mapHeight / 2 * Settings.tileHeight);
 		}
 		

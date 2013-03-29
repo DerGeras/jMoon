@@ -33,7 +33,8 @@ public class PlayerEntity extends LivingEntity implements Merchant{
 		inventory.addItem("Water Bucket", 64);
 		inventory.addItem("Fence",64);
 		inventory.addItem("Bucket", 64);
-		inventory.addItem("Potato", 64);
+		inventory.addItem("Potato", 128);
+		inventory.addItem("Bread", 128);
 		inventory.setMoney(500);
 		currentTool = new HandItem();
 	}

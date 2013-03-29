@@ -1,5 +1,5 @@
 <game>
-<clock timeSinceStart="59200"></clock>
+<clock timeSinceStart="698700"></clock>
 <map width="100" height="100">
 <layers>
 <layer name="Ground" width="100" height="100">
@@ -58,7 +58,7 @@
 <line>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </line>
 <line>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </line>
 <line>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </line>
-<line>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </line>
+<line>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </line>
 <line>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </line>
 <line>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </line>
 <line>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </line>
@@ -312,8 +312,8 @@
 <plants>
 </plants>
 <entities>
-<entity case="PlayerEntity" posX="1048.0" posY="1672.0" hunger="0.0" thirst="0.0">
-<inventory money="512">
+<entity case="PlayerEntity" posX="556.0" posY="1654.0" hunger="0.0" thirst="0.0">
+<inventory money="1760">
 <tool name="Hoe" maxDurability="100" durability="100"></tool>
 <tool name="Watering Can" maxDurability="100" durability="100"></tool>
 <tool name="Sickel" maxDurability="100" durability="100"></tool>
@@ -322,14 +322,13 @@
 <item name="Water Bucket" maxStackSize="256" stackSize="64"></item>
 <item name="Fence" maxStackSize="256" stackSize="64"></item>
 <item name="Bucket" maxStackSize="256" stackSize="64"></item>
-<item name="Potato" maxStackSize="256" stackSize="32"></item>
 </inventory>
 </entity>
 <entity case="CheaterNPC" name="Nox" title="Cheater" posX="1400.0" posY="1800.0" hunger="0.0" thirst="0.0">
 <inventory money="0">
 </inventory>
 </entity>
-<entity case="CowNPC" name="GeMoo" title="The Furious" posX="1512.0" posY="1315.0" hunger="0.0" thirst="0.0">
+<entity case="CowNPC" name="GeMoo" title="The Furious" posX="2014.0" posY="182.0" hunger="0.0" thirst="0.0">
 <inventory money="0">
 </inventory>
 </entity>
@@ -360,56 +359,141 @@
 <item name="Bread" maxStackSize="256" stackSize="10"></item>
 </inventory>
 </entity>
-<entity case="PressF10NPC" name="Press F10" title="Not crazy" posX="1327.0" posY="1657.0" hunger="0.0" thirst="0.0" pressedF10="true" initialX="1600.0" initialY="1600.0">
+<entity case="PressF10NPC" name="Press F10" title="Not crazy" posX="1600.0" posY="1600.0" hunger="0.0" thirst="0.0" pressedF10="true" initialX="1600.0" initialY="1600.0">
 <inventory money="0">
 </inventory>
 </entity>
-<entity case="VillagerNPC" name="" title="" posX="-50.0" posY="-50.0" hunger="-0.8557309" thirst="0.0" timeSinceLastBuy="359200">
+<entity case="VillagerNPC" name="" title="" posX="257.5" posY="-50.0" hunger="8.369846" thirst="0.0" timeSinceLastBuy="4100">
 <inventory money="0">
 </inventory>
 </entity>
-<entity case="VillagerNPC" name="" title="" posX="-50.0" posY="-50.0" hunger="0.14426644" thirst="0.0" timeSinceLastBuy="359200">
+<entity case="VillagerNPC" name="" title="" posX="250.5" posY="1600.0" hunger="6.3696623" thirst="0.0" timeSinceLastBuy="609980">
 <inventory money="0">
 </inventory>
 </entity>
-<entity case="VillagerNPC" name="" title="" posX="-50.0" posY="-50.0" hunger="1.1442691" thirst="0.0" timeSinceLastBuy="359200">
+<entity case="VillagerNPC" name="" title="" posX="813.0" posY="1600.0" hunger="7.369959" thirst="0.0" timeSinceLastBuy="685000">
 <inventory money="0">
 </inventory>
 </entity>
-<entity case="VillagerNPC" name="" title="" posX="-50.0" posY="-50.0" hunger="2.1442046" thirst="0.0" timeSinceLastBuy="359200">
+<entity case="VillagerNPC" name="" title="" posX="356.5" posY="-50.0" hunger="14.369796" thirst="0.0" timeSinceLastBuy="5420">
 <inventory money="0">
 </inventory>
 </entity>
-<entity case="VillagerNPC" name="" title="" posX="-50.0" posY="-50.0" hunger="3.1442046" thirst="0.0" timeSinceLastBuy="359200">
-<inventory money="0">
-</inventory>
-</entity>
-<entity case="VillagerNPC" name="" title="" posX="-50.0" posY="-50.0" hunger="4.1442046" thirst="0.0" timeSinceLastBuy="359200">
-<inventory money="0">
-</inventory>
-</entity>
-<entity case="VillagerNPC" name="" title="" posX="-50.0" posY="-50.0" hunger="5.1442046" thirst="0.0" timeSinceLastBuy="359200">
-<inventory money="0">
-</inventory>
-</entity>
-<entity case="VillagerNPC" name="" title="" posX="-50.0" posY="-50.0" hunger="6.1442046" thirst="0.0" timeSinceLastBuy="359200">
-<inventory money="0">
-</inventory>
-</entity>
-<entity case="VillagerNPC" name="" title="" posX="-50.0" posY="-50.0" hunger="7.1442046" thirst="0.0" timeSinceLastBuy="359200">
-<inventory money="0">
-</inventory>
-</entity>
-<entity case="VillagerNPC" name="" title="" posX="547.0" posY="-50.0" hunger="2.1443682" thirst="0.0" timeSinceLastBuy="3980">
+<entity case="VillagerNPC" name="" title="" posX="920.5" posY="-50.0" hunger="15.370069" thirst="0.0" timeSinceLastBuy="12940">
 <inventory money="0">
 </inventory>
 </entity>
 <entity case="StallChestEntity" posX="1082.0" posY="1552.0">
 <inventory money="0">
-<item name="Potato" maxStackSize="256" stackSize="6"></item>
+<item name="Potato" maxStackSize="256" stackSize="2"></item>
+<item name="Bread" maxStackSize="256" stackSize="2"></item>
 </inventory>
 </entity>
 <entity case="ChestEntity" posX="1360.0" posY="1104.0">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1843.0" posY="-50.0" hunger="11.187435" thirst="0.0" timeSinceLastBuy="25240">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1739.5" posY="-50.0" hunger="11.004598" thirst="0.0" timeSinceLastBuy="23860">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1739.5" posY="-50.0" hunger="11.004065" thirst="0.0" timeSinceLastBuy="23860">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1637.5" posY="-50.0" hunger="10.821759" thirst="0.0" timeSinceLastBuy="22500">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1637.5" posY="-50.0" hunger="10.821226" thirst="0.0" timeSinceLastBuy="22500">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1534.0" posY="-50.0" hunger="10.638921" thirst="0.0" timeSinceLastBuy="21120">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1534.0" posY="-50.0" hunger="10.638121" thirst="0.0" timeSinceLastBuy="21120">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1432.0" posY="-50.0" hunger="10.455793" thirst="0.0" timeSinceLastBuy="19760">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1430.5" posY="-50.0" hunger="10.454993" thirst="0.0" timeSinceLastBuy="19740">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1328.5" posY="-50.0" hunger="10.272873" thirst="0.0" timeSinceLastBuy="18380">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1328.5" posY="-50.0" hunger="10.272073" thirst="0.0" timeSinceLastBuy="18380">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1280.5" posY="-50.0" hunger="10.187546" thirst="0.0" timeSinceLastBuy="17740">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1225.0" posY="-50.0" hunger="10.089686" thirst="0.0" timeSinceLastBuy="17000">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1225.0" posY="-50.0" hunger="10.088886" thirst="0.0" timeSinceLastBuy="17000">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1177.0" posY="-50.0" hunger="10.004359" thirst="0.0" timeSinceLastBuy="16360">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1123.0" posY="-50.0" hunger="9.9065" thirst="0.0" timeSinceLastBuy="15640">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1121.5" posY="-50.0" hunger="9.905967" thirst="0.0" timeSinceLastBuy="15620">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="1174.0" posY="-50.0" hunger="15.821307" thirst="0.0" timeSinceLastBuy="16320">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="549.0" posY="1600.0" hunger="12.723695" thirst="0.0" timeSinceLastBuy="36760">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="549.0" posY="1600.0" hunger="12.723428" thirst="0.0" timeSinceLastBuy="36760">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="501.0" posY="1600.0" hunger="12.638901" thirst="0.0" timeSinceLastBuy="36120">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="501.0" posY="1600.0" hunger="12.638101" thirst="0.0" timeSinceLastBuy="36120">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="445.5" posY="1600.0" hunger="12.540774" thirst="0.0" timeSinceLastBuy="35380">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="445.5" posY="1600.0" hunger="12.540507" thirst="0.0" timeSinceLastBuy="35380">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="399.0" posY="1600.0" hunger="12.455979" thirst="0.0" timeSinceLastBuy="34760">
+<inventory money="0">
+</inventory>
+</entity>
+<entity case="VillagerNPC" name="" title="" posX="397.5" posY="1600.0" hunger="12.455446" thirst="0.0" timeSinceLastBuy="34740">
 <inventory money="0">
 </inventory>
 </entity>

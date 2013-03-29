@@ -251,8 +251,10 @@ public class WorldGameState extends BasicGameState {
 				worldMap.updatePlants(timeSinceLastFrame);
 				
 				//add villagers?
-				if(Village.getAverageHungerValue() < Village.MAX_HUNGER_TO_GROW && Village.getVillagerCount() < Settings.maxVillagerCount){
-					worldMap.entityList.add(new VillagerNPC());
+				if(Village.getAverageHungerValue() <= Village.MAX_HUNGER_TO_GROW && Village.getVillagerCount() < Settings.maxVillagerCount){
+					VillagerNPC villager = new VillagerNPC();
+					villager.setHunger(10.0f);
+					worldMap.entityList.add(villager);
 				}
 				
 				//Update all entities
