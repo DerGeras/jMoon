@@ -23,6 +23,8 @@ import geras.jmoon.main.JMoonGame;
 import geras.jmoon.savegames.GameLoader;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.time.Clock;
+import geras.jmoon.village.Village;
+import geras.jmoon.village.VillagerNPC;
 import geras.jmoon.world.Map;
 import geras.jmoon.world.WorldElements;
 
@@ -40,8 +42,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import village.Village;
-import village.VillagerNPC;
 
 public class WorldGameState extends BasicGameState {
 

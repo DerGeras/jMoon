@@ -1,10 +1,10 @@
 package geras.jmoon.AI;
 
-import village.VillagerNPC;
 import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.items.Item;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.time.Clock;
+import geras.jmoon.village.VillagerNPC;
 
 public class VillagerAI{
 

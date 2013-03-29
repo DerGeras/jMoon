@@ -2,10 +2,10 @@ package geras.jmoon.entites;
 
 import geras.jmoon.GameStates.WorldGameState;
 import geras.jmoon.main.JMoonGame;
+import geras.jmoon.village.VillagerNPC;
 
 import org.xml.sax.Attributes;
 
-import village.VillagerNPC;
 
 public class EntityFactory {
 

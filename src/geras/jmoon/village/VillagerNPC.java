@@ -1,4 +1,4 @@
-package village;
+package geras.jmoon.village;
 
 import geras.jmoon.AI.VillagerAI;
 import geras.jmoon.GameStates.WorldGameState;

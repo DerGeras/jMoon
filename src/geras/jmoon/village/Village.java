@@ -1,4 +1,4 @@
-package village;
+package geras.jmoon.village;
 
 import java.util.LinkedList;
 
