@@ -25,6 +25,7 @@ public class PlayerEntity extends LivingEntity implements Merchant{
 		super();
 		this.hunger = 0;
 		setEntityImg("Sprites/Entities/Hero.png");
+		inventory.addItem("Axe",1);
 		inventory.addItem("Hoe",1);
 		inventory.addItem("Watering Can", 1);
 		inventory.addItem("Sickel",1);
