@@ -177,36 +177,36 @@ public class WorldElements {
 
 
 	private void drawGrass(int x,int y, Map map){
-		tiles.get("Grass").drawEmbedded(x,y);
+		tiles.get("Grass").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
 	private void drawGravel(int x, int y, Map map){
-		tiles.get("Gravel").drawEmbedded(x,y);
+		tiles.get("Gravel").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
 	private void drawStone(int x, int y, Map map){
-		tiles.get("Stone").drawEmbedded(x, y);
+		tiles.get("Stone").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
 	private void drawDirt(int x, int y, Map map){
-		tiles.get("Dirt").drawEmbedded(x,y);
+		tiles.get("Dirt").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
 	private void drawWetDirt(int x, int y, Map map) {
-		tiles.get("WetDirt").drawEmbedded(x,y);
+		tiles.get("WetDirt").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 		
 	}
 	
 	private void drawWater(int x, int y, Map map){
-		tiles.get("Water").drawEmbedded(x,y);
+		tiles.get("Water").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
 	private void drawHole(int x, int y, Map map){
-		tiles.get("Hole").drawEmbedded(x,y);
+		tiles.get("Hole").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
 	private void drawOverlay(int x, int y, Map map){
-		tiles.get("Overlay").drawEmbedded(x,y);
+		tiles.get("Overlay").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
 	//Decoration
@@ -225,36 +225,36 @@ public class WorldElements {
 			if(map.getField("Decoration", fieldX, fieldY + 1) == FENCE_VALUE){
 				if(map.getField("Decoration", fieldX - 1, fieldY) == FENCE_VALUE){
 					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-						tiles.get("FenceCenter").drawEmbedded(x,y);
+						tiles.get("FenceCenter").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 					}
 					else{
-						tiles.get("FenceTopCenter").drawEmbedded(x,y);
+						tiles.get("FenceTopCenter").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 					}
 				}
 				else{
 					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-						tiles.get("FenceCenterLeft").drawEmbedded(x,y);
+						tiles.get("FenceCenterLeft").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 					}
 					else{
-						tiles.get("FenceTopLeft").drawEmbedded(x,y);
+						tiles.get("FenceTopLeft").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 					}
 				}
 			}
 			else{
 				if(map.getField("Decoration", fieldX - 1, fieldY) == FENCE_VALUE){
 					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-						tiles.get("FenceBottomCenter").drawEmbedded(x,y);
+						tiles.get("FenceBottomCenter").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 					}
 					else{
-						tiles.get("FenceLeftRightCenter").drawEmbedded(x,y);
+						tiles.get("FenceLeftRightCenter").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 					}
 				}
 				else{
 					if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-						tiles.get("FenceBottomLeft").drawEmbedded(x,y);
+						tiles.get("FenceBottomLeft").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 					}
 					else{
-						tiles.get("FenceLeft").drawEmbedded(x,y);
+						tiles.get("FenceLeft").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 					}
 				}
 			}
@@ -265,18 +265,18 @@ public class WorldElements {
 		if(map.getField("Decoration", fieldX-1, fieldY) == FENCE_VALUE){
 			if(map.getField("Decoration", fieldX, fieldY + 1) == FENCE_VALUE){
 				if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-					tiles.get("FenceCenterRight").drawEmbedded(x,y);
+					tiles.get("FenceCenterRight").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 				}
 				else{
-					tiles.get("FenceTopRight").drawEmbedded(x,y);
+					tiles.get("FenceTopRight").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 				}
 			}
 			else{
 				if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-					tiles.get("FenceBottomRight").drawEmbedded(x,y);
+					tiles.get("FenceBottomRight").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 				}
 				else{
-					tiles.get("FenceRight").drawEmbedded(x,y);
+					tiles.get("FenceRight").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 				}
 			}
 			return;
@@ -285,48 +285,48 @@ public class WorldElements {
 		//check bottom
 		if(map.getField("Decoration", fieldX, fieldY + 1) == FENCE_VALUE){
 			if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-				tiles.get("FenceTopBottomCenter").drawEmbedded(x,y);
+				tiles.get("FenceTopBottomCenter").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 			}
 			else{
-				tiles.get("FenceTop").drawEmbedded(x,y);
+				tiles.get("FenceTop").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 			}
 			return;
 		}
 		
 		//Check top
 		if(map.getField("Decoration", fieldX, fieldY - 1) == FENCE_VALUE){
-			tiles.get("FenceBottom").drawEmbedded(x,y);
+			tiles.get("FenceBottom").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 			return;
 		}
 		//Standalone
-		tiles.get("Fence").drawEmbedded(x,y);
+		tiles.get("Fence").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
 	
 	private void drawRock(int x, int y, Map map){
-		tiles.get("Rock").drawEmbedded(x,y);
+		tiles.get("Rock").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
 	
 	//Crops
 	private void drawWheat(int x, int y, Map map, int growth){
 		switch(growth){
-		case 0: tiles.get("Weed1").drawEmbedded(x,y);break;
-		case 1: tiles.get("Weed2").drawEmbedded(x,y);break;
-		case 2: tiles.get("Weed3").drawEmbedded(x,y);break;
-		case 3: tiles.get("Weed4").drawEmbedded(x,y);break;
-		case 4: tiles.get("Weed5").drawEmbedded(x,y);break;
-		case 5: tiles.get("Weed6").drawEmbedded(x,y);break;
+		case 0: tiles.get("Weed1").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
+		case 1: tiles.get("Weed2").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
+		case 2: tiles.get("Weed3").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
+		case 3: tiles.get("Weed4").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
+		case 4: tiles.get("Weed5").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
+		case 5: tiles.get("Weed6").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
 		}
 	}
 	private void drawPotatoes(int x, int y, Map map, int growth){
 		switch(growth){
-		case 0: tiles.get("Potato1").drawEmbedded(x,y);break;
-		case 1: tiles.get("Potato2").drawEmbedded(x,y);break;
-		case 2: tiles.get("Potato3").drawEmbedded(x,y);break;
-		case 3: tiles.get("Potato4").drawEmbedded(x,y);break;
-		case 4: tiles.get("Potato5").drawEmbedded(x,y);break;
-		case 5: tiles.get("Potato6").drawEmbedded(x,y);break;
+		case 0: tiles.get("Potato1").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
+		case 1: tiles.get("Potato2").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
+		case 2: tiles.get("Potato3").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
+		case 3: tiles.get("Potato4").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
+		case 4: tiles.get("Potato5").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
+		case 5: tiles.get("Potato6").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
 		}
 	}
 	

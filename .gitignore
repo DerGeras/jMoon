@@ -1,0 +1,12 @@
+#folders
+eclipse
+
+*.class
+
+# Package Files #
+*.war
+*.ear
+
+# Builds #
+build
+release
