@@ -4,9 +4,9 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
-import geras.jmoon.entites.PlayerEntity;
-import geras.jmoon.items.Inventory;
-import geras.jmoon.items.Item;
+import geras.jmoon.entity.PlayerEntity;
+import geras.jmoon.item.Inventory;
+import geras.jmoon.item.Item;
 
 public class InventoryPane extends BasicPane {
 	

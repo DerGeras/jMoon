@@ -125,7 +125,7 @@ public class WorldElements {
 	 * @param tileValue - value of the tile that should be drawn
 	 * @param map - the current map
 	 */
-	public void draw(int x, int y, int fieldX, int fieldY, int tileValue, Map map){
+	public void draw(int x, int y, int fieldX, int fieldY, int tileValue, World map){
 		switch(tileValue){
 		//Map
 		case GRASS_VALUE: drawGrass(x,y,map); break;
@@ -176,36 +176,36 @@ public class WorldElements {
 	//Map
 
 
-	private void drawGrass(int x,int y, Map map){
+	private void drawGrass(int x,int y, World map){
 		tiles.get("Grass").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
-	private void drawGravel(int x, int y, Map map){
+	private void drawGravel(int x, int y, World map){
 		tiles.get("Gravel").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
-	private void drawStone(int x, int y, Map map){
+	private void drawStone(int x, int y, World map){
 		tiles.get("Stone").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
-	private void drawDirt(int x, int y, Map map){
+	private void drawDirt(int x, int y, World map){
 		tiles.get("Dirt").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
-	private void drawWetDirt(int x, int y, Map map) {
+	private void drawWetDirt(int x, int y, World map) {
 		tiles.get("WetDirt").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 		
 	}
 	
-	private void drawWater(int x, int y, Map map){
+	private void drawWater(int x, int y, World map){
 		tiles.get("Water").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
-	private void drawHole(int x, int y, Map map){
+	private void drawHole(int x, int y, World map){
 		tiles.get("Hole").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
-	private void drawOverlay(int x, int y, Map map){
+	private void drawOverlay(int x, int y, World map){
 		tiles.get("Overlay").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
@@ -219,7 +219,7 @@ public class WorldElements {
 	 * @param fieldX
 	 * @param fieldY
 	 */
-	private void drawFence(int x, int y, Map map, int fieldX, int fieldY){
+	private void drawFence(int x, int y, World map, int fieldX, int fieldY){
 		//Check right
 		if(map.getField("Decoration", fieldX + 1, fieldY) == FENCE_VALUE){
 			if(map.getField("Decoration", fieldX, fieldY + 1) == FENCE_VALUE){
@@ -303,13 +303,13 @@ public class WorldElements {
 	}
 	
 	
-	private void drawRock(int x, int y, Map map){
+	private void drawRock(int x, int y, World map){
 		tiles.get("Rock").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);
 	}
 	
 	
 	//Crops
-	private void drawWheat(int x, int y, Map map, int growth){
+	private void drawWheat(int x, int y, World map, int growth){
 		switch(growth){
 		case 0: tiles.get("Weed1").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
 		case 1: tiles.get("Weed2").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
@@ -319,7 +319,7 @@ public class WorldElements {
 		case 5: tiles.get("Weed6").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
 		}
 	}
-	private void drawPotatoes(int x, int y, Map map, int growth){
+	private void drawPotatoes(int x, int y, World map, int growth){
 		switch(growth){
 		case 0: tiles.get("Potato1").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;
 		case 1: tiles.get("Potato2").drawEmbedded(x,y,Settings.tileWidth,Settings.tileHeight);break;

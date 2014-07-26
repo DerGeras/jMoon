@@ -1,6 +1,6 @@
 package geras.jmoon.AI;
 
-import geras.jmoon.entites.LivingEntity;
+import geras.jmoon.entity.LivingEntity;
 
 
 public abstract class BaseAI {

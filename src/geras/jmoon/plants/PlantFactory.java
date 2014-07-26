@@ -1,13 +1,13 @@
 package geras.jmoon.plants;
 
-import geras.jmoon.world.Map;
+import geras.jmoon.world.World;
 import geras.jmoon.world.WorldElements;
 
 import org.xml.sax.Attributes;
 
 public class PlantFactory {
 
-	public static Plant getPlant(Attributes attributes, Map map){
+	public static Plant getPlant(Attributes attributes, World map){
 		Plant plant = null;
 		String tileValueS = attributes.getValue("tileValue");
 		int tileValue = -1;

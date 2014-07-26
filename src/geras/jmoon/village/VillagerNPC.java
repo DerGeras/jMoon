@@ -1,14 +1,14 @@
 package geras.jmoon.village;
 
 import geras.jmoon.AI.VillagerAI;
-import geras.jmoon.GameStates.WorldGameState;
-import geras.jmoon.entites.Merchant;
-import geras.jmoon.entites.NPCEntity;
-import geras.jmoon.entites.PlayerEntity;
-import geras.jmoon.items.Item;
+import geras.jmoon.GameState.WorldGameState;
+import geras.jmoon.entity.Merchant;
+import geras.jmoon.entity.NPCEntity;
+import geras.jmoon.entity.PlayerEntity;
+import geras.jmoon.item.Item;
 import geras.jmoon.settings.Settings;
 import geras.jmoon.time.Clock;
-import geras.jmoon.world.Map;
+import geras.jmoon.world.World;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -43,14 +43,14 @@ public class VillagerNPC extends NPCEntity implements Merchant{
 	}
 	
 	@Override
-	public void draw(Graphics g, int mapTopX, int mapTopY, Map map){
+	public void draw(Graphics g, int mapTopX, int mapTopY, World map){
 		if(posX != OUT_OF_FIELD_VALUE_X && posY != OUT_OF_FIELD_VAlUE_Y){
 			super.draw(g, mapTopX, mapTopY, map);
 		}
 	}
 
 	@Override
-	public void update(int timesincelastframe, Map map) {
+	public void update(int timesincelastframe, World map) {
 		hunger += (float)timesincelastframe * hungerRatio;
 		
 		//check if the hunger is too big
@@ -64,20 +64,20 @@ public class VillagerNPC extends NPCEntity implements Merchant{
 	}
 	
 	@Override
-	public void move(int timesincelastframe, Map map){
+	public void move(int timesincelastframe, World map){
 		posX += timesincelastframe * move_speed * nextX;
 		posY += timesincelastframe * move_speed * nextY;
 	}
 
 	@Override
-	public void interact(PlayerEntity player, Map map, Game game,
+	public void interact(PlayerEntity player, World map, Game game,
 			WorldGameState state) {
 		//Currently: do nothing
 
 	}
 	
 	@Override
-	public void kill(Map map){
+	public void kill(World map){
 		map.entityList.remove(this);
 		Village.removeVillager(this);
 	}

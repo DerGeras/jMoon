@@ -1,9 +1,9 @@
 package geras.jmoon.main;
 
-import geras.jmoon.GameStates.MainMenuGameState;
-import geras.jmoon.GameStates.MenuState;
-import geras.jmoon.GameStates.WorldGameState;
-import geras.jmoon.entites.PlayerEntity;
+import geras.jmoon.GameState.MainMenuGameState;
+import geras.jmoon.GameState.MenuState;
+import geras.jmoon.GameState.WorldGameState;
+import geras.jmoon.entity.PlayerEntity;
 import geras.jmoon.settings.Settings;
 
 import org.newdawn.slick.AppGameContainer;

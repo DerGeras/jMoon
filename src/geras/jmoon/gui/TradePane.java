@@ -2,8 +2,8 @@ package geras.jmoon.gui;
 
 import org.newdawn.slick.Graphics;
 
-import geras.jmoon.entites.PlayerEntity;
-import geras.jmoon.entites.Merchant;
+import geras.jmoon.entity.Merchant;
+import geras.jmoon.entity.PlayerEntity;
 
 public class TradePane extends BasicPane {
 

@@ -1,6 +1,6 @@
 package geras.jmoon.gui;
 
-import geras.jmoon.entites.PlayerEntity;
+import geras.jmoon.entity.PlayerEntity;
 
 import java.util.Iterator;
 import java.util.LinkedList;

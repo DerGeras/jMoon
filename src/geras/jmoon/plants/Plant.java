@@ -1,7 +1,7 @@
 package geras.jmoon.plants;
 
-import geras.jmoon.entites.PlayerEntity;
-import geras.jmoon.world.Map;
+import geras.jmoon.entity.PlayerEntity;
+import geras.jmoon.world.World;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -21,9 +21,9 @@ public abstract class Plant {
 	
 	protected int tileValue; //tile Value on the map
 	
-	protected Map map; //Map this plant is growing on
+	protected World map; //Map this plant is growing on
 	
-	public Plant(int x, int y, int tileValue, Map map){
+	public Plant(int x, int y, int tileValue, World map){
 		super();
 		posX = x;
 		posY = y;
@@ -48,7 +48,7 @@ public abstract class Plant {
 	 * @param player - the player that harvests it. Mainly used to add items to the inventory
 	 * @param map - the current map (used to destroy the plant if necessary
 	 */
-	public abstract void harvest(PlayerEntity player, Map map);
+	public abstract void harvest(PlayerEntity player, World map);
 	
 	/**
 	 * save to xml file

@@ -1,12 +1,12 @@
 package geras.jmoon.plants;
 
-import geras.jmoon.entites.PlayerEntity;
-import geras.jmoon.world.Map;
+import geras.jmoon.entity.PlayerEntity;
+import geras.jmoon.world.World;
 import geras.jmoon.world.WorldElements;
 
 public class PotatoPlant extends Plant {
 
-	public PotatoPlant(int x, int y, int tileValue, Map map) {
+	public PotatoPlant(int x, int y, int tileValue, World map) {
 		super(x, y, tileValue, map);
 	}
 
@@ -40,7 +40,7 @@ public class PotatoPlant extends Plant {
 	}
 
 	@Override
-	public void harvest(PlayerEntity player, Map map) {
+	public void harvest(PlayerEntity player, World map) {
 		int growth = tileValue - WorldElements.POTATO_MIN_VALUE;
 		if(growth == 5){
 			player.getInventory().addItem("Potato", 5);

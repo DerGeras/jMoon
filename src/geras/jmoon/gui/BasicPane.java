@@ -1,6 +1,6 @@
 package geras.jmoon.gui;
 
-import geras.jmoon.entites.PlayerEntity;
+import geras.jmoon.entity.PlayerEntity;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;

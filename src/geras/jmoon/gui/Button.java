@@ -1,7 +1,7 @@
 package geras.jmoon.gui;
 
-import geras.jmoon.GameStates.WorldGameState;
-import geras.jmoon.entites.PlayerEntity;
+import geras.jmoon.GameState.WorldGameState;
+import geras.jmoon.entity.PlayerEntity;
 import geras.jmoon.main.JMoonGame;
 
 import java.util.LinkedList;

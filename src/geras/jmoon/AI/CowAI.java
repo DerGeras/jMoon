@@ -2,7 +2,7 @@ package geras.jmoon.AI;
 
 import java.util.Random;
 
-import geras.jmoon.entites.LivingEntity;
+import geras.jmoon.entity.LivingEntity;
 
 public class CowAI extends BaseAI {
 	
