@@ -35,6 +35,7 @@ public class TagCompound extends NBTTag implements ITagContainer {
 		}
 	}
 
+
 	@Override
 	public ITag getTag(String name) {
 		return tags.get(name);
@@ -52,7 +53,154 @@ public class TagCompound extends NBTTag implements ITagContainer {
 		return (T)tag;
 	}
 	
-	//TODO getters for all the tag types
+	/*
+	 * Getters for different typed tags
+	 */
+	
+	public TagCompound getCompound(String name) throws IOException{
+		return getTag(name, TagCompound.class);
+	}
+	
+	public byte getByte(String name) throws IOException{
+		TagByte b = getTag(name, TagByte.class);
+		return b == null ? 0 : b.getValue();
+	}
+	
+	public byte[] getByteArray(String name) throws IOException{
+		TagByteArray b = getTag(name, TagByteArray.class);
+		byte[] ba = new byte[0];
+		return b == null ? ba : b.getValue();
+	}
+	
+	public double getDouble(String name) throws IOException{
+		TagDouble b = getTag(name, TagDouble.class);
+		return b == null ? 0.0d : b.getValue();
+	}
+	
+	public float getFloat(String name) throws IOException{
+		TagFloat b = getTag(name, TagFloat.class);
+		return b == null ? 0.0f : b.getValue();
+	}
+	
+	public int getInt(String name) throws IOException{
+		TagInteger b = getTag(name, TagInteger.class);
+		return b == null ? 0 : b.getValue();
+	}
+	
+	public int[] getIntegerArray(String name) throws IOException{
+		TagIntegerArray b = getTag(name, TagIntegerArray.class);
+		int[] ba = new int[0];
+		return b == null ? ba : b.getValue();
+	}
+	
+	public long getLong(String name) throws IOException{
+		TagLong b = getTag(name, TagLong.class);
+		return b == null ? 0l : b.getValue();
+	}
+	
+	public short getShort(String name) throws IOException{
+		TagShort b = getTag(name, TagShort.class);
+		return b == null ? 0 : b.getValue();
+	}
+	
+	public String getString(String name) throws IOException{
+		TagString b = getTag(name, TagString.class);
+		return b == null ? "" : b.getValue();
+	}
+	
+	/*
+	 * getOrCreate for all tag types
+	 */
+	
+	public TagCompound getOrCreateCompound(String name, TagCompound value) throws IOException{
+		TagCompound b = getTag(name, TagCompound.class);
+		if(b == null){
+			b = value;
+			addTag(b);
+		}
+		return b;
+	}
+	
+	public byte getOrCreateByte(String name, byte value) throws IOException{
+		TagByte b = getTag(name, TagByte.class);
+		if(b == null){
+			b = new TagByte(name, value);
+			addTag(b);
+		}
+		return b.getValue();
+	}
+	
+	public byte[] getOrCreateByteArray(String name, byte[] value) throws IOException{
+		TagByteArray b = getTag(name, TagByteArray.class);
+		if(b == null){
+			b = new TagByteArray(name, value);
+			addTag(b);
+		}
+		return b.getValue();
+	}
+	
+	public double getOrCreateDouble(String name, double value) throws IOException{
+		TagDouble b = getTag(name, TagDouble.class);
+		if(b == null){
+			b = new TagDouble(name, value);
+			addTag(b);
+		}
+		return b.getValue();
+	}
+	
+	public float getOrCreateFloat(String name, float value) throws IOException{
+		TagFloat b = getTag(name, TagFloat.class);
+		if(b == null){
+			b = new TagFloat(name, value);
+			addTag(b);
+		}
+		return b.getValue();
+	}
+	
+	public int getOrCreateInt(String name, int value) throws IOException{
+		TagInteger b = getTag(name, TagInteger.class);
+		if(b == null){
+			b = new TagInteger(name, value);
+			addTag(b);
+		}
+		return b.getValue();
+	}
+	
+	public int[] getOrCreateIntegerArray(String name, int[] value) throws IOException{
+		TagIntegerArray b = getTag(name, TagIntegerArray.class);
+		if(b == null){
+			b = new TagIntegerArray(name, value);
+			addTag(b);
+		}
+		return b.getValue();
+	}
+	
+	public long getOrCreateLong(String name, long value) throws IOException{
+		TagLong b = getTag(name, TagLong.class);
+		if(b == null){
+			b = new TagLong(name, value);
+			addTag(b);
+		}
+		return b.getValue();
+	}
+	
+	public short getOrCreateShort(String name, short value) throws IOException{
+		TagShort b = getTag(name, TagShort.class);
+		if(b == null){
+			b = new TagShort(name, value);
+			addTag(b);
+		}
+		return b.getValue();
+	}
+	
+	public String getOrCreateString(String name, String value) throws IOException{
+		TagString b = getTag(name, TagString.class);
+		if(b == null){
+			b = new TagString(name, value);
+			addTag(b);
+		}
+		return b.getValue();
+	}
 
 	@Override
 	public Set<String> getTagNames() {

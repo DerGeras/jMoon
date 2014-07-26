@@ -6,7 +6,7 @@ public class TagLong extends NBTTag {
 
 	private long value;
 	
-	public TagLong(String name, int value){
+	public TagLong(String name, long value){
 		super(name);
 		setValue(value);
 	}
