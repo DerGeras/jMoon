@@ -2,10 +2,10 @@ package geras.jmoon.gui;
 
 public class Region2D {
 
-	private int x;
-	private int y;
-	private int width;
-	private int height;
+	public int x;
+	public int y;
+	public int width;
+	public int height;
 	
 	public Region2D(int x, int y, int width, int height){
 		this.x = x;
@@ -14,19 +14,45 @@ public class Region2D {
 		this.height = height;
 	}
 	
+	/**
+	 * 
+	 * @param region
+	 * @return true if the regions collide
+	 */
 	public boolean collidesWithRegion(Region2D region){
 		return collidesWithRegion(region.x, region.y, region.width, region.height);
 	}
 	
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @return true if the regions collide
+	 */
 	public boolean collidesWithRegion(int x, int y, int width, int height){
 		return (Math.abs(this.x - x) * 2 < (this.width + width)) &&
 		         (Math.abs(this.y - y) * 2 < (this.height + height));
 	}
 	
+	/**
+	 * merge with a region
+	 * @param region
+	 * @return  true if region has been changed
+	 */
 	public boolean mergeWithRegion(Region2D region){
 		return mergeWithRegion(region.x, region.y, region.width, region.height);
 	}
 	
+	/**
+	 * merge with a region
+	 * @param xs
+	 * @param ys
+	 * @param widths
+	 * @param heights
+	 * @return true if the region has been changed
+	 */
 	public boolean mergeWithRegion(int xs, int ys, int widths, int heights){
 		if(y == ys && height == heights){
 			if(xs == x + width){ //append on the right
