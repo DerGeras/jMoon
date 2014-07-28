@@ -17,7 +17,7 @@ public abstract class Item {
 	protected int maxStackSize; 
 	protected int maxDurability; 
 	
-	protected Image[] images;
+	protected Image image;
 	
 	public Item(int id, String name, String displayName, int maxDurability, int maxStackSize, int sellingPrice){
 		this.name = name;
@@ -54,7 +54,7 @@ public abstract class Item {
 	 * @return
 	 */
 	public Image getImage(ItemStack stack){
-		return images[0];
+		return image;
 	}
 	
 	

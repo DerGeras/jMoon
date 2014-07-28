@@ -1,5 +1,8 @@
 package geras.jmoon.item;
 
+import geras.jmoon.entity.LivingEntity;
+import geras.jmoon.nbt.TagCompound;
+
 public class ItemStack {
 	
 	private Item item;
@@ -7,6 +10,8 @@ public class ItemStack {
 	private int amount;
 	
 	private int durability;
+	
+	private TagCompound nbtTagCompount;
 
 	public ItemStack(Item item, int amount, int durability){
 		this.item = item;
@@ -20,6 +25,10 @@ public class ItemStack {
 	
 	public ItemStack(Item item){
 		this(item, 1, 0);
+	}
+	
+	public void consume(LivingEntity entity){
+		item.consume(entity, this);
 	}
 	
 	public int getItemID(){
@@ -54,7 +63,21 @@ public class ItemStack {
 		return item;
 	}
 	
+	public int getSellingPrice(){
+		return item.getSellingPrice(this);
+	}
 	
+	public boolean hasTagCompound(){
+		return nbtTagCompount != null;
+	}
+
+	public TagCompound getTagCompount() {
+		return nbtTagCompount;
+	}
+
+	public void setTagCompount(TagCompound nbtTagCompount) {
+		this.nbtTagCompount = nbtTagCompount;
+	}
 	
 	
 }

@@ -14,12 +14,15 @@ import java.util.Iterator;
  */
 public class Inventory {
 	
-	private ArrayList<Item> content = new ArrayList<Item>();
+	private int inventorySize;
+	private ArrayList<ItemStack> content;
 	
 	private int money;
 	
-	public Inventory(){
+	public Inventory(int inventorySize){
 		money = 0;
+		this.inventorySize = inventorySize;
+		content = new ArrayList<ItemStack>(inventorySize);
 	}
 	
 	/**
@@ -190,37 +193,17 @@ public class Inventory {
 		}
 	}
 	
-	/**
-	 * save to xml file
-	 */
-	public void saveToXML(BufferedWriter out){
-		try {
-			out.write("<inventory money=\"" + money + "\">");
-			out.newLine();
-			
-			//write out items
-			for(Item item : content){
-				item.saveToXML(out);
-				out.newLine();
-			}
-			
-			out.write("</inventory>");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	///////////////////////////////////////////////////////
 	//
 	//			Big block of getter/setters
 	//
 	///////////////////////////////////////////////////////
 	
-	public ArrayList<Item> getContent() {
+	public ArrayList<ItemStack> getContent() {
 		return content;
 	}
 
-	public void setContent(ArrayList<Item> content) {
+	public void setContent(ArrayList<ItemStack> content) {
 		this.content = content;
 	}
 
