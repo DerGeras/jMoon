@@ -9,11 +9,14 @@ public class SpriteRegistry {
 	
 	private static Image noimg;
 	
+	public static final int SPRITE_SHEET_WIDTH = 1024;
+	public static final int SPRITE_SHEET_HEIGHT = 1024;
+	
 	private static Image spriteSheet;
 	
 	static{
 		try {
-			spriteSheet = new Image(1024, 1024);
+			spriteSheet = new Image(SPRITE_SHEET_WIDTH, SPRITE_SHEET_HEIGHT);
 			noimg = new Image("res/sprites/noimg.png");
 			int width = noimg.getWidth();
 			int height = noimg.getHeight();
@@ -56,6 +59,10 @@ public class SpriteRegistry {
 		return res;
 	}
 	
+	/**
+	 * write the current spritesheet to a file
+	 * @param path
+	 */
 	public static void writeSpriteSheetToFile(String path){
 		try {
 			ImageOut.write(spriteSheet, path);
