@@ -9,6 +9,7 @@ import geras.jmoon.world.World;
 
 public abstract class Item {
 	
+	
 	protected int id;
 	protected String name; //name of the item
 	protected String displayName; //displayed name of the item
