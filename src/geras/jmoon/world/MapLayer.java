@@ -1,7 +1,9 @@
 package geras.jmoon.world;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
+
+import geras.jmoon.nbt.TagCompound;
+
 
 public class MapLayer {
 
@@ -23,6 +25,24 @@ public class MapLayer {
 		this.width = width;
 		this.height = height;
 		content = new int[width][height];
+	}
+	
+	/**
+	 * create layer from tag compound
+	 * @param compound
+	 */
+	public MapLayer(TagCompound compound){
+		try {
+			name = compound.getString("name");
+			width = compound.getInt("width");
+			height = compound.getInt("height");
+			content = new int[width][height];
+			//TODO
+		} catch (IOException e) {
+			System.err.println("Could not create layer from compound");
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**
@@ -67,50 +87,6 @@ public class MapLayer {
 	 */
 	public String getName(){
 		return this.name;
-	}
-	
-	/**
-	 * save to XML file
-	 */
-	public void saveToXML(BufferedWriter out){
-		try {
-			//startElement
-			out.append("<layer name=\"" + name + "\" width=\"" + width + "\" height=\"" + height + "\">");
-			out.newLine();
-			
-			//write content
-			for(int j = 0; j < height; j++){
-				out.append("<line>");
-				for(int i = 0; i < width; i++){
-					out.append(content[i][j] + " ");
-				}
-				out.append("</line>");
-				out.newLine();
-			}
-			out.flush();
-			
-			//endElement
-			out.write("</layer>");
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-	}
-	
-	public int currLine = 0;
-	
-	/**
-	 * read the content of the layer
-	 * @param ch - char array representation of the content
-	 * @param start - start of the content
-	 * @param length - end of the content
-	 */
-	public void readLine(char ch[], int start, int length){
-		String code = new String(ch, start, length);
-		String[] fields = code.split(" ");
-		for(int i = 0; i < width; i++){
-			content[i][currLine] = Integer.parseInt(fields[i]);
-		}
-		currLine++;
 	}
 	
 }

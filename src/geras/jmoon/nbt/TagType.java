@@ -14,7 +14,8 @@ public enum TagType {
 	LONG(6,TagLong.class),
 	SHORT(7, TagShort.class),
 	STRING(8, TagString.class),
-	DOUBLE(9, TagDouble.class);
+	DOUBLE(9, TagDouble.class),
+	LIST(10, TagList.class);
 	
 	
 	

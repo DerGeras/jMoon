@@ -81,10 +81,12 @@ public class SpriteRegistry {
 			if(!hit){ //append to the left
 				res[0] = x;
 				res[1] = y;
+				break;
 			} else {
 				//try to append to the bottom of the region
 				x = region.x;
 				y = region.y + region.height;
+				hit = false;
 				if(x + width < SPRITE_SHEET_WIDTH && y + height < SPRITE_SHEET_HEIGHT){
 					for(Region2D r: occupiedRegions){
 						hit = hit || r.collidesWithRegion(x, y, width, height);
@@ -95,6 +97,7 @@ public class SpriteRegistry {
 				if(!hit){ //append to the bottom
 					res[0] = x;
 					res[1] = y;
+					break;
 				} else {
 					//this should basically not happen
 					System.err.println("Insufficient space for new images!");
