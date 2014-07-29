@@ -2,6 +2,7 @@ package geras.jmoon.nbt;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Set;
 
 public class TagCompound extends NBTTag implements ITagContainer {
@@ -108,6 +109,11 @@ public class TagCompound extends NBTTag implements ITagContainer {
 		return b == null ? "" : b.getValue();
 	}
 	
+	public LinkedList<ITag> getTagList(String name) throws IOException{
+		TagList b = getTag(name, TagList.class);
+		return b == null ? null : b.getTags();
+	}
+	
 	/*
 	 * getOrCreate for all tag types
 	 */
@@ -201,6 +207,171 @@ public class TagCompound extends NBTTag implements ITagContainer {
 		}
 		return b.getValue();
 	}
+	
+	public LinkedList<ITag> getTagList(String name, LinkedList<ITag> value) throws IOException{
+		TagList b = getTag(name, TagList.class);
+		if(b == null){
+			b = new TagList(name, value);
+			addTag(b);
+		}
+		return b.getTags();
+	}
+	
+	/*
+	 * setValue for all tag types
+	 */
+	
+	public void setByte(String name, byte value){
+		TagByte tag = null;
+		try {
+			tag = getTag(name, TagByte.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(tag == null){
+			tag = new TagByte(name, value);
+			addTag(tag);
+		} else {
+			tag.setValue(value);
+		}
+	}
+	
+	public void setByteArray(String name, byte[] value){
+		TagByteArray tag = null;
+		try {
+			tag = getTag(name, TagByteArray.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(tag == null){
+			tag = new TagByteArray(name, value);
+			addTag(tag);
+		} else {
+			tag.setValue(value);
+		}
+	}
+	
+	public void setDouble(String name, double value){
+		TagDouble tag = null;
+		try {
+			tag = getTag(name, TagDouble.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(tag == null){
+			tag = new TagDouble(name, value);
+			addTag(tag);
+		} else {
+			tag.setValue(value);
+		}
+	}
+	
+	public void setFloat(String name, float value){
+		TagFloat tag = null;
+		try {
+			tag = getTag(name, TagFloat.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(tag == null){
+			tag = new TagFloat(name, value);
+			addTag(tag);
+		} else {
+			tag.setValue(value);
+		}
+	}
+	
+	public void setInt(String name, int value){
+		TagInteger tag = null;
+		try {
+			tag = getTag(name, TagInteger.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(tag == null){
+			tag = new TagInteger(name, value);
+			addTag(tag);
+		} else {
+			tag.setValue(value);
+		}
+	}
+	
+	public void setIntArray(String name, int[] value){
+		TagIntegerArray tag = null;
+		try {
+			tag = getTag(name, TagIntegerArray.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(tag == null){
+			tag = new TagIntegerArray(name, value);
+			addTag(tag);
+		} else {
+			tag.setValue(value);
+		}
+	}
+	
+	public void setLong(String name, long value){
+		TagLong tag = null;
+		try {
+			tag = getTag(name, TagLong.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(tag == null){
+			tag = new TagLong(name, value);
+			addTag(tag);
+		} else {
+			tag.setValue(value);
+		}
+	}
+	
+	public void setShort(String name, short value){
+		TagShort tag = null;
+		try {
+			tag = getTag(name, TagShort.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(tag == null){
+			tag = new TagShort(name, value);
+			addTag(tag);
+		} else {
+			tag.setValue(value);
+		}
+	}
+	
+	public void setString(String name, String value){
+		TagString tag = null;
+		try {
+			tag = getTag(name, TagString.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(tag == null){
+			tag = new TagString(name, value);
+			addTag(tag);
+		} else {
+			tag.setValue(value);
+		}
+	}
+	
+	public void setList(String name, LinkedList<ITag> value){
+		TagList tag = null;
+		try {
+			tag = getTag(name, TagList.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(tag == null){
+			tag = new TagList(name, value);
+			addTag(tag);
+		} else {
+			tag.setList(value);
+		}
+	}
+	
+	////////////////////////////////////////////////
 
 	@Override
 	public Set<String> getTagNames() {

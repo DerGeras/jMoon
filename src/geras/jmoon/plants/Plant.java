@@ -1,6 +1,7 @@
 package geras.jmoon.plants;
 
 import geras.jmoon.entity.PlayerEntity;
+import geras.jmoon.world.Region;
 import geras.jmoon.world.World;
 
 import java.io.BufferedWriter;
@@ -21,15 +22,16 @@ public abstract class Plant {
 	
 	protected int tileValue; //tile Value on the map
 	
-	protected World map; //Map this plant is growing on
+	protected Region region; //Map this plant is growing on
 	
-	public Plant(int x, int y, int tileValue, World map){
+	public Plant(int x, int y){
 		super();
 		posX = x;
 		posY = y;
-		this.tileValue = tileValue;
-		this.map = map;
-		map.setField("Plants", posX, posY, tileValue);
+	}
+	
+	public void setRegion(Region region){
+		this.region = region;
 	}
 	
 	/**

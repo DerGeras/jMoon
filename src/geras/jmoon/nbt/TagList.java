@@ -5,14 +5,16 @@ import java.util.LinkedList;
 
 public class TagList extends NBTTag{
 	
-	private LinkedList<ITag> tags = new LinkedList<ITag>();
+	private LinkedList<ITag> tags;
 	
-	public TagList(String name){
+	public TagList(String name, LinkedList<ITag> value){
 		super(name);
+		tags = value;
 	}
 
 	public TagList(NBTInputStream in) throws IOException {
 		super(in);
+		tags = new LinkedList<ITag>();
 		//read the type of the list elements
 		byte type = in.readByte();
 		TagType tagType = TagType.getTagType(type);
@@ -72,6 +74,11 @@ public class TagList extends NBTTag{
 
 	public void removeTag(ITag tag) {
 		tags.remove(tag);
+		
+	}
+
+	public void setList(LinkedList<ITag> list) {
+		this.tags = list;
 		
 	}
 
