@@ -2,6 +2,7 @@ package geras.jmoon.item;
 
 import geras.jmoon.entity.LivingEntity;
 import geras.jmoon.nbt.TagCompound;
+import geras.jmoon.registry.GameRegistry;
 
 public class ItemStack {
 	
@@ -14,9 +15,7 @@ public class ItemStack {
 	private TagCompound nbtTagCompount;
 
 	public ItemStack(Item item, int amount, int durability){
-		this.item = item;
-		this.amount = amount;
-		this.durability = durability;
+		this(item.getID(), amount, durability);
 	}
 	
 	public ItemStack(Item item, int amount){
@@ -27,8 +26,21 @@ public class ItemStack {
 		this(item, 1, 0);
 	}
 	
+	public ItemStack(int id, int amount, int durability){
+		this.item = GameRegistry.allItems[id];
+		this.amount = amount;
+		this.durability = durability;
+	}
+	
+	public ItemStack(int id, int amount){
+		this(id, amount, 0);
+	}
+	public ItemStack(int id){
+		this(id, 1, 0);
+	}
+	
 	public void consume(LivingEntity entity){
-		item.consume(entity, this);
+		getItem().consume(entity, this);
 	}
 	
 	public int getItemID(){
@@ -36,11 +48,11 @@ public class ItemStack {
 	}
 	
 	public int getMaxStackSize(){
-		return item.getMaxStackSize();
+		return getItem().getMaxStackSize();
 	}
 	
 	public int getMaxDurability(){
-		return item.getMaxDurability();
+		return getItem().getMaxDurability();
 	}
 	
 	public int getAmount() {
@@ -64,7 +76,7 @@ public class ItemStack {
 	}
 	
 	public int getSellingPrice(){
-		return item.getSellingPrice(this);
+		return getItem().getSellingPrice(this);
 	}
 	
 	public boolean hasTagCompound(){

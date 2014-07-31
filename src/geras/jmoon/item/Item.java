@@ -1,10 +1,10 @@
 package geras.jmoon.item;
 
-import java.awt.Image;
-
 import geras.jmoon.entity.LivingEntity;
 import geras.jmoon.entity.PlayerEntity;
-import geras.jmoon.world.World;
+import geras.jmoon.world.Region;
+
+import java.awt.Image;
 
 
 public abstract class Item {
@@ -28,7 +28,7 @@ public abstract class Item {
 		this.sellingPrice = sellingPrice;
 	}
 	
-	public void use(PlayerEntity player, World world, ItemStack stack, int posX, int posY){
+	public void use(PlayerEntity player, Region region, ItemStack stack, int posX, int posY){
 		//default is nothing
 	}
 	
