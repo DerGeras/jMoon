@@ -1,6 +1,6 @@
 package geras.jmoon.world;
 
-import geras.jmoon.settings.Settings;
+import geras.jmoon.reference.Settings;
 
 import java.util.HashMap;
 

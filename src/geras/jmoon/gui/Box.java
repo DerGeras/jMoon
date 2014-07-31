@@ -1,13 +1,13 @@
 package geras.jmoon.gui;
 
-public class Region2D {
+public class Box {
 
 	public int x;
 	public int y;
 	public int width;
 	public int height;
 	
-	public Region2D(int x, int y, int width, int height){
+	public Box(int x, int y, int width, int height){
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -19,7 +19,7 @@ public class Region2D {
 	 * @param region
 	 * @return true if the regions collide
 	 */
-	public boolean collidesWithRegion(Region2D region){
+	public boolean collidesWithRegion(Box region){
 		return collidesWithRegion(region.x, region.y, region.width, region.height);
 	}
 	
@@ -41,7 +41,7 @@ public class Region2D {
 	 * @param region
 	 * @return  true if region has been changed
 	 */
-	public boolean mergeWithRegion(Region2D region){
+	public boolean mergeWithRegion(Box region){
 		return mergeWithRegion(region.x, region.y, region.width, region.height);
 	}
 	

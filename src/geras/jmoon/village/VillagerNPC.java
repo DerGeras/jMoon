@@ -6,7 +6,7 @@ import geras.jmoon.entity.Merchant;
 import geras.jmoon.entity.NPCEntity;
 import geras.jmoon.entity.PlayerEntity;
 import geras.jmoon.item.Item;
-import geras.jmoon.settings.Settings;
+import geras.jmoon.reference.Settings;
 import geras.jmoon.time.Clock;
 import geras.jmoon.world.World;
 

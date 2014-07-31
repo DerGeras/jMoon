@@ -1,4 +1,4 @@
-package geras.jmoon.settings;
+package geras.jmoon.reference;
 
 public class Settings {
 	

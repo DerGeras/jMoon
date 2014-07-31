@@ -1,6 +1,6 @@
 package geras.jmoon.item;
 
-import geras.jmoon.settings.Settings;
+import geras.jmoon.reference.Settings;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

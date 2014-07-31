@@ -1,6 +1,6 @@
 package geras.jmoon.entity;
 
-import geras.jmoon.settings.Settings;
+import geras.jmoon.reference.Settings;
 import geras.jmoon.world.World;
 import geras.jmoon.world.WorldElements;
 

@@ -4,7 +4,7 @@ import geras.jmoon.GameState.MainMenuGameState;
 import geras.jmoon.GameState.MenuState;
 import geras.jmoon.GameState.WorldGameState;
 import geras.jmoon.entity.PlayerEntity;
-import geras.jmoon.settings.Settings;
+import geras.jmoon.reference.Settings;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;

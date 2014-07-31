@@ -2,7 +2,7 @@ package geras.jmoon.AI;
 
 import geras.jmoon.GameState.WorldGameState;
 import geras.jmoon.item.Item;
-import geras.jmoon.settings.Settings;
+import geras.jmoon.reference.Settings;
 import geras.jmoon.time.Clock;
 import geras.jmoon.village.VillagerNPC;
 

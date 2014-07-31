@@ -1,10 +1,12 @@
 package geras.jmoon.item;
 
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+
 import geras.jmoon.entity.LivingEntity;
 import geras.jmoon.entity.PlayerEntity;
+import geras.jmoon.gui.SpriteRegistry;
 import geras.jmoon.world.Region;
-
-import java.awt.Image;
 
 
 public abstract class Item {
@@ -35,8 +37,18 @@ public abstract class Item {
 	/**
 	 * register images at startup
 	 */
-	public void registerImages(){
-		//TODO
+	public void registerImages(String modid){
+		try {
+			image = SpriteRegistry.registerImage(getImagePath(modid));
+		} catch (SlickException e) {
+			System.err.println("Could not register image for item " + name
+					+ "of " + modid);
+			e.printStackTrace();
+		}
+	}
+	
+	public String getImagePath(String modid){
+		return "sprites/" + modid + "/item/" + name + ".png";
 	}
 	
 	/**

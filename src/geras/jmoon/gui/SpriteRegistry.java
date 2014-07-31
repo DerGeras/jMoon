@@ -16,7 +16,7 @@ public class SpriteRegistry {
 	
 	private static Image spriteSheet;
 	
-	private static LinkedList<Region2D> occupiedRegions = new LinkedList<Region2D>();
+	private static LinkedList<Box> occupiedRegions = new LinkedList<Box>();
 	
 	static{
 		try {
@@ -66,13 +66,13 @@ public class SpriteRegistry {
 	 */
 	private static int[] getPositionForImageSize(int width, int height){
 		int[] res = {0,0};
-		for(Region2D region: occupiedRegions){
+		for(Box region: occupiedRegions){
 			//try to append right of the region
 			int x = region.x + region.width;
 			int y = region.y;
 			boolean hit = false;
 			if(x + width < SPRITE_SHEET_WIDTH && y + height < SPRITE_SHEET_HEIGHT){
-				for(Region2D r: occupiedRegions){
+				for(Box r: occupiedRegions){
 					hit = hit || r.collidesWithRegion(x, y, width, height);
 				}
 			} else { //out of bounds
@@ -88,7 +88,7 @@ public class SpriteRegistry {
 				y = region.y + region.height;
 				hit = false;
 				if(x + width < SPRITE_SHEET_WIDTH && y + height < SPRITE_SHEET_HEIGHT){
-					for(Region2D r: occupiedRegions){
+					for(Box r: occupiedRegions){
 						hit = hit || r.collidesWithRegion(x, y, width, height);
 					}
 				} else {
@@ -105,14 +105,14 @@ public class SpriteRegistry {
 			}
 		}
 		boolean merged = false;
-		for(Region2D region : occupiedRegions){ //try to merge with existing region
+		for(Box region : occupiedRegions){ //try to merge with existing region
 			merged = region.mergeWithRegion(res[0], res[1], width, height);
 			if(merged){
 				break;
 			}
 		}
 		if(!merged){ //create new region
-			occupiedRegions.add(new Region2D(res[0], res[1], width, height));
+			occupiedRegions.add(new Box(res[0], res[1], width, height));
 		}
 		return res;
 	}
