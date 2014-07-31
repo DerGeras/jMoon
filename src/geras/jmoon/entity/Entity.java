@@ -1,57 +1,55 @@
 package geras.jmoon.entity;
 
-import geras.jmoon.GameState.WorldGameState;
-import geras.jmoon.item.Inventory;
-import geras.jmoon.main.JMoonGame;
-import geras.jmoon.world.World;
+import java.io.IOException;
 
-import java.io.BufferedWriter;
+import geras.jmoon.GameState.WorldGameState;
+import geras.jmoon.main.JMoonGame;
+import geras.jmoon.nbt.TagCompound;
+import geras.jmoon.world.Region;
+import geras.jmoon.world.World;
 
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.xml.sax.Attributes;
 
 public abstract class Entity {
 	
-	private static int nextFreeEntityId = 0; //the next free entity ID (unique)
+	protected int entityID; //the unique id for this entity
 	
-	protected int EntityId; //the unique id for this entity
+	protected Region region; //the region this entity inhabits
 	
-	protected float posX; //x position on the map
-	protected float posY; //y position on the map
+	protected float posX = 0.0f; //x position on the map
+	protected float posY = 0.0f; //y position on the map
 	
 	protected int width = 32; //width of the entity
 	protected int height = 32; //height of the entity
 
-	protected Image entityImg; //image for the entity
-
-	protected Inventory inventory;
+	protected Image img; //image for the entity
 	
 	/**
 	 * Basic Constructor, initialize values
 	 * Override this for your Entities!
 	 */
-	protected Entity(){
-		posX = posY = 0;
-		EntityId = getNextFreeEntityId();
-		inventory = new Inventory();
+	protected Entity(int id, Region region){
+		entityID = id;
+	}
+	
+	protected Entity(Region region, TagCompound compound){
+		try {
+			this.posX = compound.getFloat("posX");
+			this.posY = compound.getFloat("posY");
+			this.entityID = compound.getInt("id");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
 	 * Kill the entity and remove it from the entityList
 	 */
-	public void kill(World map){
-		map.entityList.remove(this);
-	}
-
-	/**
-	 * 
-	 * @return the next free entity id (unique)
-	 */
-	public static int getNextFreeEntityId(){
-		return nextFreeEntityId++;
+	public void kill(){
+		region.removeEntity(this);
 	}
 	
 	/**
@@ -66,11 +64,11 @@ public abstract class Entity {
 	 * @param mapTopY - y coordinate of the top left point of the map
 	 */
 	public void draw(Graphics g, int mapTopX, int mapTopY, World map){
-		if(entityImg != null){
-			int relativeX = (int) (mapTopX + posX - entityImg.getWidth() / 2);
-			int relativeY = (int) (mapTopY + posY + (height / 2) - entityImg.getHeight());
+		if(img != null){
+			int relativeX = (int) (mapTopX + posX - img.getWidth() / 2);
+			int relativeY = (int) (mapTopY + posY + (height / 2) - img.getHeight());
 			if(relativeX + width > 0 && relativeX < JMoonGame.gameContainer.getWidth() && relativeY + height > 0 && relativeY < JMoonGame.gameContainer.getHeight()){
-				entityImg.draw(relativeX, relativeY);
+				img.drawEmbedded(relativeX, relativeY, img.getWidth(), img.getHeight());
 			}
 		}
 	}
@@ -80,7 +78,7 @@ public abstract class Entity {
 	 * @param x - x coodinate
 	 * @param y - y coordinate
 	 */
-	public void setPosition(int x, int y){
+	public void setPosition(float x, float y){
 		posX = x;
 		posY = y;
 	}
@@ -101,19 +99,7 @@ public abstract class Entity {
 	 * @param game - current game (Teleporting NPCs?)
 	 * @param g - graphics - might be needed for interface stuff
 	 */
-	public abstract void interact(PlayerEntity player, World map, Game game, WorldGameState state);
-	
-	/**
-	 * save to xml file
-	 * each entity has to override this method
-	 */
-	public abstract void saveToXML(BufferedWriter out);
-	
-	/**
-	 * read from attributes (XML Attributes)
-	 * @param attributes
-	 */
-	public abstract void readFromAttributes(Attributes attributes);
+	public abstract void interact(PlayerEntity player, Game game, WorldGameState state);
 	
 	///////////////////////////////////////////////////////
 	//
@@ -122,14 +108,14 @@ public abstract class Entity {
 	///////////////////////////////////////////////////////
 	
 	public int getID(){
-		return this.EntityId;
+		return this.entityID;
 	}
 	
 	public float getPosX() {
 		return posX;
 	}
 
-	public void setPosX(int posX) {
+	public void setPosX(float posX) {
 		this.posX = posX;
 	}
 
@@ -137,25 +123,12 @@ public abstract class Entity {
 		return posY;
 	}
 
-	public void setPosY(int posY) {
+	public void setPosY(float posY) {
 		this.posY = posY;
 	}
 	
 	public Image getEntityImg() {
-		return entityImg;
-	}
-
-
-	public void setEntityImg(Image playerImg) {
-		this.entityImg = playerImg;
-	}
-	
-	public void setEntityImg(String fileName) {
-		try {
-			this.entityImg = new Image(fileName);
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
+		return img;
 	}
 	
 	public int getWidth(){
@@ -164,15 +137,6 @@ public abstract class Entity {
 	
 	public int getHeight(){
 		return height;
-	}
-	
-	
-	public Inventory getInventory(){
-		return inventory;
-	}
-	
-	public void setInventory(Inventory inventory){
-		this.inventory = inventory;
 	}
 	
 }

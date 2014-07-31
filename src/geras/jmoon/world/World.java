@@ -22,10 +22,6 @@ public class World {
 	
 	
 	
-	/**
-	 * 
-	 * @param imageFile relative path to the sprite file
-	 */
 	public World(){
 		super();
 	}
@@ -158,6 +154,7 @@ public class World {
 	
 	/**
 	 * Render the map
+	 * @param region - the region to be drawn
 	 * @param x - the x coordinate
 	 * @param y - the y coordinate
 	 * @param sx - x coordinate of the start tile
@@ -166,7 +163,7 @@ public class World {
 	 * @param height - draw height many tiles in y direction
 	 * @param layerIndex - index of the layer to be drawn
 	 */
-	public void render(int x, int y, int sx, int sy, int width, int height, int layerIndex){
+	public void render(Region region, int x, int y, int sx, int sy, int width, int height){
 		//TODO
 	}
 	

@@ -17,7 +17,7 @@ public class BlackSmithNPC extends NPCEntity implements Merchant{
 		super(name, title, posX, posY);
 		
 		try{
-			this.entityImg = new Image("Sprites/Entities/Blacksmith.png");
+			this.img = new Image("Sprites/Entities/Blacksmith.png");
 		}
 		catch(SlickException e){
 			e.printStackTrace();

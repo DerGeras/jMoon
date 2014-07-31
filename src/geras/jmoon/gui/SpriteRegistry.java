@@ -1,5 +1,6 @@
 package geras.jmoon.gui;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import org.newdawn.slick.Graphics;
@@ -15,6 +16,8 @@ public class SpriteRegistry {
 	public static final int SPRITE_SHEET_HEIGHT = 1024;
 	
 	private static Image spriteSheet;
+	
+	private static HashMap<String, Image> registeredImages = new HashMap<String, Image>();
 	
 	private static LinkedList<Box> occupiedRegions = new LinkedList<Box>();
 	
@@ -56,6 +59,36 @@ public class SpriteRegistry {
 		g.drawImage(src, pos[0], pos[1]);
 		src.destroy();
 		return spriteSheet.getSubImage(pos[0], pos[1], width, height);
+	}
+	
+	/**
+	 * register an image with that specific name.
+	 * @param name
+	 * @param path
+	 * @return
+	 * @throws SlickException
+	 */
+	public static Image registerImage(String name, String path) throws SlickException{
+		if(registeredImages.containsKey(name)){
+			return registeredImages.get(name);
+		}
+		Image src;
+		try{
+			src = new Image(path);
+		} catch(SlickException e){
+			System.err.println("Could not find image for path" + path);
+			e.printStackTrace();
+			return noimg;
+		}
+		int width = src.getWidth();
+		int height = src.getHeight();
+		Graphics g = spriteSheet.getGraphics();
+		int[] pos = getPositionForImageSize(width, height);
+		g.drawImage(src, pos[0], pos[1]);
+		src.destroy();
+		Image res =spriteSheet.getSubImage(pos[0], pos[1], width, height);
+		registeredImages.put(name, res);
+		return res;
 	}
 	
 	/**
@@ -115,6 +148,19 @@ public class SpriteRegistry {
 			occupiedRegions.add(new Box(res[0], res[1], width, height));
 		}
 		return res;
+	}
+	
+	/**
+	 * return an image for the registered name (or null)
+	 * @param name
+	 * @return
+	 */
+	public static Image getImageForName(String name){
+		if(registeredImages.containsKey(name)){
+			return registeredImages.get(name);
+		} else{
+			return noimg;
+		}
 	}
 	
 	/**

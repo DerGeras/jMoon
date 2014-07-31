@@ -1,10 +1,9 @@
 package geras.jmoon.plants;
 
-import geras.jmoon.entity.PlayerEntity;
+import geras.jmoon.nbt.TagCompound;
+import geras.jmoon.tileentity.TileEntity;
 import geras.jmoon.world.Region;
-import geras.jmoon.world.World;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 
 /**
@@ -12,56 +11,32 @@ import java.io.IOException;
  * @author Geras
  *
  */
-public abstract class Plant {
-	
-	protected int posX;
-	protected int posY;
+public abstract class Plant extends TileEntity{
 	
 	protected int growthInterval = 1000 * 60; //grow automatically after x ticks
 	protected int timeSinceLastGrowth = 0; //time since the last growth (+accumulated delays)
 	
-	protected int tileValue; //tile Value on the map
-	
-	protected Region region; //Map this plant is growing on
-	
-	public Plant(int x, int y){
-		super();
-		posX = x;
-		posY = y;
+	public Plant(int id, String name, String displayName, Region region, int x, int y){
+		super(id, displayName, displayName, region, x, y);
 	}
 	
-	public void setRegion(Region region){
-		this.region = region;
-	}
-	
-	/**
-	 * update the plant
-	 * @param timeSinceLastFrame - time since the last updates
-	 */
-	public abstract void update(int timeSinceLastFrame);
-	
-	/**
-	 * grow the plant
-	 */
-	public abstract boolean grow();
-	
-	/**
-	 * harvest the plant
-	 * @param player - the player that harvests it. Mainly used to add items to the inventory
-	 * @param map - the current map (used to destroy the plant if necessary
-	 */
-	public abstract void harvest(PlayerEntity player, World map);
-	
-	/**
-	 * save to xml file
-	 */
-	public void saveToXML(BufferedWriter out){
+	public Plant(Region region, TagCompound compound){
+		super(region, compound);
 		try {
-			out.append("<plant posX=\"" + posX + "\" posY=\"" + posY + "\" timeSinceLastGrowth=\"" + timeSinceLastGrowth + "\" tileValue=\"" + tileValue + "\">");
-			out.append("</plant>");
+			timeSinceLastGrowth = compound.getInt("timeSinceLastGrowth");
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+
+	/**
+	 * force growth by adding growth time
+	 * @param increasedGrowth
+	 */
+	public void forceGrow(int increasedGrowth){
+		timeSinceLastGrowth += increasedGrowth;
 	}
 	
 	///////////////////////////////////////////////////////
@@ -93,10 +68,6 @@ public abstract class Plant {
 	
 	public int getPosY(){
 		return posY;
-	}
-	
-	public int getTileValue(){
-		return tileValue;
 	}
 	
 	

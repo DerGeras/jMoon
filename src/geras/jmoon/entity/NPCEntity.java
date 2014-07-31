@@ -34,7 +34,7 @@ public abstract class NPCEntity extends LivingEntity{
 		int relativeY = (int) (mapTopY + posY);
 		
 		//TODO specify font
-		int imageHeight = entityImg != null ? entityImg.getHeight() : height;
+		int imageHeight = img != null ? img.getHeight() : height;
 		g.setColor(Color.white);
 		g.drawString(name, relativeX - name.length()*8 / 2, relativeY + height/2 - imageHeight - 40);
 		g.drawString("<" + title + ">", relativeX - title.length()*8 / 2 - 10, relativeY + height/2 -  imageHeight - 20);

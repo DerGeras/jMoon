@@ -109,9 +109,9 @@ public class TagCompound extends NBTTag implements ITagContainer {
 		return b == null ? "" : b.getValue();
 	}
 	
-	public LinkedList<ITag> getTagList(String name) throws IOException{
+	public TagList getTagList(String name) throws IOException{
 		TagList b = getTag(name, TagList.class);
-		return b == null ? null : b.getTags();
+		return b;
 	}
 	
 	/*
@@ -208,13 +208,13 @@ public class TagCompound extends NBTTag implements ITagContainer {
 		return b.getValue();
 	}
 	
-	public LinkedList<ITag> getTagList(String name, LinkedList<ITag> value) throws IOException{
+	public TagList getTagList(String name, LinkedList<ITag> value) throws IOException{
 		TagList b = getTag(name, TagList.class);
 		if(b == null){
 			b = new TagList(name, value);
 			addTag(b);
 		}
-		return b.getTags();
+		return b;
 	}
 	
 	/*
