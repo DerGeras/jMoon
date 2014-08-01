@@ -8,6 +8,7 @@ import geras.jmoon.tile.Tile;
 import geras.jmoon.tileentity.TileEntity;
 
 import java.io.IOException;
+import java.io.ObjectInputStream.GetField;
 import java.util.LinkedList;
 
 public class Region {
@@ -113,11 +114,21 @@ public class Region {
 	}
 	
 	public int getBaseTileID(int x, int y){
-		return baseLayer.getField(x, y);
+		return getIDFromField(baseLayer.getField(x, y));
 	}
 	
-	public void setBaseTile(int x, int y, int value){
-		baseLayer.setField(x, y, value);
+	public int getBaseTileMeta(int x, int y){
+		return getMetaFromField(baseLayer.getField(x, y));
+	}
+	
+	public void setBaseTile(int x, int y, int id, int meta){
+		baseLayer.setField(x, y, createField(id, meta));
+	}
+	
+	public void setBaseTileMeta(int x, int y, int meta){
+		int oldvalue = baseLayer.getField(x, y);
+		int newvalue = createField(getIDFromField(oldvalue), meta);
+		baseLayer.setField(x, y, newvalue);
 	}
 	
 	public Tile getDecoTile(int x, int y){
@@ -125,7 +136,35 @@ public class Region {
 	}
 	
 	public int getDecoTileID(int x, int y){
-		return decoLayer.getField(x, y);
+		return getIDFromField(decoLayer.getField(x, y));
+	}
+	
+	public int getDecoTileMeta(int x, int y){
+		return getMetaFromField(decoLayer.getField(x, y));
+	}
+	
+	public void setDecoTileMeta(int x, int y, int meta){
+		int oldvalue = decoLayer.getField(x, y);
+		int newvalue = createField(getIDFromField(oldvalue), meta);
+		decoLayer.setField(x, y, newvalue);
+	}
+	
+	/**
+	 * create field value from id and meta
+	 * @param id
+	 * @param meta
+	 * @return
+	 */
+	public int createField(int id, int meta){
+		return (id << 16) | (meta & 0x0000FFFF);
+	}
+	
+	public int getMetaFromField(int value){
+		return value & 0x0000FFFF;
+	}
+	
+	public int getIDFromField(int value){
+		return value >>> 16;
 	}
 	
 	public void setDecoTile(int x, int y, int value){
