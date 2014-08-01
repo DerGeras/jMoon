@@ -9,8 +9,6 @@ import java.util.LinkedList;
 
 public class World {
 	
-	public LinkedList<Entity> entityList = new LinkedList<Entity>(); //List of entities in the world
-	
 	public enum direction{
 		north,
 		south,

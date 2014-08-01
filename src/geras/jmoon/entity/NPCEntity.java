@@ -1,10 +1,9 @@
 package geras.jmoon.entity;
 
-import geras.jmoon.world.World;
+import geras.jmoon.world.Region;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.xml.sax.Attributes;
 
 /**
  * The NPC class
@@ -17,8 +16,8 @@ public abstract class NPCEntity extends LivingEntity{
 	protected String name;
 	protected String title;
 
-	public NPCEntity(String name, String title, int posX, int posY) {
-		super();
+	public NPCEntity(int id, Region region, String name, String title, int posX, int posY) {
+		super(id, region);
 		this.name = name;
 		this.title = title;
 		this.posX = posX;
@@ -27,8 +26,8 @@ public abstract class NPCEntity extends LivingEntity{
 	
 	//inherited
 	@Override
-	public void draw(Graphics g, int mapTopX, int mapTopY, World map){
-		super.draw(g, mapTopX, mapTopY, map);
+	public void draw(Graphics g, int mapTopX, int mapTopY){
+		super.draw(g, mapTopX, mapTopY);
 		//draw title and name
 		int relativeX = (int) (mapTopX + posX);
 		int relativeY = (int) (mapTopY + posY);
@@ -38,36 +37,6 @@ public abstract class NPCEntity extends LivingEntity{
 		g.setColor(Color.white);
 		g.drawString(name, relativeX - name.length()*8 / 2, relativeY + height/2 - imageHeight - 40);
 		g.drawString("<" + title + ">", relativeX - title.length()*8 / 2 - 10, relativeY + height/2 -  imageHeight - 20);
-	}
-	
-	@Override
-	public void readFromAttributes(Attributes attributes) {
-		name = attributes.getValue("name");
-		if(name == null){
-			name = "";
-		}
-		title = attributes.getValue("title");
-		if(title == null){
-			title = "";
-		}
-		
-		String posXS = attributes.getValue("posX");
-		String posYS = attributes.getValue("posY");
-		String hungerS = attributes.getValue("hunger");
-		String thirstS = attributes.getValue("thirst");
-		
-		if(posXS != null){
-			posX = Float.parseFloat(posXS);
-		}
-		if(posYS != null){
-			posY = Float.parseFloat(posYS);
-		}
-		if(hungerS != null){
-			hunger = Float.parseFloat(hungerS);
-		}
-		if(thirstS != null){
-			thirst = Float.parseFloat(thirstS);
-		}
 	}
 	
 	/**

@@ -1,52 +1,39 @@
 package geras.jmoon.entity;
 
 import geras.jmoon.GameState.WorldGameState;
-import geras.jmoon.item.HandItem;
+import geras.jmoon.item.Inventory;
 import geras.jmoon.item.Item;
-import geras.jmoon.item.UsableItem;
+import geras.jmoon.item.ItemStack;
+import geras.jmoon.world.Region;
 import geras.jmoon.world.World;
-
-import java.io.BufferedWriter;
-import java.io.IOException;
 
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Graphics;
-import org.xml.sax.Attributes;
 
 
 public class PlayerEntity extends LivingEntity implements Merchant{
 	
-	private UsableItem currentTool;
+	private ItemStack currentItem;
+	
+	private Inventory inventory;
 
 	/**
 	 * Basic constructor, set hunger to 0 and set the image for the rendering
 	 */
-	public PlayerEntity(){
-		super();
+	public PlayerEntity(int id, Region region){
+		super(id, region);
 		this.hunger = 0;
-		setEntityImg("Sprites/Entities/Hero.png");
-		inventory.addItem("Axe",1);
-		inventory.addItem("Hoe",1);
-		inventory.addItem("Watering Can", 1);
-		inventory.addItem("Sickel",1);
-		inventory.addItem("Shovel",1);
-		inventory.addItem("Seeds", 64);
-		inventory.addItem("Water Bucket", 64);
-		inventory.addItem("Fence",64);
-		inventory.addItem("Bucket", 64);
-		inventory.addItem("Potato", 128);
-		inventory.addItem("Bread", 128);
-		inventory.setMoney(500);
-		currentTool = new HandItem();
-	}
-	
-	public void update(int timesincelastframe, World map){
-		move(timesincelastframe, map);
+		//TODO
 	}
 	
 	@Override
-	public void draw(Graphics g, int mapTopX, int mapTopY, World map) {
-		super.draw(g, mapTopX,mapTopY,map);
+	public void update(int timesincelastframe){
+		move(timesincelastframe);
+	}
+	
+	@Override
+	public void draw(Graphics g, int mapTopX, int mapTopY) {
+		super.draw(g, mapTopX,mapTopY);
 	}
 	
 	/**
@@ -54,51 +41,11 @@ public class PlayerEntity extends LivingEntity implements Merchant{
 	 * @param map - current Map
 	 */
 	public void useItem(World map, int x, int y){
-		currentTool.useWorld(x, y, map, this);
+		//TODO
 	}
 	
-	public void setCurrentTool(UsableItem item){
-		currentTool = item;
-	}
-	
-	@Override
-	public void saveToXML(BufferedWriter out) {
-		try {
-			out.append("<entity case=\"PlayerEntity\" posX=\"" + posX + "\" posY=\"" + posY);
-			out.append("\" hunger=\"" + hunger + "\" thirst=\"" + thirst + "\">");
-			out.flush();
-			out.newLine();
-			
-			//output the inventory
-			inventory.saveToXML(out);
-			
-			out.newLine();
-			out.write("</entity>");
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void readFromAttributes(Attributes attributes) {
-		String posXS = attributes.getValue("posX");
-		String posYS = attributes.getValue("posY");
-		String hungerS = attributes.getValue("hunger");
-		String thirstS = attributes.getValue("thirst");
-		
-		if(posXS != null){
-			posX = Float.parseFloat(posXS);
-		}
-		if(posYS != null){
-			posY = Float.parseFloat(posYS);
-		}
-		if(hungerS != null){
-			hunger = Float.parseFloat(hungerS);
-		}
-		if(thirstS != null){
-			thirst = Float.parseFloat(thirstS);
-		}
+	public void setCurrentItem(ItemStack item){
+		//TODO
 	}
 	
 	@Override
@@ -133,14 +80,6 @@ public class PlayerEntity extends LivingEntity implements Merchant{
 		return false;
 	}
 
-
-	@Override
-	public void interact(PlayerEntity player, World map, Game game,
-			WorldGameState state) {
-		//Currently no player interactions
-		
-	}
-
 	
 	///////////////////////////////////////////////////////
 	//
@@ -152,8 +91,20 @@ public class PlayerEntity extends LivingEntity implements Merchant{
 	 * 
 	 * @return the currently selected tool
 	 */
-	public UsableItem getCurrentTool(){
-		return currentTool;
+	public ItemStack getCurrentItem(){
+		return currentItem;
+	}
+
+	@Override
+	public Inventory getInventory() {
+		// TODO Auto-generated method stub
+		return inventory;
+	}
+
+	@Override
+	public void interact(PlayerEntity player, Game game, WorldGameState state) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

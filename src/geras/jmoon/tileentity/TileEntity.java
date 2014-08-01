@@ -9,6 +9,7 @@ import geras.jmoon.world.Region;
 
 import java.io.IOException;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 public abstract class TileEntity{
@@ -56,7 +57,7 @@ public abstract class TileEntity{
 	 * @param mapTopX - x coordinate of the top left point of the map
 	 * @param mapTopY - y coordinate of the top left point of the map
 	 */
-	public void draw(int mapTopX, int mapTopY){
+	public void draw(Graphics g, int mapTopX, int mapTopY){
 		Image img = getImage();
 		int width = img.getWidth();
 		int height = img.getHeight();

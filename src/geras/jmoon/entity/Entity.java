@@ -6,7 +6,6 @@ import geras.jmoon.GameState.WorldGameState;
 import geras.jmoon.main.JMoonGame;
 import geras.jmoon.nbt.TagCompound;
 import geras.jmoon.world.Region;
-import geras.jmoon.world.World;
 
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Graphics;
@@ -31,6 +30,7 @@ public abstract class Entity {
 	 * Override this for your Entities!
 	 */
 	protected Entity(int id, Region region){
+		setRegion(region);
 		entityID = id;
 	}
 	
@@ -56,14 +56,14 @@ public abstract class Entity {
 	 * update the entity
 	 * @param timesincelastframe
 	 */
-	public abstract void update(int timesincelastframe, World map);
+	public abstract void update(int timesincelastframe);
 	
 	/**
 	 * draw this entity
 	 * @param mapTopX - x coordinate of the top left point of the map
 	 * @param mapTopY - y coordinate of the top left point of the map
 	 */
-	public void draw(Graphics g, int mapTopX, int mapTopY, World map){
+	public void draw(Graphics g, int mapTopX, int mapTopY){
 		if(img != null){
 			int relativeX = (int) (mapTopX + posX - img.getWidth() / 2);
 			int relativeY = (int) (mapTopY + posY + (height / 2) - img.getHeight());
@@ -100,6 +100,16 @@ public abstract class Entity {
 	 * @param g - graphics - might be needed for interface stuff
 	 */
 	public abstract void interact(PlayerEntity player, Game game, WorldGameState state);
+	
+	public void setRegion(Region region){
+		if(this.region != null){
+			this.region.removeEntity(this);
+		}
+		if(region != null){
+			region.addEntity(this);
+		}
+		this.region = region;
+	}
 	
 	///////////////////////////////////////////////////////
 	//

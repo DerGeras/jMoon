@@ -14,7 +14,7 @@ public class TradePane extends BasicPane {
 			if(merchant != null){
 				int itemSelected = playerInventoryPane.getSelected();
 				if(itemSelected != - 1){
-					merchant.sellTo(player, player.getInventory().getItem(itemSelected), 1);
+					merchant.sellTo(player, player.getInventory().getItemStack(itemSelected).getItem(), 1);
 				}
 			}
 			
@@ -28,7 +28,7 @@ public class TradePane extends BasicPane {
 			if(merchant != null){
 				int itemSelected = merchantInventoryPane.getSelected();
 				if(itemSelected != - 1){
-					merchant.buyFrom(player, merchant.getInventory().getItem(itemSelected), 1);
+					merchant.buyFrom(player, merchant.getInventory().getItemStack(itemSelected).getItem(), 1);
 				}
 			}
 			
@@ -73,10 +73,10 @@ public class TradePane extends BasicPane {
 			super.draw(g);
 			
 			int playerSelected = playerInventoryPane.getSelected();
-			String sellPrice = playerSelected == -1 ? "" : Integer.toString((int)Math.ceil(merchant.getSellSale() * player.getInventory().getItem(playerSelected).getSellingPrice()));
+			String sellPrice = playerSelected == -1 ? "" : Integer.toString((int)Math.ceil(merchant.getSellSale() * player.getInventory().getItemStack(playerSelected).getSellingPrice()));
 			
 			int merchantSelected = merchantInventoryPane.getSelected();
-			String buyPrice = merchantSelected == -1 ? "" : Integer.toString((int)Math.ceil(merchant.getBuySale() * merchant.getInventory().getItem(merchantSelected).getSellingPrice()));
+			String buyPrice = merchantSelected == -1 ? "" : Integer.toString((int)Math.ceil(merchant.getBuySale() * merchant.getInventory().getItemStack(merchantSelected).getSellingPrice()));
 			
 			g.drawString(sellPrice, width / 2 - 10, height / 2 - 70);
 			g.drawString(buyPrice, width / 2 - 10, height / 2 + 70);

@@ -4,6 +4,7 @@ import geras.jmoon.gui.SpriteRegistry;
 import geras.jmoon.item.Item;
 import geras.jmoon.world.Region;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -23,7 +24,7 @@ public class Tile extends Item{
 		try {
 			image = SpriteRegistry.registerImage(getImagePath(modid));
 		} catch (SlickException e) {
-			System.err.println("Could not register image for item " + name
+			System.err.println("Could not register image for tile " + name
 					+ "of " + modid);
 			e.printStackTrace();
 		}
@@ -31,6 +32,16 @@ public class Tile extends Item{
 	
 	public String getImagePath(String modid){
 		return "sprites/" + modid + "/tile/" + name + ".png";
+	}
+	
+	/**
+	 * update a tile of this type in region at (posX, posY)
+	 * @param egion
+	 * @param posX
+	 * @param posY
+	 */
+	public void update(Region region, int posX, int posY){
+		//default behaviour is doing nothing
 	}
 	
 	/**
@@ -48,7 +59,7 @@ public class Tile extends Item{
 		return isObstacle;
 	}
 	
-	public void draw(Region region, float x, float y, int posX, int posY){
+	public void draw(Graphics g, Region region, float x, float y, int posX, int posY){
 		image.drawEmbedded(x, y, image.getWidth(), image.getHeight());
 	}
 	

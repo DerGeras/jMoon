@@ -43,13 +43,14 @@ public class InventoryPane extends BasicPane {
 			g.setColor(Color.black);
 			g.drawString("Inventory", absX + 20, absY + 20);
 			Item item;
-			for(int i = 0; i < inventory.getSize(); i++){
-				item = inventory.getItem(i);
-				if(i == selected) g.setColor(Color.blue);
-				g.drawString(item.toString(), x, y);
-				g.setColor(Color.black);
-				y += elementHeight;
-			}
+			//TODO!!!!
+//			for(int i = 0; i < inventory.getSize(); i++){
+//				// item = inventory.getItem(i); TODO
+//				if(i == selected) g.setColor(Color.blue);
+//				g.drawString(item.toString(), x, y);
+//				g.setColor(Color.black);
+//				y += elementHeight;
+//			}
 			//draw the children
 			drawChildren(g);					
 		}
@@ -91,14 +92,12 @@ public class InventoryPane extends BasicPane {
 	}
 
 	public int getSelected() {
-		selected = selected < inventory.getSize() ? selected : -1;
+		//selected = selected < inventory.getSize() ? selected : -1; TODO
 		return selected;
 	}
 
 	public void setSelected(int selected) {
-		if(selected < inventory.getContent().size()){
-			this.selected = selected;
-		}
+		//TODO
 	}
 	
 	public int getWidth(){

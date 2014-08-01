@@ -1,8 +1,8 @@
 package geras.jmoon.entity;
 
 import geras.jmoon.reference.Settings;
+import geras.jmoon.world.Region;
 import geras.jmoon.world.World;
-import geras.jmoon.world.WorldElements;
 
 public abstract class LivingEntity extends Entity {
 	
@@ -11,71 +11,30 @@ public abstract class LivingEntity extends Entity {
 	
 	protected float move_speed = 0.15f;
 	
-	protected World.direction direction;
+	protected World.direction direction; //which way is the entity facing
 	
 	protected int nextX; //direction to move on the next update (-1, 0, 1)
 	protected int nextY; //direction to move on the next update (-1, 0, 1)
 	
-	
-	protected int[] obstacles;
+	protected boolean isFlying;
 
-	protected LivingEntity() {
-		super();
-		hunger = 0;
-		thirst = 0;
+	protected LivingEntity(int id, Region region) {
+		super(id, region);
+		hunger = 0.0f;
+		thirst = 0.0f;
 		width = Settings.tileWidth;
 		height = Settings.tileHeight;
 		nextX = nextY = 0;
 		direction = World.direction.south;
-		obstacles = new int[2];
-		obstacles[0] = WorldElements.ROCK_VALUE;
-		obstacles[1] = WorldElements.FENCE_VALUE;
 	}
-
-	@Override
-	public abstract void update(int timesincelastframe, World map);
 	
 	
 	/**
 	 * move the entity on the next frame
 	 * depending on timesincelastframe, the move_speed and nextX/nextY
 	 */
-	protected void move(int timesincelastframe, World map){
-		float oldX = posX;
-		float oldY = posY;
-		posX += timesincelastframe * move_speed * nextX;
-		posY += timesincelastframe * move_speed * nextY;
-		nextX = nextY = 0;
-		//Collision
-		int firstX = (int) ((posX - width / 3) / Settings.tileWidth);
-		int firstY = (int) ((posY - width / 3) / Settings.tileHeight);
-		int secondX = (int) ((posX + width / 3) / Settings.tileWidth);
-		int secondY = (int) ((posY + height / 3) / Settings.tileHeight);
-		
-		boolean topLeftHit = isObstacle(map.getField("Decoration", firstX, firstY));
-		boolean topRightHit = isObstacle(map.getField("Decoration", secondX, firstY));
-		boolean BottomLeftHit = isObstacle(map.getField("Decoration", firstX, secondY));
-		boolean BottomRightHit = isObstacle(map.getField("Decoration", secondX, secondY));
-		
-		if(topLeftHit || BottomLeftHit || topRightHit || BottomRightHit){
-			posX = oldX;
-			posY = oldY;
-			//TODO better ideas for this one -.-
-		}
-	}
-	
-	/**
-	 * helper method, is this tileValue an obstacles?
-	 * @param tileValue
-	 * @return
-	 */
-	protected boolean isObstacle(int tileValue){
-		for(int i : obstacles){
-			if(i == tileValue){
-				return true;
-			}
-		}
-		return false;
+	protected void move(int timesincelastframe){
+		//TODo
 	}
 	
 	///////////////////////////////////////////////////////
@@ -142,6 +101,14 @@ public abstract class LivingEntity extends Entity {
 			this.direction = World.direction.north;
 		}
 		if(nextY == 0)this.nextY = 0;
+	}
+	
+	public boolean isFlying(){
+		return isFlying;
+	}
+	
+	public void setFlying(boolean b){
+		isFlying = b;
 	}
 
 }
