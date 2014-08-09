@@ -47,7 +47,7 @@ public class JMoonGame extends StateBasedGame  {
 	}
 	
 	public static void saveGame(){
-		worldGameState.saveToXML();
+		//TODO
 	}
 	
 	
